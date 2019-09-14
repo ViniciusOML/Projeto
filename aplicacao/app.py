@@ -51,6 +51,7 @@ def fazer_cadastro_usuario():
    
     return 'Cadastro realizado com sucesso' 
 
+
 @app.route("/paciente")
 def listar_paciente():
     return jsonify(database['PACIENTE'])
