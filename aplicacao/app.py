@@ -3,12 +3,12 @@ from flask import Flask, jsonify, request, render_template
 app = Flask(__name__)
 
 database = dict()
-database['USUARIO'] = {}
-database['PACIENTE'] = {}
+database['USUARIO'] = []
+database['PACIENTE'] = []
 
 @app.route("/")
 def index(): 
-    return 'Hello World'
+    return 'Bem Vindo ao !Iridium'
 
 
 @app.route("/login", methods=['POST'])
@@ -20,16 +20,36 @@ def fazer_login():
     return {'erro': 'Usuario não encontrado'}, 404
 
 
-@app.route("/login/cadastro", methods=['POST'])
+@app.route("/signin", methods=['POST'])
 def fazer_cadastro_usuario():
-    dados_usuario = request.form
+    dados_usuario = request.values
+    
     if 'email' in dados_usuario:
         if '@' not in dados_usuario['email']:
             return 'Email invalido', 404
     else:
-        return 'Email não informado', 404
-    return jsonify(dados_usuario)
+        return 'e-mail não informado', 404       
+    
+    if 'nome' in dados_usuario:
+        if ' ' in dados_usuario['nome']:
+            return 'Nome inválido', 404
+    else:
+        return 'Nome não informado', 404   
+    
+    if 'senha' in dados_usuario:
+        if len(dados_usuario['senha']) < 6:
+            return 'A senha deve ter no minimo 6 digitos', 404   
+    else:
+        return 'cadastre a senha', 404
 
+    if 'nusp' in dados_usuario:
+        if len(dados_usuario['nusp']) < 5:
+            return 'Nº USP inválido'
+    else:
+        return 'informe Nº USP', 404
+    database['USUARIO'].append(dados_usuario)
+   
+    return 'Cadastro realizado com sucesso' 
 
 @app.route("/paciente")
 def listar_paciente():
