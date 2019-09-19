@@ -56,7 +56,8 @@
     outline-color: #7159c1;
   }
   
-  form .Botao {
+  .Botao {
+    width: 100%;
     display: block;
     min-width: 120px;
     border: none;
