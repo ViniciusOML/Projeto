@@ -1,4 +1,4 @@
-from flask import Flask, jsonify, request, render_template
+from flask import Flask, jsonify, request, render_template, redirect
 
 app = Flask(__name__)
 
@@ -6,39 +6,63 @@ database = dict()
 database['USUARIO'] = []
 database['PACIENTE'] = []
 
+
 @app.route("/")
-def index(): 
+def index():
     return 'Bem Vindo ao !Iridium'
+
+
+@app.route("/login")
+def tela_login():
+    return render_template('login.html')
 
 
 @app.route("/login", methods=['POST'])
 def fazer_login():
     login = request.form
+
+    if 'nusp' in login:
+        if len(login['nusp']) < 5:
+            return 'Nº USP inválido'
+    else:
+        return 'informe Nº USP', 404
+
+    if 'senha' in login:
+        if len(login['senha']) < 6:
+            return 'A senha deve ter no minimo 6 digitos', 404
+    else:
+        return 'cadastre a senha', 404
+
     for usuario in database['USUARIO']:
         if login['nusp'] == usuario['nusp'] and login['senha'] == usuario['senha']:
             return 'Usuario encontrado', 200
     return {'erro': 'Usuario não encontrado'}, 404
 
 
+@app.route("/signin")
+def tela_signin():
+    return render_template('signin.html')
+
+
 @app.route("/signin", methods=['POST'])
 def fazer_cadastro_usuario():
     dados_usuario = request.values
-    
+
     if 'email' in dados_usuario:
         if '@' not in dados_usuario['email']:
             return 'Email invalido', 404
     else:
-        return 'e-mail não informado', 404       
-    
+        return 'e-mail não informado', 404
+
     if 'nome' in dados_usuario:
-        if ' ' in dados_usuario['nome']:
+        if dados_usuario['nome'] == '':
             return 'Nome inválido', 404
     else:
-        return 'Nome não informado', 404   
-    
+        return 'Nome não informado', 404
+
     if 'senha' in dados_usuario:
         if len(dados_usuario['senha']) < 6:
-            return 'A senha deve ter no minimo 6 digitos', 404   
+            return 'A senha deve ter no minimo 6 digitos', 404
     else:
         return 'cadastre a senha', 404
 
@@ -48,16 +72,21 @@ def fazer_cadastro_usuario():
     else:
         return 'informe Nº USP', 404
     database['USUARIO'].append(dados_usuario)
-   
-    return 'Cadastro realizado com sucesso' 
+
+    return redirect('login')
 
 
-@app.route("/paciente")
+@app.route("/pacientes")
 def listar_paciente():
     return jsonify(database['PACIENTE'])
 
 
-@app.route("/paciente", methods=['POST'])
+@app.route("/paciente/novo")
+def paciente_novo():
+    return render_template('paciente.html')
+
+
+@app.route("/paciente/novo", methods=['POST'])
 def fazer_cadastro_paciente():
     dados_paciente = request.values
 
