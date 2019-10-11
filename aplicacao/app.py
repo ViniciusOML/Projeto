@@ -1,7 +1,9 @@
 from flask import Flask, jsonify, request, render_template, redirect
-from config_db import mysql
+import config_db
 
 app = Flask(__name__)
+
+mysql = config_db.configuraConexao(app)
 
 database = dict()
 database['USUARIO'] = []
@@ -80,7 +82,10 @@ def fazer_cadastro_usuario():
 
 @app.route("/pacientes")
 def listar_paciente():
-    return jsonify(database['PACIENTE'])
+    cur = mysql.connection.cursor()
+    pacientes = cur.execute("SELECT * FROM pacientes")
+    cur.close()
+    return jsonify(pacientes)
 
 
 @app.route("/paciente/novo")
