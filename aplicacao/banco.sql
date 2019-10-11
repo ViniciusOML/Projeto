@@ -1,4 +1,8 @@
-CREATE TABLE pacientes (
+CREATE IF NOT EXISTS DATABASE ope;
+
+USE ope;
+
+CREATE TABLE IF NOT EXISTS pacientes (
     id INT PRIMARY KEY AUTO_INCREMENT,
     nome VARCHAR(120),
     dataNascimento DATE,
@@ -8,7 +12,7 @@ CREATE TABLE pacientes (
     updatedAt DATETIME DEFAULT NOW()
 );
 
-CREATE TABLE usuarios (
+CREATE TABLE IF NOT EXISTS usuarios (
     id INT PRIMARY KEY AUTO_INCREMENT,
     nome VARCHAR(120),
     senha VARCHAR(250),
