@@ -1,7 +1,11 @@
-import mysql.connector
+from flask import Flask
+from flask_mysqldb import MySQL
+app = Flask(__name__)
 
-mydb = mysql.connector.connect(
-  host="localhost",
-  user="root",
-  passwd="matherick"
-)
+
+app.config['MYSQL_HOST'] = 'localhost'
+app.config['MYSQL_USER'] = 'root'
+app.config['MYSQL_PASSWORD'] = 'root'
+app.config['MYSQL_DB'] = 'MyDB'
+
+mysql = MySQL(app)

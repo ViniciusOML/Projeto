@@ -1,4 +1,5 @@
 from flask import Flask, jsonify, request, render_template, redirect
+from config_db import mysql
 
 app = Flask(__name__)
 
@@ -9,7 +10,8 @@ database['PACIENTE'] = []
 
 @app.route("/")
 def index():
-    return 'Bem Vindo ao !Iridium'
+    print(mysql)
+    return 'teste'
 
 
 @app.route("/login")
