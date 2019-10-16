@@ -53,8 +53,8 @@ def cadastrar_usuario():
     #     return 'cadastre a senha', 404
 
     cur = mysql.connection.cursor()
-    cur.execute("insert into usuarios (nome, email, senha) values(%s,%s,%s)",
-               (dados_usuario['nome'],dados_usuario['email'],dados_usuario['senha']))
+    cur.execute("insert into usuarios (nome, email, senha, nusp) values(%s,%s,%s, %s)",
+               (dados_usuario['nome'],dados_usuario['email'],dados_usuario['senha'], dados_usuario['nusp']))
 
     mysql.connection.commit()
     cur.close()
