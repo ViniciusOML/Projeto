@@ -17,6 +17,7 @@ CREATE TABLE IF NOT EXISTS usuarios (
     nome VARCHAR(120),
     senha VARCHAR(250),
     email VARCHAR(120),
+    nusp VARCHAR(20),
     createdAt DATETIME DEFAULT NOW(),
     updatedAt DATETIME DEFAULT NOW()
 );

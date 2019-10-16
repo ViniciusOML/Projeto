@@ -5,42 +5,36 @@ app = Flask(__name__)
 
 mysql = config_db.configuraConexao(app)
 
-database = dict()
-database['USUARIO'] = []
-database['PACIENTE'] = []
-
 
 @app.route("/")
 def index():
-    print(mysql)
-    return 'teste'
+
+    return render_template("index.html")
 
 
-@app.route("/login")
-def tela_login():
-    return render_template('login.html')
 
-
-@app.route("/login", methods=['POST'])
+@app.route("/login", methods=['POST', 'GET'])
 def fazer_login():
     login = request.form
+    if request.method == "POST":
+        if 'nusp' in login:
+            if len(login['nusp']) < 5:
+                return 'Nº USP inválido'
+        else:
+            return 'informe Nº USP', 404
 
-    if 'nusp' in login:
-        if len(login['nusp']) < 5:
-            return 'Nº USP inválido'
+        if 'senha' in login:
+            if len(login['senha']) < 6:
+                return 'A senha deve ter no minimo 6 digitos', 404
+        else:
+            return 'cadastre a senha', 404
+
+        for usuario in database['USUARIO']:
+            if login['nusp'] == usuario['nusp'] and login['senha'] == usuario['senha']:
+                return 'Usuario encontrado', 200
+        return {'erro': 'Usuario não encontrado'}, 404
     else:
-        return 'informe Nº USP', 404
-
-    if 'senha' in login:
-        if len(login['senha']) < 6:
-            return 'A senha deve ter no minimo 6 digitos', 404
-    else:
-        return 'cadastre a senha', 404
-
-    for usuario in database['USUARIO']:
-        if login['nusp'] == usuario['nusp'] and login['senha'] == usuario['senha']:
-            return 'Usuario encontrado', 200
-    return {'erro': 'Usuario não encontrado'}, 404
+        return render_template("login.html")
 
 
 @app.route("/signin")
@@ -49,34 +43,21 @@ def tela_signin():
 
 
 @app.route("/signin", methods=['POST'])
-def fazer_cadastro_usuario():
+def cadastrar_usuario():
     dados_usuario = request.values
 
-    if 'email' in dados_usuario:
-        if '@' not in dados_usuario['email']:
-            return 'Email invalido', 404
-    else:
-        return 'e-mail não informado', 404
+    # if 'senha' in dados_usuario:
+    #     if len(dados_usuario['senha']) < 6:
+    #         return 'A senha deve ter no minimo 6 digitos', 404
+    # else:
+    #     return 'cadastre a senha', 404
 
-    if 'nome' in dados_usuario:
-        if dados_usuario['nome'] == '':
-            return 'Nome inválido', 404
-    else:
-        return 'Nome não informado', 404
+    cur = mysql.connection.cursor()
+    cur.execute("insert into usuarios (nome, email, senha, nusp) values(%s,%s,%s, %s)",
+               (dados_usuario['nome'],dados_usuario['email'],dados_usuario['senha'], dados_usuario['nusp']))
 
-    if 'senha' in dados_usuario:
-        if len(dados_usuario['senha']) < 6:
-            return 'A senha deve ter no minimo 6 digitos', 404
-    else:
-        return 'cadastre a senha', 404
-
-    if 'nusp' in dados_usuario:
-        if len(dados_usuario['nusp']) < 5:
-            return 'Nº USP inválido'
-    else:
-        return 'informe Nº USP', 404
-    database['USUARIO'].append(dados_usuario)
-
+    mysql.connection.commit()
+    cur.close()
     return redirect('login')
 
 
@@ -84,6 +65,7 @@ def fazer_cadastro_usuario():
 def listar_paciente():
     cur = mysql.connection.cursor()
     pacientes = cur.execute("SELECT * FROM pacientes")
+    pacientes = cur.fetchall()
     cur.close()
     return jsonify(pacientes)
 
