@@ -1,4 +1,4 @@
-from flask import Flask, jsonify, request, render_template, redirect
+from flask import Flask, jsonify, request, render_template, redirect, url_for
 import config_db
 
 app = Flask(__name__)
@@ -15,24 +15,30 @@ def index():
 
 @app.route("/login", methods=['POST', 'GET'])
 def fazer_login():
-    login = request.form
+    dados_login = request.form
     if request.method == "POST":
-        if 'nusp' in login:
-            if len(login['nusp']) < 5:
+        if 'nusp' in dados_login:
+            if len(dados_login['nusp']) < 5:
                 return 'Nº USP inválido'
         else:
             return 'informe Nº USP', 404
 
-        if 'senha' in login:
-            if len(login['senha']) < 6:
+        if 'senha' in dados_login:
+            if len(dados_login['senha']) < 6:
                 return 'A senha deve ter no minimo 6 digitos', 404
         else:
             return 'cadastre a senha', 404
-
-        for usuario in database['USUARIO']:
-            if login['nusp'] == usuario['nusp'] and login['senha'] == usuario['senha']:
-                return 'Usuario encontrado', 200
-        return {'erro': 'Usuario não encontrado'}, 404
+        cur = mysql.connection.cursor()
+        pacientes = cur.execute("SELECT * FROM usuarios where nusp = %s and senha = %s", (dados_login['nusp'], dados_login['senha'] ) )
+        if cur.fetchone():
+            return redirect(url_for('pacientes'))
+            cur.close()
+        cur.close()
+        return redirect(url_for('login'))
+        # for usuario in database['USUARIO']:
+        #     if login['nusp'] == usuario['nusp'] and login['senha'] == usuario['senha']:
+        #         return 'Usuario encontrado', 200
+        # return {'erro': 'Usuario não encontrado'}, 404
     else:
         return render_template("login.html")
 
