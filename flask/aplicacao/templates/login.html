@@ -1,0 +1,24 @@
+{% extends "template.html" %}
+{% block conteudo %}
+    <section>
+        <h1>Entrar</h1>
+        <div class="Formulario">
+            <form method="POST" action="/login">
+                <div class="cadastramento">
+                    <label for="entrar">Numero USP</label>
+                    <input type="text" name="nusp" required />
+                </div>
+                <div class="cadastramento">
+                    <label for="senha">Senha</label>
+                    <input type="password" name="senha" required />
+                </div>
+                <div>
+                    <button type="submit" class="Botao">Entrar</button>
+                </div>
+                <div>
+                    <a href="/signin" class="Botao">Criar Usuario</a>
+                </div>
+            </form>    
+        </div>
+    </section>
+{% endblock %}
