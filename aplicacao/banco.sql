@@ -27,6 +27,8 @@ CREATE TABLE IF NOT EXISTS atendimentos (
     id_paciente INT NOT NULL,
     id_lif INT NOT NULL,
     data_consulta DATE,
+    createdAt DATETIME DEFAULT NOW(),
+    updatedAt DATETIME DEFAULT NOW()
 );
 
 CREATE TABLE IF NOT EXISTS lifs (
@@ -58,7 +60,7 @@ CREATE TABLE IF NOT EXISTS atendimento_procedimentos (
 
 CREATE TABLE IF NOT EXISTS atendimento_procedimento_beras (
     id INT PRIMARY KEY AUTO_INCREMENT,
-    id_atendimento_procedimento INT PRIMARY KEY,
+    id_atendimento_procedimento INT NOT NULL,
     evolucao TEXT,
     conclusao TEXT,
     createdAt DATETIME DEFAULT NOW(),
