@@ -1,0 +1,32 @@
+{% extends "template.html" %}
+{% block conteudo %}
+    <section>
+        <h1>Criar Usuario</h1>
+        <div class="Formulario">
+            <form method="POST" action="/signin">
+                <div class="cadastramento">
+                    <label for="criar usuario">Criar nome de Usuario</label>
+                    <input type="text" name="nome" required/>
+                </div>
+                <div class="cadastramento">
+                    <label for="criar senha">Criar Senha</label>
+                    <input type="password" name="senha" min="6" required/>
+                </div>
+                <div class="cadastramento">
+                    <label for="cadastrar numero USP">Cadastrar Numero USP</label>
+                    <input type="number" name="nusp"/>
+                </div> 
+                <div class="cadastramento">
+                    <label for="cadastrar email">Cadastrar Email</label>
+                    <input type="email" name="email"/>
+                </div>
+                <div>
+                    <button type="submit" class="Botao">Cadastrar</button>
+                </div>
+                <div>
+                    <a href="/login" class="Botao">Voltar</a>
+                </div>
+            </form>
+        </div>
+    </section>
+{% endblock %}
