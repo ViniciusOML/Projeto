@@ -1,0 +1,59 @@
+{% extends "layouts/base-site.html" %}
+
+{% block title %} Dashboard {% endblock %}
+
+{% block content %}
+
+<div class="my-3 my-md-5">
+
+    <div class="container">
+        
+    </div>
+</div>
+
+{% endblock content %}
+
+<!-- Specific Page JS goes HERE  -->
+{% block javascripts %}
+
+<script>
+    require(['jquery'], function () {
+        $(document).ready(function () {
+
+            function setCookie(name, value, days) {
+                var expires = "";
+                if (days) {
+                    var date = new Date();
+                    date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+                    expires = "; expires=" + date.toUTCString();
+                }
+                document.cookie = name + "=" + (value || "") + expires + "; path=/";
+            }
+
+            function getCookie(name) {
+                var nameEQ = name + "=";
+                var ca = document.cookie.split(';');
+                for (var i = 0; i < ca.length; i++) {
+                    var c = ca[i];
+                    while (c.charAt(0) == ' ') c = c.substring(1, c.length);
+                    if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length, c.length);
+                }
+                return null;
+            }
+
+            if (!getCookie('bottombar-hidden')) {
+                $('.js-bottombar').show();
+            }
+
+            $('.js-bottombar-close').on('click', function (e) {
+                $('.js-bottombar').hide();
+                setCookie('bottombar-hidden', 1, 7);
+
+                e.preventDefault();
+                return false;
+            });
+        });
+    });
+</script>
+
+{% endblock javascripts %}
