@@ -16,8 +16,8 @@ class Paciente(models.Model):
     data_nascimento = models.DateField()
     sexo = models.CharField(max_length=1, choices=sexo_escolhas)
     tem_responsavel = models.BooleanField()
-    nome_responsavel = models.CharField(max_length=120)
-    rg_responsavel = models.CharField(max_length=10)
+    nome_responsavel = models.CharField(max_length=120, blank=True)
+    rg_responsavel = models.CharField(max_length=10, blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
