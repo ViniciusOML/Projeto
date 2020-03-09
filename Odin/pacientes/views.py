@@ -19,7 +19,9 @@ def create(request):
     if form.is_valid():
         form.save()
         return redirect("index_pacientes")
-    return render(request, "novo_paciente.html", {'form': form})
+    else:
+        errors = form.errors
+        return render(request, "novo_paciente.html", {'form': form, 'errors': errors})
 
 
 @login_required(login_url="/login/")
