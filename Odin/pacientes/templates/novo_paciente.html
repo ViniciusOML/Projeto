@@ -68,6 +68,10 @@
                         </label>
                         {{ form.rg_responsavel }}
                     </div>
+                 {% if errors %}
+                    <div class="alert alert-danger"> {{ errors }} </div>
+
+                 {% endif %}
                 </div>
                 <div class="card-footer text-center">
                     <button type="submit" class="btn btn-primary">Cadastrar</button>
