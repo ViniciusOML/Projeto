@@ -1,4 +1,5 @@
 from django.db import models
+from django.urls import reverse
 
 # Create your models here.
 
@@ -20,6 +21,9 @@ class Paciente(models.Model):
     rg_responsavel = models.CharField(max_length=10, blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
+
+    def get_absolute_url(self):
+        return reverse('index_pacientes')
 
     def __str__(self):
         return self.nome_completo
