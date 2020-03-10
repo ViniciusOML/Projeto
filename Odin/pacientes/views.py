@@ -4,7 +4,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from .models import Paciente
 from .forms import PacienteForm
-from django.views.generic import ListView
+from django.views.generic import ListView, CreateView
 
 # Create your views here.
 # @login_required(login_url="/login/")
@@ -14,15 +14,15 @@ from django.views.generic import ListView
 
 
 @login_required(login_url="/login/")
-def create(request):
-    form = PacienteForm(request.POST or None)
+#def create(request):
+#    form = PacienteForm(request.POST or None)
 
-    if form.is_valid():
-        form.save()
-        return redirect("index_pacientes")
-    else:
-        errors = form.errors
-        return render(request, "novo_paciente.html", {'form': form, 'errors': errors})
+#    if form.is_valid():
+        #form.save()
+        #return redirect("http://localhost:8000/pacientes/")
+    #else:
+        #errors = form.errors
+        #return render(request, "novo_paciente.html", {'form': form, 'errors': errors})
 
 
 @login_required(login_url="/login/")
@@ -43,6 +43,15 @@ def delete(request, id):
 
     return redirect("index_pacientes")
 
+
+class PacienteCreateView(CreateView):
+
+    
+    model = Paciente
+    fields = ['nome_completo', 'cpf', 'rg', 'data_nascimento', 'sexo', 'tem_responsavel','nome_responsavel', 'rg_responsavel']
+    template_name = 'novo_paciente.html'
+    
+    
 
 class PacienteListView(ListView):
 
