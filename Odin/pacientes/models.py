@@ -23,7 +23,7 @@ class Paciente(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
 
     def get_absolute_url(self):
-        return reverse('index_pacientes')
+        return reverse('index_pacientes', kwargs={'pk': self.pk})
 
     def __str__(self):
         return self.nome_completo

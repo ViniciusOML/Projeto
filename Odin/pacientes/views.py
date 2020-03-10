@@ -4,7 +4,9 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from .models import Paciente
 from .forms import PacienteForm
-from django.views.generic import ListView, CreateView
+from django.urls import reverse_lazy
+from django.views.generic import ListView, CreateView, UpdateView, DeleteView, DetailView
+
 
 # Create your views here.
 # @login_required(login_url="/login/")
@@ -14,21 +16,18 @@ from django.views.generic import ListView, CreateView
 
 
 @login_required(login_url="/login/")
-#def create(request):
+# def create(request):
 #    form = PacienteForm(request.POST or None)
-
 #    if form.is_valid():
-        #form.save()
-        #return redirect("http://localhost:8000/pacientes/")
-    #else:
-        #errors = form.errors
-        #return render(request, "novo_paciente.html", {'form': form, 'errors': errors})
-
-
+# form.save()
+# return redirect("http://localhost:8000/pacientes/")
+# else:
+#errors = form.errors
+# return render(request, "novo_paciente.html", {'form': form, 'errors': errors})
 @login_required(login_url="/login/")
 def update(request, id):
     paciente = Paciente.objects.get(id=id)
-    form = PacienteForm(request.POST or None, instance=paciente)
+    form = PacienteCreateView
 
     if form.is_valid():
         form.save()
@@ -45,20 +44,32 @@ def delete(request, id):
 
 
 class PacienteCreateView(CreateView):
-
-    
+    success_url = reverse_lazy('index_pacientes')
     model = Paciente
-    fields = ['nome_completo', 'cpf', 'rg', 'data_nascimento', 'sexo', 'tem_responsavel','nome_responsavel', 'rg_responsavel']
+    fields = ['nome_completo', 'cpf', 'rg', 'data_nascimento',
+              'sexo', 'tem_responsavel', 'nome_responsavel', 'rg_responsavel']
     template_name = 'novo_paciente.html'
-    
-    
+
+
+class PacienteUpdateView(UpdateView):
+    model = Paciente
+    fields = ['nome_completo', 'cpf', 'rg', 'data_nascimento',
+              'sexo', 'tem_responsavel', 'nome_responsavel', 'rg_responsavel']
+    template_name = 'editar_paciente.html'
+
+    success_url = reverse_lazy('index_pacientes')
+
+    @method_decorator(login_required)
+    def dispatch(self, *args, **kwargs):
+        return super().dispatch(*args, **kwargs)
+
 
 class PacienteListView(ListView):
 
     template_name = 'index_pacientes.html'
     model = Paciente
     context_object_name = 'pacientes'
-    queryset = Paciente.objects.all()  # Query padrão, pode ser omitida
+    queryset = Paciente.objects.all()  # Query padrão, pode ser omitid
 
     # Pode-se alterar a query, como demostra a linha abaixo
     # queryset = Paciente.objects.filter(nome_completo="bruna")
