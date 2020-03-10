@@ -12,7 +12,7 @@
     <meta name="mobile-web-app-capable" content="yes">
     <meta name="HandheldFriendly" content="True">
     <meta name="MobileOptimized" content="320">
-    
+
     <!-- Generated: 2019-04-04 16:55:45 +0200 -->
     <title>
         Odin - {% block title %}{% endblock %}
@@ -27,7 +27,7 @@
           baseUrl: '/static/'
       });
     </script>
-
+    <script src="https://kit.fontawesome.com/cce7dadc90.js" crossorigin="anonymous"></script>
     <!-- Dashboard Core -->
     <link href="/static/assets/css/dashboard.css" rel="stylesheet" />
     <script src="/static/assets/js/dashboard.js"></script>
@@ -45,9 +45,9 @@
   </head>
   <body class="">
     <div class="page">
-      
+
       <div class="flex-fill">
-        
+
         {% include 'includes/top-bar.html' %}
 
         {% include 'includes/top-menu.html' %}
@@ -62,6 +62,6 @@
 
   <!-- Specific Page JS goes HERE  -->
   {% block javascripts %}{% endblock javascripts %}
-      
+
   </body>
 </html>
