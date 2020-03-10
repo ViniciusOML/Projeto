@@ -21,6 +21,7 @@
                 <table class="table card-table table-vcenter text-nowrap datatable">
                     <thead>
                         <tr>
+                            <th>#</th>
                             <th>Nome</th>
                             <th>Sexo</th>
                             <th>Data Nascimento</th>
@@ -31,6 +32,7 @@
                     <tbody>
                         {% for paciente in pacientes %}
                         <tr style="height: 10px">
+                            <td> {{ paciente.id }} </td>
                             <td> {{ paciente.nome_completo }} </td>
                             <td> {{ paciente.sexo }} </td>
                             <td> {{ paciente.data_nascimento }} </td>
