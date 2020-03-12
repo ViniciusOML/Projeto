@@ -3,6 +3,7 @@
 {% block title %} Adicionar Paciente {% endblock %}
 
 {% block content %}
+{% load widget_tweaks %}
 
 <div class="my-3 my-md-5">
     <div class="container">
@@ -12,70 +13,57 @@
                     <h3 class="card-title">Cadastro de Paciente</h3>
 
                     {% csrf_token %}
+                <div class="col-md-5">
+                    <div class="form-group">
+                        <label class="form-label">Nome</label>
+                        {% render_field form.nome_completo class="form-control" %}
+                    </div>
+                </div>
 
                     <div class="form-group">
-                        <label class="form-label">
-                            Nome
-                        </label>
-                        {{ form.nome_completo }}
+                        <label class="form-label">CPF</label>
+                        {% render_field form.cpf class="form-control" %}
                     </div>
 
                     <div class="form-group">
-                        <label class="form-label">
-                            CPF
-                        </label>
-                        {{ form.cpf }}
+                        <label class="form-label">RG</label>
+                        {% render_field form.rg class="form-control" %}
                     </div>
 
                     <div class="form-group">
-                        <label class="form-label">
-                            RG
-                        </label>
-                        {{ form.rg }}
+                        <label class="form-label">Data Nascimento</label>
+                        {% render_field form.data_nascimento class="form-control" %}
                     </div>
 
                     <div class="form-group">
-                        <label class="form-label">
-                            Data Nascimento
-                        </label>
-                        {{ form.data_nascimento }}
+                        <label class="form-label">Sexo</label>
+                        {% render_field form.sexo class="form-control" %}
                     </div>
 
                     <div class="form-group">
-                        <label class="form-label">
-                            Sexo
-                        </label>
-                        {{ form.sexo }}
+                        <label class="form-label">Tem Responsavel</label>
+                        {% render_field form.tem_responsavel class="form-control" %}
                     </div>
 
                     <div class="form-group">
-                        <label class="form-label">
-                            Tem Responsavel
-                        </label>
-                        {{ form.tem_responsavel }}
+                        <label class="form-label">Nome Responsavel</label>
+                        {% render_field form.nome_responsavel class="form-control" %}
                     </div>
 
                     <div class="form-group">
-                        <label class="form-label">
-                            Nome Responsavel
-                        </label>
-                        {{ form.nome_responsavel }}
+                        <label class="form-label">RG Responsavel</label>
+                        {% render_field form.rg_responsavel class="form-control" %}
                     </div>
 
-                    <div class="form-group">
-                        <label class="form-label">
-                            RG Responsavel
-                        </label>
-                        {{ form.rg_responsavel }}
-                    </div>
                  {% if errors %}
                     <div class="alert alert-danger"> {{ errors }} </div>
-
                  {% endif %}
-                </div>
+                    </div>
+
                 <div class="card-footer text-center">
                     <button type="submit" class="btn btn-primary">Cadastrar</button>
                 </div>
+
             </form>
         </div>
     </div>

@@ -28,7 +28,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'app',  # Enable the inner app 
-    'pacientes'
+    'pacientes',
+    'widget_tweaks',
 ]
 
 MIDDLEWARE = [
