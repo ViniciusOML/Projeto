@@ -1,6 +1,6 @@
 from django.urls import path
 from . import views
-from .views import PacienteListView, PacienteCreateView, PacienteUpdateView
+from .views import PacienteListView, PacienteCreateView, PacienteUpdateView, PacienteDeleteView
 
 
 urlpatterns = [
@@ -13,5 +13,8 @@ urlpatterns = [
     # Para o Django entender que está pegando o id, tem que definir o nome do campo
     # passado na url como "pk"
     path('update/<int:pk>/', PacienteUpdateView.as_view(), name='update_paciente'),
-    path('delete/<int:id>/', views.delete, name='delete_paciente')
+
+
+    # path('delete/<int:id>/', views.delete, name='delete_paciente')
+    path('delete/<int:pk>/', PacienteDeleteView.as_view(), name='delete_paciente')
 ]

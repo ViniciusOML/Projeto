@@ -15,7 +15,7 @@ from django.views.generic import ListView, CreateView, UpdateView, DeleteView, D
 #     return render(request, "index_pacientes.html", {'pacientes': pacientes})
 
 
-@login_required(login_url="/login/")
+# @login_required(login_url="/login/")
 # def create(request):
 #    form = PacienteForm(request.POST or None)
 #    if form.is_valid():
@@ -24,23 +24,39 @@ from django.views.generic import ListView, CreateView, UpdateView, DeleteView, D
 # else:
 #errors = form.errors
 # return render(request, "novo_paciente.html", {'form': form, 'errors': errors})
-@login_required(login_url="/login/")
-def update(request, id):
-    paciente = Paciente.objects.get(id=id)
-    form = PacienteCreateView
 
-    if form.is_valid():
-        form.save()
-        return redirect("index_pacientes")
-    return render(request, "editar_paciente.html", {'form': form})
+# @login_required(login_url="/login/")
+# def update(request, id):
+#     paciente = Paciente.objects.get(id=id)
+#     form = PacienteCreateView
+
+#     if form.is_valid():
+#         form.save()
+#         return redirect("index_pacientes")
+#     return render(request, "editar_paciente.html", {'form': form})
 
 
-@login_required(login_url="/login/")
-def delete(request, id):
-    paciente = Paciente.objects.get(id=id)
-    paciente.delete()
+# @login_required(login_url="/login/")
+# def delete(request, id):
+#     paciente = Paciente.objects.get(id=id)
+#     paciente.delete()
 
-    return redirect("index_pacientes")
+#     return redirect("index_pacientes")
+
+
+class PacienteListView(ListView):
+
+    template_name = 'index_pacientes.html'
+    model = Paciente
+    context_object_name = 'pacientes'
+    queryset = Paciente.objects.all()  # Query padrão, pode ser omitid
+
+    # Pode-se alterar a query, como demostra a linha abaixo
+    # queryset = Paciente.objects.filter(nome_completo="bruna")
+
+    @method_decorator(login_required)
+    def dispatch(self, *args, **kwargs):
+        return super().dispatch(*args, **kwargs)
 
 
 class PacienteCreateView(CreateView):
@@ -64,15 +80,12 @@ class PacienteUpdateView(UpdateView):
         return super().dispatch(*args, **kwargs)
 
 
-class PacienteListView(ListView):
+class PacienteDeleteView(DeleteView):
 
-    template_name = 'index_pacientes.html'
     model = Paciente
-    context_object_name = 'pacientes'
-    queryset = Paciente.objects.all()  # Query padrão, pode ser omitid
-
-    # Pode-se alterar a query, como demostra a linha abaixo
-    # queryset = Paciente.objects.filter(nome_completo="bruna")
+    success_url = reverse_lazy('index_pacientes')
+    template_name = "excluir_paciente.html"
+    context_object_name = "paciente"
 
     @method_decorator(login_required)
     def dispatch(self, *args, **kwargs):
