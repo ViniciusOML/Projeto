@@ -29,6 +29,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'app',  # Enable the inner app 
     'pacientes',
+    'lifs',
     'widget_tweaks',
 ]
 

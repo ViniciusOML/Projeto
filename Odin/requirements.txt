@@ -10,3 +10,4 @@ python-decouple
 gunicorn
 whitenoise
 django-heroku
+django-widget-tweaks
