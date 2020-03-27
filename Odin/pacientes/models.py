@@ -27,3 +27,11 @@ class Paciente(models.Model):
 
     def __str__(self):
         return self.nome_completo
+
+
+class Atendimentos(models.Model):
+    paciente =  models.ForeignKey(to=Paciente, on_delete=models.CASCADE)
+    data_atendimento = models.DateTimeField()    
+
+    def __str__(self):
+        return self.data_atendimento

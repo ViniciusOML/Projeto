@@ -8,5 +8,6 @@ urlpatterns = [
     path("", include("authentication.urls")),  # add this
     path("", include("app.urls")),  # add this
     path("pacientes/", include("pacientes.urls")),
-    path("lifs/", include("lifs.urls"))
+    path("lifs/", include("lifs.urls")),
+    #path("atendimentos/", include("atendimentos.urls"))
 ]

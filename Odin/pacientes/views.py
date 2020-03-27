@@ -90,3 +90,24 @@ class PacienteDeleteView(DeleteView):
     @method_decorator(login_required)
     def dispatch(self, *args, **kwargs):
         return super().dispatch(*args, **kwargs)
+
+
+# class AtendimentosListView(ListView):
+
+#     #template_name = 'index_atendimentos.html'
+#     model = Atendimentos
+#     #context_object_name = 'atendimentos'
+#     queryset = Atendimentos.objects.all()  # Query padrão, pode ser omitida
+
+#     # Pode-se alterar a query, como demostra a linha abaixo
+#     # queryset = Lif.objects.filter(nome_completo="bruna")
+
+#     @method_decorator(login_required)
+#     def dispatch(self, *args, **kwargs):
+#         return super().dispatch(*args, **kwargs)
+
+# class AtendimentosCreateView(CreateView):
+#     #success_url = reverse_lazy('index_atendimentos')
+#     model = Atendimentos
+#     #fields = ['data_atendimento']
+#     #template_name = 'index_atendimentos.html'
