@@ -13,10 +13,35 @@
 
                     {% csrf_token %}
                     {{ form }}
+                    <hr>
+                    <h3 class="card-title">Atendimentos</h3>
+                    <div class="table-responsive">
+                        <table class="table card-table table-vcenter text-nowrap datatable">
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>Data atendimento</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            {% for atendimento in atendimentos %}
+                                <tr style="height: 10px">
+                                    <td>{{ atendimento.id }}</td>
+                                    <td>{{ atendimento.data_atendimento }}</td>
+                                </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
                 <div class="card-footer text-center">
                     <button type="submit" class="btn btn-primary">Atualizar</button>
                 </div>
+                <script>
+                    require(['datatables', 'jquery'], function (datatable, $) {
+                        $('.datatable').DataTable();
+                    });
+                </script>
             </form>
         </div>
     </div>

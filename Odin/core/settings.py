@@ -30,7 +30,6 @@ INSTALLED_APPS = [
     'app',  # Enable the inner app 
     'pacientes',
     'lifs',
-    'widget_tweaks',
 ]
 
 MIDDLEWARE = [

@@ -2,7 +2,7 @@
 from django.utils.decorators import method_decorator
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
-from .models import Paciente
+from .models import Paciente, Atendimentos
 from .forms import PacienteForm
 from django.urls import reverse_lazy
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView, DetailView
@@ -72,6 +72,12 @@ class PacienteUpdateView(UpdateView):
     fields = ['nome_completo', 'cpf', 'rg', 'data_nascimento',
               'sexo', 'tem_responsavel', 'nome_responsavel', 'rg_responsavel']
     template_name = 'editar_paciente.html'
+
+    # como pegar o id que foi passado na url
+    # atendimentos = Atendimentos.objects.filter(paciente_id=id)
+    atendimentos = Atendimentos.objects.all()
+
+    extra_context = {'atendimentos': atendimentos}
 
     success_url = reverse_lazy('index_pacientes')
 
