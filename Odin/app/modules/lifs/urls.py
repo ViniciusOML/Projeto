@@ -1,6 +1,6 @@
 from django.urls import path
-from . import views
 from .views import LifListView, LifCreateView, LifDeleteView, LifUpdateView
+
 urlpatterns = [
 
     path('', LifListView.as_view(), name='index_lifs'),
