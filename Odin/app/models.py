@@ -43,11 +43,43 @@ class Lif(models.Model):
         return self.nome_lif
 
 
+class Procedimento(models.Model):
+    sigla = models.CharField(max_length=50)
+    nome_procedimento = models.CharField(max_length=50)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    def get_absolute_url(self):
+        return reverse('index_lifs', kwargs={'pk': self.pk})
+
+    def __str__(self):
+        return self.nome_procedimento
+
+
 class Atendimentos(models.Model):
     paciente = models.ForeignKey(to=Paciente, on_delete=models.CASCADE)
-    data_atendimento = models.DateField()
+    procedimento = models.ForeignKey(to=Procedimento, on_delete=models.CASCADE)
     lif = models.ForeignKey(to=Lif, on_delete=models.CASCADE)
     protocolo = models.CharField(max_length=20)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return self.protocolo
+
+
+class Consulta(models.Model):
+    atendimento = models.ForeignKey(to=Atendimentos, on_delete=models.CASCADE)
+    data_consulta = models.DateField()
     observacao = models.CharField(max_length=200)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+
+class Bera(models.Model):
+    consulta = models.ForeignKey(to=Consulta, on_delete=models.CASCADE)
+
+    evolucao = models.TextField()
+    conclusao_exame = models.TextField()
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)

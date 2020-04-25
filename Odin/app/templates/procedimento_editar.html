@@ -1,9 +1,8 @@
 {% extends "layouts/base-site.html" %}
 
-{% block title %} Editar LIF {% endblock %}
+{% block title %} Editar Procedimento {% endblock %}
 
 {% block content %}
-
 {% load widget_tweaks %}
 
 <div class="my-3 my-md-5">
@@ -11,17 +10,23 @@
         <div class="col-lg-12">
             <form class="card" method="POST">
                 <div class="card-body">
-                    <h3 class="card-title">Atualizar LIF</h3>
+                    <h3 class="card-title" style="text-align: center;"><strong>Atualizar Procedimento</strong></h3>
 
                     {% csrf_token %}
                     
                     <div class="form-group">
-                        <label class="form-label">Nome</label>
-                        {% render_field form.nome_lif class="form-control" %}
+                        <label class="form-label">Sigla</label>
+                        {% render_field form.sigla class="form-control" %}
                     </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Nome</label>
+                        {% render_field form.nome_procedimento class="form-control" %}
+                    </div>
+                    
                 </div>
                 <div class="card-footer text-center">
-                    <a href={% url 'index_lifs' %} class="btn btn-primary">Voltar</a>
+                    <a href={% url 'index_procedimentos' %} class="btn btn-primary">Voltar</a>
                     <button type="submit" class="btn btn-success">Atualizar</button>
                 </div>
             </form>

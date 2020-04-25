@@ -1,6 +1,6 @@
 {% extends "layouts/base-site.html" %}
 
-{% block title %} Adicionar LIF {% endblock %}
+{% block title %} Adicionar Consulta {% endblock %}
 
 {% block content %}
 {% load widget_tweaks %}
@@ -10,12 +10,19 @@
         <div class="col-lg-12">
             <form class="card" method="POST">
                 <div class="card-body">
-                    <h3 class="card-title" style="text-align: center;"><strong>Cadastro de LIF</strong></h3>
+                    <h3 class="card-title">Cadastro de Consulta</h3>
 
                     {% csrf_token %}
+
+                    
+
                     <div class="form-group">
-                        <label class="form-label">Nome</label>
-                        {% render_field form.nome_lif class="form-control" %}
+                        <label class="form-label">Data consulta</label>
+                        {% render_field form.data_consulta class="form-control" type="date" %}
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Observação</label>
+                        {% render_field form.observacao class="form-control" required=false%}
                     </div>
 
                     {% if errors %}
@@ -24,7 +31,7 @@
                 </div>
 
                 <div class="card-footer text-center">
-                    <a href={% url 'index_lifs' %} class="btn btn-primary">Voltar</a>
+                    <a href={% url 'index_consultas' %} class="btn btn-primary">Voltar</a>
                     <button type="submit" class="btn btn-success">Cadastrar</button>
                 </div>
 
@@ -37,4 +44,12 @@
 {% endblock content %}
 
 <!-- Specific Page JS goes HERE  -->
-{% block javascripts %}{% endblock javascripts %}
+{% block javascripts %}
+
+
+{% endblock javascripts %}
+<script prefer>
+    $(function(){
+        console.log('zqui')
+    })
+</script>

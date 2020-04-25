@@ -5,33 +5,37 @@
 {% block content %}
 
 <div class="my-3 my-md-5">
+
     <div class="container">
+
         <div class="card">
             <div class="card-header">
                 <div class="col-lg order-lg-first">
                     <h1 class="card-title">
-                        Listagem de Lif's
+                        Listagem de Procedimentos
                     </h1>
                 </div>
-                <a href={% url 'new_lif' %} class="btn btn-success"><span class="fa fa-plus"></span> Adicionar novo lif</a>
+                <a href={% url 'new_procedimento' %} class="btn btn-success"><span class="fa fa-plus"></span> Adicionar novo procedimento</a>
             </div>
             <div class="table-responsive">
                 <table class="table card-table table-vcenter text-nowrap datatable">
                     <thead>
                         <tr>
                             <th>#</th>
+                            <th>Sigla</th>
                             <th>Nome</th>
                             <th></th>
                         </tr>
                     </thead>
                     <tbody>
-                        {% for lif in lifs %}
+                        {% for procedimento in procedimentos %}
                         <tr style="height: 10px">
-                            <td> {{ lif.id }} </td>
-                            <td> {{ lif.nome_lif }} </td>
+                            <td> {{ procedimento.id }} </td>
+                            <td> {{ procedimento.sigla }} </td>
+                            <td> {{ procedimento.nome_procedimento }} </td>
                             <td align="right"> 
-                                <a href={% url 'update_lif' lif.id %} class="btn btn-primary">Visualizar</a>
-                                <a href={% url 'delete_lif' lif.id %} class="btn btn-danger">Deletar</a> 
+                                <a href={% url 'update_procedimento' procedimento.id %} class="btn btn-primary">Visualizar</a>
+                                <a href={% url 'delete_procedimento' procedimento.id %} class="btn btn-danger">Deletar</a> 
                             </td>
                         </tr>
                         {% endfor %}

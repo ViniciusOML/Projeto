@@ -10,28 +10,33 @@
             <div class="card-header">
                 <div class="col-lg order-lg-first">
                     <h1 class="card-title">
-                        Listagem de Lif's
+                        Listagem de Consultas
                     </h1>
                 </div>
-                <a href={% url 'new_lif' %} class="btn btn-success"><span class="fa fa-plus"></span> Adicionar novo lif</a>
+                <!-- <a href={% url 'new_atendimento' %} class="btn btn-success"><span class="fa fa-plus"></span> Adicionar novo atendimento</a> -->
             </div>
             <div class="table-responsive">
                 <table class="table card-table table-vcenter text-nowrap datatable">
                     <thead>
                         <tr>
                             <th>#</th>
-                            <th>Nome</th>
+                            <th>Data consulta</th>
+                            <th>Protocolo</th>
+                            <th>Paciente</th>
+                            <th>Procedimento</th>
                             <th></th>
                         </tr>
                     </thead>
                     <tbody>
-                        {% for lif in lifs %}
+                        {% for consulta in consultas %}
                         <tr style="height: 10px">
-                            <td> {{ lif.id }} </td>
-                            <td> {{ lif.nome_lif }} </td>
-                            <td align="right"> 
-                                <a href={% url 'update_lif' lif.id %} class="btn btn-primary">Visualizar</a>
-                                <a href={% url 'delete_lif' lif.id %} class="btn btn-danger">Deletar</a> 
+                            <td> {{ consulta.id }} </td>
+                            <td> {{ consulta.data_consulta }} </td>
+                            <td> {{ consulta.atendimento.protocolo }} </td>
+                            <td> {{ consulta.atendimento.paciente }} </td>
+                            <td> {{ consulta.atendimento.procedimento }} </td>
+                            <td align="center"> 
+                                
                             </td>
                         </tr>
                         {% endfor %}

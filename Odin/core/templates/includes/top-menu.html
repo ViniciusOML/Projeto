@@ -9,24 +9,27 @@
                     </li>
                     <!-- PROCEDIMENTOS -->
                     <li class="nav-item">
-                        <a href="/" class="nav-link"><i class="fa fa-procedures"></i>Procedimentos</a>
+                        <a href={% url 'index_procedimentos' %} class="nav-link"><i class="fa fa-procedures"></i>Procedimentos</a>
                     </li>
-
                     <!-- ATENDIMENTOS -->
                     <li class="nav-item">
-                        <a href="/" class="nav-link"><i class="fa fa-stethoscope"></i> Atendimentos</a>
+                        <a href={% url 'index_atendimentos' %} class="nav-link"><i class="fa fa-stethoscope"></i>Atendimentos</a>
+                    </li>
+                    <!-- CONSULTAS -->
+                    <li class="nav-item">
+                        <a href={% url 'index_consultas' %} class="nav-link"><i class="fa fa-stethoscope"></i>Consultas</a>
                     </li>
                     <!-- PACIENTES -->
                     <li class="nav-item">
-                        <a href={% url 'index_pacientes' %} class="nav-link"><i class="fa fa-users"></i> Pacientes</a>
+                        <a href={% url 'index_pacientes' %} class="nav-link"><i class="fa fa-users"></i>Pacientes</a>
                     </li>
                     <!-- PERFIL -->
                     <li class="nav-item">
-                        <a href='/' class="nav-link"><i class="fa fa-id-badge"></i> Perfil</a>
+                        <a href='/' class="nav-link"><i class="fa fa-id-badge"></i>Perfil</a>
                     </li>
 
                     <li class="nav-item">
-                        <a href={% url 'logout' %} class="nav-link"> <i class= "fe fe-log-out"></i> Sair</a>
+                        <a href={% url 'logout' %} class="nav-link"> <i class= "fe fe-log-out"></i>Sair</a>
                     </li>
                 </ul>
             </div>

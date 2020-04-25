@@ -3,39 +3,116 @@
 {% block title %} Editar Paciente {% endblock %}
 
 {% block content %}
+{% load widget_tweaks %}
 
 <div class="my-3 my-md-5">
     <div class="container">
         <div class="col-lg-12">
             <form class="card" method="POST">
                 <div class="card-body">
-                    <h3 class="card-title">Atualizar Paciente</h3>
+                    <h3 class="card-title" style="text-align: center;"><strong>Atualizar Paciente</strong></h3>
 
                     {% csrf_token %}
-                    {{ form }}
-                    <hr>
-                    <h3 class="card-title">Atendimentos</h3>
+
+                    <div class="form-group">
+                        <label class="form-label">Nome</label>
+                        {% render_field form.nome_completo class="form-control" %}
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">CPF</label>
+                        {% render_field form.cpf class="form-control" %}
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">RG</label>
+                        {% render_field form.rg class="form-control" %}
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Data Nascimento</label>
+                        {% render_field form.data_nascimento class="form-control" %}
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Sexo</label>
+                        {% render_field form.sexo class="form-control" %}
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Tem Responsavel</label>
+                        {% render_field form.tem_responsavel class="form-control" %}
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Nome Responsavel</label>
+                        {% render_field form.nome_responsavel class="form-control" %}
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">RG Responsavel</label>
+                        {% render_field form.rg_responsavel class="form-control" %}
+                    </div>
+                    
+                    <h3 class="card-title" style="text-align: center;"><strong>Atendimentos</strong></h3>
                     <div class="table-responsive">
                         <table class="table card-table table-vcenter text-nowrap datatable">
                             <thead>
                                 <tr>
                                     <th>#</th>
-                                    <th>Data atendimento</th>
+                                    <th>Protocolo</th>
+                                    <th>LIF</th>
+                                    <th>Procedimento</th>
+                                    <th></th>
                                 </tr>
                             </thead>
                             <tbody>
                             {% for atendimento in atendimentos %}
                                 <tr style="height: 10px">
                                     <td>{{ atendimento.id }}</td>
-                                    <td>{{ atendimento.data_atendimento }}</td>
+                                    <td>{{ atendimento.protocolo }}</td>
+                                    <td>{{ atendimento.lif }}</td>
+                                    <td>{{ atendimento.procedimento.sigla }}</td>
+                                    <td style="text-align: center;">
+                                        <a href={% url 'update_atendimento' atendimento.id %} class="btn btn-primary">Visualizar</a>
+                                    </td>
                                 </tr>
                             {% endfor %}
                             </tbody>
                         </table>
                     </div>
+
+                    <h3 class="card-title" style="text-align: center;"><strong>Consultas</strong></h3>
+                    <div class="table-responsive">
+                        <table class="table card-table table-vcenter text-nowrap datatable">
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>Data consulta</th>
+                                    <th>Protocolo</th>
+                                    <th>Procedimento</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for consulta in consultas %}
+                                <tr style="height: 10px">
+                                    <td> {{ consulta.id }} </td>
+                                    <td> {{ consulta.data_consulta }} </td>
+                                    <td> {{ consulta.atendimento.protocolo }} </td>
+                                    <td> {{ consulta.atendimento.procedimento }} </td>
+                                    <td align="center"> 
+                                        
+                                    </td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
                 <div class="card-footer text-center">
-                    <button type="submit" class="btn btn-primary">Atualizar</button>
+                    <a href={% url 'index_pacientes' %} class="btn btn-primary">Voltar</a>
+                    <button type="submit" class="btn btn-success">Atualizar</button>
                 </div>
                 <script>
                     require(['datatables', 'jquery'], function (datatable, $) {

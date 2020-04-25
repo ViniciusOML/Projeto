@@ -10,28 +10,34 @@
             <div class="card-header">
                 <div class="col-lg order-lg-first">
                     <h1 class="card-title">
-                        Listagem de Lif's
+                        Listagem de Atendimentos
                     </h1>
                 </div>
-                <a href={% url 'new_lif' %} class="btn btn-success"><span class="fa fa-plus"></span> Adicionar novo lif</a>
+                <a href={% url 'new_atendimento' %} class="btn btn-success"><span class="fa fa-plus"></span> Adicionar novo atendimento</a>
             </div>
             <div class="table-responsive">
                 <table class="table card-table table-vcenter text-nowrap datatable">
                     <thead>
                         <tr>
                             <th>#</th>
-                            <th>Nome</th>
+                            <th>Protocolo</th>
+                            <th>Paciente</th>
+                            <th>Lif</th>
+                            <th>Procedimento</th>
                             <th></th>
                         </tr>
                     </thead>
                     <tbody>
-                        {% for lif in lifs %}
+                        {% for atendimento in atendimentos %}
                         <tr style="height: 10px">
-                            <td> {{ lif.id }} </td>
-                            <td> {{ lif.nome_lif }} </td>
-                            <td align="right"> 
-                                <a href={% url 'update_lif' lif.id %} class="btn btn-primary">Visualizar</a>
-                                <a href={% url 'delete_lif' lif.id %} class="btn btn-danger">Deletar</a> 
+                            <td> {{ atendimento.id }} </td>
+                            <td> {{ atendimento.protocolo }} </td>
+                            <td> {{ atendimento.paciente }} </td>
+                            <td> {{ atendimento.lif }} </td>
+                            <td> {{ atendimento.procedimento.sigla }} </td>
+                            <td align="center"> 
+                                <a href={% url 'update_atendimento' atendimento.id %} class="btn btn-primary">Visualizar</a>
+                                <a href={% url 'delete_atendimento' atendimento.id %} class="btn btn-danger">Deletar</a>
                             </td>
                         </tr>
                         {% endfor %}

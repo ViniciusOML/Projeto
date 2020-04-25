@@ -1,20 +1,16 @@
 # -*- encoding: utf-8 -*-
 from django.utils.decorators import method_decorator
 from django.contrib.auth.decorators import login_required
-from ...models import Paciente, Atendimentos
+from ...models import Paciente, Atendimentos, Consulta
 from django.urls import reverse_lazy
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView
 
 
 class PacienteListView(ListView):
-
     template_name = 'paciente_index.html'
     model = Paciente
     context_object_name = 'pacientes'
     queryset = Paciente.objects.all()  # Query padrão, pode ser omitid
-
-    # Pode-se alterar a query, como demostra a linha abaixo
-    # queryset = Paciente.objects.filter(nome_completo="bruna")
 
     @method_decorator(login_required)
     def dispatch(self, *args, **kwargs):
@@ -35,18 +31,29 @@ class PacienteUpdateView(UpdateView):
               'sexo', 'tem_responsavel', 'nome_responsavel', 'rg_responsavel']
     template_name = 'paciente_editar.html'
 
-    
-    # como pegar o id que foi passado na url
-    # atendimentos = Atendimentos.objects.filter(paciente_id=id)
-    atendimentos = Atendimentos.objects.all()
-
-    extra_context = {'atendimentos': atendimentos}
-
     success_url = reverse_lazy('index_pacientes')
 
     @method_decorator(login_required)
     def dispatch(self, *args, **kwargs):
         return super().dispatch(*args, **kwargs)
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+
+        atendimentos = Atendimentos.objects.filter(paciente_id=self.object.id)
+
+        context['atendimentos'] = []
+        context['consultas'] = []
+
+        for atendimento in atendimentos:
+            context['atendimentos'].append(atendimento)            
+
+            consultas = Consulta.objects.filter(atendimento_id=atendimento.id)
+
+            for consulta in consultas:
+                context['consultas'].append(consulta)
+
+        return context
 
 
 class PacienteDeleteView(DeleteView):

@@ -1,0 +1,93 @@
+{% extends "layouts/base-site.html" %}
+
+{% block title %} Atualizar Atendimento {% endblock %}
+
+{% block content %}
+{% load widget_tweaks %}
+
+<div class="my-3 my-md-5">
+    <div class="container">
+        <div class="col-lg-12">
+            <form class="card" method="POST">
+                <div class="card-body">
+                    <h3 class="card-title">
+                        <div class="col-md-5" style="padding-left: 0px">Paciente: <strong>{{atendimento.paciente}}</strong></div>
+                        <div class="col-md-5" style="padding-left: 0px">Data nascimento: <strong>{{atendimento.paciente.data_nascimento}}</strong></div>
+                        <div class="col-md-5" style="padding-left: 0px">Sexo: <strong>{{atendimento.paciente.sexo}}</strong></div>    
+                    </h3>
+
+                    <h3 class="card-title" style="text-align: center;"><strong>Atualizar Atendimento</strong></h3>
+
+                    {% csrf_token %}
+                    
+                    <div class="form-group">
+                        <label class="form-label">Protocolo</label>
+                        {% render_field form.protocolo class="form-control" %}
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">LIF</label>
+                        {% render_field form.lif class="form-control" %}
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Procedimento</label>
+                        {% render_field form.procedimento class="form-control" %}
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Paciente</label>
+                        {% render_field form.paciente class="form-control" %}
+                    </div>
+                    <h3 class="card-title" style="text-align: center;"><strong>Consultas</strong></h3>
+                    <div class="table-responsive">
+                        <table class="table card-table table-vcenter text-nowrap datatable">
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>Data consulta</th>
+                                    <th>Paciente</th>
+                                    <th>Procedimento</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for consulta in consultas %}
+                                <tr style="height: 10px">
+                                    <td> {{ consulta.id }} </td>
+                                    <td> {{ consulta.data_consulta }} </td>
+                                    <td> {{ consulta.atendimento.paciente }} </td>
+                                    <td> {{ consulta.atendimento.procedimento }} </td>
+                                    <td align="center"> 
+                                        
+                                    </td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+
+                    {% if errors %}
+                        <div class="alert alert-danger"> {{ errors }} </div>
+                    {% endif %}
+                </div>
+
+                <div class="card-footer text-center">
+                    <a href={% url 'index_atendimentos' %} class="btn btn-primary">Voltar</a>
+                    <button type="submit" class="btn btn-success">Atualizar</button>
+                </div>
+                <script>
+                    require(['datatables', 'jquery'], function (datatable, $) {
+                        $('.datatable').DataTable();
+                    });
+                </script>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+{% endblock content %}
+
+<!-- Specific Page JS goes HERE  -->
+{% block javascripts %}{% endblock javascripts %}
