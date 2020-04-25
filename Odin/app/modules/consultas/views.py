@@ -31,9 +31,9 @@ class ConsultaCreateView(CreateView):
         form.save()
         return super(ConsultaCreateView, self).form_valid(form)
 
-    def get_context_data(self, **kwargs):
+    def get_context_data(self, *args, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['atendimento'] = Atendimentos.objects.get(id=self.request.GET['atendimento'])
+        context['atendimento'] = Atendimentos.objects.get(id=self.kwargs['pk'])
         return context
 
 

@@ -1,5 +1,6 @@
 # -*- encoding: utf-8 -*-
 from django.utils.decorators import method_decorator
+from django.http import HttpResponseRedirect
 from django.contrib.auth.decorators import login_required
 from ...models import Atendimentos, Consulta, Paciente
 from django.urls import reverse_lazy, reverse
@@ -28,7 +29,7 @@ class AtendimentoCreateView(CreateView):
         return super(AtendimentoCreateView, self).form_valid(form)
 
     def get_success_url(self):
-        return reverse('new_consulta', kwargs={'atendimento': '1'})
+        return reverse('new_consulta', args=(self.object.id,))
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
