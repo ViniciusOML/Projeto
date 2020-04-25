@@ -1,6 +1,6 @@
 {% extends "layouts/base-site.html" %}
 
-{% block title %} Adicionar Atendimento {% endblock %}
+{% block title %} Adicionar Paciente {% endblock %}
 
 {% block content %}
 {% load widget_tweaks %}
@@ -10,11 +10,16 @@
         <div class="col-lg-12">
             <form class="card" method="POST">
                 <div class="card-body">
+                    <h3 class="card-title">
+                        <div class="col-md-5" style="padding-left: 0px">Paciente: <strong>{{paciente}}</strong></div>
+                        <div class="col-md-5" style="padding-left: 0px">Data nascimento: <strong>{{paciente.data_nascimento}}</strong></div>
+                        <div class="col-md-5" style="padding-left: 0px">Sexo: <strong>{{paciente.sexo}}</strong></div>    
+                    </h3>
+
                     <h3 class="card-title" style="text-align: center;"><strong>Cadastro de Atendimento</strong></h3>
 
                     {% csrf_token %}
-                
-                    
+
                     <div class="form-group">
                         <label class="form-label">Código LIF</label>
                         {% render_field form.codigo_lif class="form-control" %}
@@ -24,23 +29,14 @@
                         <label class="form-label">LIF</label>
                         {% render_field form.lif class="form-control" %}
                     </div>
-            
-                    <div class="form-group">
-                        <label class="form-label">Paciente</label>
-                        <select name="paciente" id="id_paciente" class="form-control">
-                            {% for paciente in pacientes %}
-                                <option value={{paciente.id}}>{{paciente.nome_completo}} - {{paciente.cpf}}</option>
-                            {% endfor %}
-                        </select>
-                    </div>
-                    
+
                     {% if errors %}
                         <div class="alert alert-danger"> {{ errors }} </div>
                     {% endif %}
                 </div>
 
                 <div class="card-footer text-center">
-                    <a href={% url 'index_atendimentos' %} class="btn btn-primary">Voltar</a>
+                    <a href={% url 'update_paciente' paciente.id %} class="btn btn-primary">Voltar</a>
                     <button type="submit" class="btn btn-success">Cadastrar</button>
                 </div>
 

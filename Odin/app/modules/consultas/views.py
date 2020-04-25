@@ -12,9 +12,6 @@ class ConsultaListView(ListView):
     context_object_name = 'consultas'
     queryset = Consulta.objects.all()  # Query padrão, pode ser omitid
 
-    # Pode-se alterar a query, como demostra a linha abaixo
-    # queryset = Lif.objects.filter(nome_completo="bruna")
-
     @method_decorator(login_required)
     def dispatch(self, *args, **kwargs):
         return super().dispatch(*args, **kwargs)

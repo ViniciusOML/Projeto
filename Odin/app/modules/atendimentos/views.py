@@ -1,6 +1,5 @@
 # -*- encoding: utf-8 -*-
 from django.utils.decorators import method_decorator
-from django.http import HttpResponseRedirect
 from django.contrib.auth.decorators import login_required
 from ...models import Atendimentos, Consulta, Paciente
 from django.urls import reverse_lazy, reverse
@@ -19,7 +18,7 @@ class AtendimentoListView(ListView):
 
 
 class AtendimentoCreateView(CreateView):
-    fields = ['protocolo', 'lif', 'procedimento']
+    fields = ['codigo_lif', 'lif']
     model = Atendimentos
     template_name = 'atendimento_novo.html'
 
@@ -29,7 +28,7 @@ class AtendimentoCreateView(CreateView):
         return super(AtendimentoCreateView, self).form_valid(form)
 
     def get_success_url(self):
-        return reverse('new_consulta', args=(self.object.id,))
+        return reverse('new_atendimento_consulta', args=(self.object.id,))
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -37,10 +36,26 @@ class AtendimentoCreateView(CreateView):
         return context
 
 
+class AtendimentoConsultaCreateView(CreateView):
+    success_url = reverse_lazy('index_atendimentos')
+    model = Consulta
+    fields = ['data_consulta', 'data_consulta', 'observacao', 'procedimento']
+    template_name = 'atendimento_consulta_novo.html'
+
+    def form_valid(self, form):
+        form.instance.atendimento = Atendimentos.objects.get(id=self.kwargs['pk'])
+        form.save()
+        return super(AtendimentoConsultaCreateView, self).form_valid(form)
+
+    def get_context_data(self, *args, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['atendimento'] = Atendimentos.objects.get(id=self.kwargs['pk'])
+        return context
+
 
 class AtendimentoUpdateView(UpdateView):
     model = Atendimentos
-    fields = ['protocolo', 'paciente', 'lif', 'procedimento']
+    fields = ['codigo_lif', 'lif']
     template_name = 'atendimento_editar.html'
 
     success_url = reverse_lazy('index_atendimentos')

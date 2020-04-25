@@ -10,7 +10,7 @@
         <div class="col-lg-12">
             <form class="card" method="POST">
                 <div class="card-body">
-                    <h3 class="card-title" style="text-align: center;"><strong>Atualizar Paciente</strong></h3>
+                    <h3 class="card-title" style="text-align: center;"><strong>Paciente</strong></h3>
 
                     {% csrf_token %}
 
@@ -54,15 +54,20 @@
                         {% render_field form.rg_responsavel class="form-control" %}
                     </div>
                     
-                    <h3 class="card-title" style="text-align: center;"><strong>Atendimentos</strong></h3>
+                    <h3 class="card-title" style="text-align: center;">
+                        <strong>Atendimentos</strong>
+                        <a style="color: white;" href={% url 'new_paciente_atendimento' paciente.id %} class="btn btn-success">
+                            <span class="fa fa-plus"></span>
+                        </a>
+                    </h3>
+
                     <div class="table-responsive">
                         <table class="table card-table table-vcenter text-nowrap datatable">
                             <thead>
                                 <tr>
                                     <th>#</th>
-                                    <th>Protocolo</th>
+                                    <th>Código LIF</th>
                                     <th>LIF</th>
-                                    <th>Procedimento</th>
                                     <th></th>
                                 </tr>
                             </thead>
@@ -70,9 +75,8 @@
                             {% for atendimento in atendimentos %}
                                 <tr style="height: 10px">
                                     <td>{{ atendimento.id }}</td>
-                                    <td>{{ atendimento.protocolo }}</td>
+                                    <td>{{ atendimento.codigo_lif }}</td>
                                     <td>{{ atendimento.lif }}</td>
-                                    <td>{{ atendimento.procedimento.sigla }}</td>
                                     <td style="text-align: center;">
                                         <a href={% url 'update_atendimento' atendimento.id %} class="btn btn-primary">Visualizar</a>
                                     </td>
@@ -89,7 +93,7 @@
                                 <tr>
                                     <th>#</th>
                                     <th>Data consulta</th>
-                                    <th>Protocolo</th>
+                                    <th>Código LIF</th>
                                     <th>Procedimento</th>
                                     <th></th>
                                 </tr>
@@ -99,8 +103,8 @@
                                 <tr style="height: 10px">
                                     <td> {{ consulta.id }} </td>
                                     <td> {{ consulta.data_consulta }} </td>
-                                    <td> {{ consulta.atendimento.protocolo }} </td>
-                                    <td> {{ consulta.atendimento.procedimento }} </td>
+                                    <td> {{ consulta.atendimento.codigo_lif }} </td>
+                                    <td> {{ consulta.procedimento }} </td>
                                     <td align="center"> 
                                         
                                     </td>

@@ -25,6 +25,28 @@ class PacienteCreateView(CreateView):
     template_name = 'paciente_novo.html'
 
 
+class PacienteAtendimentoCreateView(CreateView):
+    success_url = reverse_lazy('index_atendimentos')
+    fields = ['codigo_lif', 'lif']
+    model = Atendimentos
+    template_name = 'paciente_atendimento_novo.html'
+
+    def form_valid(self, form):
+        form.instance.paciente = Paciente.objects.get(id=self.kwargs['pk'])
+        form.save()
+        return super(PacienteAtendimentoCreateView, self).form_valid(form)
+
+    def get_context_data(self, *args, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['paciente'] = Paciente.objects.get(id=self.kwargs['pk'])
+        return context
+
+    # def get_form(self, *args, **kwargs):
+    #     form = super(CreateView, self).get_form(*args, **kwargs)        
+    #     form.fields['lif'].queryset = lif_usados
+    #     return form
+
+
 class PacienteUpdateView(UpdateView):
     model = Paciente
     fields = ['nome_completo', 'cpf', 'rg', 'data_nascimento',

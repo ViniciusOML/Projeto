@@ -20,10 +20,9 @@
                     <thead>
                         <tr>
                             <th>#</th>
-                            <th>Protocolo</th>
+                            <th>Código LIF</th>
                             <th>Paciente</th>
                             <th>Lif</th>
-                            <th>Procedimento</th>
                             <th></th>
                         </tr>
                     </thead>
@@ -31,10 +30,9 @@
                         {% for atendimento in atendimentos %}
                         <tr style="height: 10px">
                             <td> {{ atendimento.id }} </td>
-                            <td> {{ atendimento.protocolo }} </td>
+                            <td> {{ atendimento.codigo_lif }} </td>
                             <td> {{ atendimento.paciente }} </td>
                             <td> {{ atendimento.lif }} </td>
-                            <td> {{ atendimento.procedimento.sigla }} </td>
                             <td align="center"> 
                                 <a href={% url 'update_atendimento' atendimento.id %} class="btn btn-primary">Visualizar</a>
                                 <a href={% url 'delete_atendimento' atendimento.id %} class="btn btn-danger">Deletar</a>
