@@ -1,0 +1,190 @@
+{% extends "layouts/base-site.html" %}
+
+{% block title %} Atualizar Laudo Bera {% endblock %}
+
+{% block content %}
+{% load widget_tweaks %}
+
+<div class="my-3 my-md-5">
+    <div class="container">
+        <div class="col-lg-12">
+            <form class="card" method="POST">
+                <div class="card-body">
+                    <h3 class="card-title">
+                        <div class="col-md-5" style="padding-left: 0px">Código LIF: <strong>{{consulta.atendimento.codigo_lif}}</strong> </div>
+                        <div class="col-md-5" style="padding-left: 0px">Paciente: <strong>{{consulta.atendimento.paciente}}</strong> </div>
+                        <div class="col-md-5" style="padding-left: 0px">Data nascimento: <strong>{{consulta.atendimento.paciente.data_nascimento}}</strong></div>
+                        <div class="col-md-5" style="padding-left: 0px">Sexo: <strong>{{consulta.atendimento.paciente.sexo}}</strong></div>
+                        <br>
+                        <div class="col-md-5" style="padding-left: 0px">Data consulta: <strong>{{consulta.data_consulta}}</strong> </div>
+                        <div class="col-md-5" style="padding-left: 0px">Procedimento: <strong>{{consulta.procedimento}}</strong> </div>
+                        <div class="col-md-5" style="padding-left: 0px">Observação: <strong>{{consulta.observacao}}</strong> </div>
+                    </h3>
+                    
+                    {% csrf_token %}
+                    
+                    <div class="col-lg-12">
+                        <table class="table table-hover table-striped">
+                            <colgroup>
+                                <col>
+                                <col span="2" style="background-color:rgba(0, 0, 0, 0.02);">
+                            </colgroup>
+                            <thead>
+                                <tr>
+                                    <th></th>
+                                    <th colspan="2" style="text-align: center;"><h3>Esquerda</h3></th>
+                                    <th colspan="2" style="text-align: center;"><h3>Direita</h3></th>
+                                </tr>
+                                <tr>
+                                    <th>Picos</th>
+                                    <th style="text-align: center;">Latências Abso.</th>
+                                    <th style="text-align: center;">Inter-latências</th>
+
+                                    <th style="text-align: center;">Latências Abso.</th>
+                                    <th style="text-align: center;">Inter-latências</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>I</td>
+                                    <td>
+                                        {% render_field form.esquerdo_picos_latencia_abosoluta_I class="form-control" %}
+                                    </td>
+                                    <td>
+                                        {% render_field form.esquerdo_picos_inter_latencias_I class="form-control" %}
+                                    </td>
+                                    <td>
+                                        {% render_field form.direito_picos_latencia_abosoluta_I class="form-control" %}
+                                    </td>
+                                    <td>
+                                        {% render_field form.direito_picos_inter_latencias_I class="form-control" %}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>III</td>
+                                    <td>
+                                        {% render_field form.esquerdo_picos_latencia_abosoluta_III class="form-control" %}
+                                    </td>
+                                    <td>
+                                        {% render_field form.esquerdo_picos_inter_latencias_III class="form-control" %}
+                                    </td>
+                                    <td>
+                                        {% render_field form.direito_picos_latencia_abosoluta_III class="form-control" %}
+                                    </td>
+                                    <td>
+                                        {% render_field form.direito_picos_inter_latencias_III class="form-control" %}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>V</td>
+                                    <td>
+                                        {% render_field form.esquerdo_picos_latencia_abosoluta_V class="form-control" %}
+                                    </td>
+                                    <td>
+                                        {% render_field form.esquerdo_picos_inter_latencias_V class="form-control" %}
+                                    </td>
+                                    <td>
+                                        {% render_field form.direito_picos_latencia_abosoluta_V class="form-control" %}
+                                    </td>
+                                    <td>
+                                        {% render_field form.direito_picos_inter_latencias_V class="form-control" %}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Intepicos</td>
+                                    <td>
+                                        {% render_field form.esquerdo_picos_latencia_abosoluta_interpicos class="form-control" %}
+                                    </td>
+                                    <td>
+                                        {% render_field form.esquerdo_picos_inter_latencias_interpicos class="form-control" %}
+                                    </td>
+                                    <td>
+                                        {% render_field form.direito_picos_latencia_abosoluta_interpicos class="form-control" %}
+                                    </td>
+                                    <td>
+                                        {% render_field form.direito_picos_inter_latencias_interpicos class="form-control" %}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>I-III</td>
+                                    <td>
+                                        {% render_field form.esquerdo_picos_latencia_abosoluta_I_III class="form-control" %}
+                                    </td>
+                                    <td>
+                                        {% render_field form.esquerdo_picos_inter_latencias_I_III class="form-control" %}
+                                    </td>
+                                    <td>
+                                        {% render_field form.direito_picos_latencia_abosoluta_I_III class="form-control" %}
+                                    </td>
+                                    <td>
+                                        {% render_field form.direito_picos_inter_latencias_I_III class="form-control" %}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>I-V</td>
+                                    <td>
+                                        {% render_field form.esquerdo_picos_latencia_abosoluta_I_V class="form-control" %}
+                                    </td>
+                                    <td>
+                                        {% render_field form.esquerdo_picos_inter_latencias_I_V class="form-control" %}
+                                    </td>
+                                    <td>
+                                        {% render_field form.direito_picos_latencia_abosoluta_I_V class="form-control" %}
+                                    </td>
+                                    <td>
+                                        {% render_field form.direito_picos_inter_latencias_I_V class="form-control" %}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>III-V</td>
+                                    <td>
+                                        {% render_field form.esquerdo_picos_latencia_abosoluta_III_V class="form-control" %}
+                                    </td>
+                                    <td>
+                                        {% render_field form.esquerdo_picos_inter_latencias_III_V class="form-control" %}
+                                    </td>
+                                    <td>
+                                        {% render_field form.direito_picos_latencia_abosoluta_III_V class="form-control" %}
+                                    </td>
+                                    <td>
+                                        {% render_field form.direito_picos_inter_latencias_III_V class="form-control" %}
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label">Evolução</label>
+                        {% render_field form.evolucao class="form-control" %}
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Conclusão</label>
+                        {% render_field form.conclusao_exame class="form-control" %}
+                    </div>
+                    
+                    <div class="card-footer text-center">
+                        <a href={% url 'update_consulta' consulta.id %} class="btn btn-primary">Voltar</a>
+                        <button type="submit" class="btn btn-success">Atualizar</button>
+                    </div>
+                </div>
+
+            </form>
+        </div>
+    </div>
+</div>
+
+
+{% endblock content %}
+
+<!-- Specific Page JS goes HERE  -->
+{% block javascripts %}
+
+
+{% endblock javascripts %}
+<script prefer>
+    $(function(){
+        console.log('zqui')
+    })
+</script>

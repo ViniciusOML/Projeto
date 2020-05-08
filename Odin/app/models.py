@@ -82,6 +82,89 @@ class Consulta(models.Model):
 class Bera(models.Model):
     consulta = models.ForeignKey(to=Consulta, on_delete=models.CASCADE)
 
+    # Esquerdo
+    # picos_latencia_abosoluta
+    esquerdo_picos_latencia_abosoluta_I = models.CharField(max_length=10, blank=True)
+    esquerdo_picos_latencia_abosoluta_III = models.CharField(max_length=10, blank=True)
+    esquerdo_picos_latencia_abosoluta_V = models.CharField(max_length=10, blank=True)
+
+    esquerdo_picos_latencia_abosoluta_interpicos = models.CharField(max_length=10, blank=True)
+
+    esquerdo_picos_latencia_abosoluta_I_III = models.CharField(max_length=10, blank=True)
+    esquerdo_picos_latencia_abosoluta_I_V = models.CharField(max_length=10, blank=True)
+    esquerdo_picos_latencia_abosoluta_I_III = models.CharField(max_length=10, blank=True)
+
+    esquerdo_picos_latencia_abosoluta_III_V = models.CharField(max_length=10, blank=True)
+
+    # picos_inter_latencias
+    esquerdo_picos_inter_latencias_I = models.CharField(max_length=10, blank=True)
+    esquerdo_picos_inter_latencias_III = models.CharField(max_length=10, blank=True)
+    esquerdo_picos_inter_latencias_V = models.CharField(max_length=10, blank=True)
+
+    esquerdo_picos_inter_latencias_interpicos = models.CharField(max_length=10, blank=True)
+
+    esquerdo_picos_inter_latencias_I_III = models.CharField(max_length=10, blank=True)
+    esquerdo_picos_inter_latencias_I_V = models.CharField(max_length=10, blank=True)
+    esquerdo_picos_inter_latencias_I_III = models.CharField(max_length=10, blank=True)
+
+    esquerdo_picos_inter_latencias_III_V = models.CharField(max_length=10, blank=True)
+
+    # DIREITO
+    # picos_latencia_abosoluta
+    direito_picos_latencia_abosoluta_I = models.CharField(max_length=10, blank=True)
+    direito_picos_latencia_abosoluta_III = models.CharField(max_length=10, blank=True)
+    direito_picos_latencia_abosoluta_V = models.CharField(max_length=10, blank=True)
+
+    direito_picos_latencia_abosoluta_interpicos = models.CharField(max_length=10, blank=True)
+
+    direito_picos_latencia_abosoluta_I_III = models.CharField(max_length=10, blank=True)
+    direito_picos_latencia_abosoluta_I_V = models.CharField(max_length=10, blank=True)
+    direito_picos_latencia_abosoluta_I_III = models.CharField(max_length=10, blank=True)
+
+    direito_picos_latencia_abosoluta_III_V = models.CharField(max_length=10, blank=True)
+
+    # picos_inter_latencias
+    direito_picos_inter_latencias_I = models.CharField(max_length=10, blank=True)
+    direito_picos_inter_latencias_III = models.CharField(max_length=10, blank=True)
+    direito_picos_inter_latencias_V = models.CharField(max_length=10, blank=True)
+
+    direito_picos_inter_latencias_interpicos = models.CharField(max_length=10, blank=True)
+
+    direito_picos_inter_latencias_I_III = models.CharField(max_length=10, blank=True)
+    direito_picos_inter_latencias_I_V = models.CharField(max_length=10, blank=True)
+    direito_picos_inter_latencias_I_III = models.CharField(max_length=10, blank=True)
+
+    direito_picos_inter_latencias_III_V = models.CharField(max_length=10, blank=True)
+
+    evolucao = models.TextField()
+    conclusao_exame = models.TextField()
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+
+class Pac(models.Model):
+    consulta = models.ForeignKey(to=Consulta, on_delete=models.CASCADE)
+
+    esquerdo_picos_P300 = models.CharField(max_length=10)
+    esquerdo_picos_P1 = models.CharField(max_length=10, blank=True)
+    esquerdo_picos_N1 = models.CharField(max_length=10, blank=True)
+    esquerdo_picos_P2 = models.CharField(max_length=10, blank=True)
+    esquerdo_picos_N2 = models.CharField(max_length=10, blank=True)
+
+    direito_picos_P300 = models.CharField(max_length=10)
+    direito_picos_P1 = models.CharField(max_length=10, blank=True)
+    direito_picos_N1 = models.CharField(max_length=10, blank=True)
+    direito_picos_P2 = models.CharField(max_length=10, blank=True)
+    direito_picos_N2 = models.CharField(max_length=10, blank=True)
+
+    evolucao = models.TextField()
+    conclusao_exame = models.TextField()
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+
+class LaudoPadrao(models.Model):
+    consulta = models.ForeignKey(to=Consulta, on_delete=models.CASCADE)
     evolucao = models.TextField()
     conclusao_exame = models.TextField()
     created_at = models.DateTimeField(auto_now_add=True)

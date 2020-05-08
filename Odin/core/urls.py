@@ -11,5 +11,7 @@ urlpatterns = [
     path("lifs/", include("app.modules.lifs.urls")),
     path("atendimentos/", include("app.modules.atendimentos.urls")),
     path("procedimentos/", include("app.modules.procedimentos.urls")),
-    path("consultas/", include("app.modules.consultas.urls"))
+    path("consultas/", include("app.modules.consultas.urls")),
+    path("beras/", include("app.modules.beras.urls")),
+    path("pacs/", include("app.modules.pacs.urls")),
 ]
