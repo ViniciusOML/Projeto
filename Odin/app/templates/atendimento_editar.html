@@ -54,7 +54,7 @@
                                     <td> {{ consulta.data_consulta }} </td>
                                     <td> {{ consulta.procedimento }} </td>
                                     <td align="center"> 
-                                        
+                                        <a href={% url 'update_consulta' consulta.id %} class="btn btn-primary">Visualizar</a>
                                     </td>
                                 </tr>
                                 {% endfor %}

@@ -78,6 +78,9 @@
                                     <td>{{ atendimento.codigo_lif }}</td>
                                     <td>{{ atendimento.lif }}</td>
                                     <td style="text-align: center;">
+                                        <a style="color: white;" href={% url 'new_atendimento_consulta' atendimento.id %} class="btn btn-success">
+                                            Adicionar Consulta
+                                        </a>
                                         <a href={% url 'update_atendimento' atendimento.id %} class="btn btn-primary">Visualizar</a>
                                     </td>
                                 </tr>

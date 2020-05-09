@@ -1,0 +1,400 @@
+{% extends "layouts/base-site.html" %}
+
+{% block title %} Atualizar Laudo Audimetria {% endblock %}
+
+{% block content %}
+{% load widget_tweaks %}
+
+<div class="my-3 my-md-5">
+    <div class="container">
+        <div class="col-lg-12">
+            <form class="card" method="POST">
+                <div class="card-body">
+                    <h3 class="card-title">
+                        <div class="col-md-5" style="padding-left: 0px">Código LIF: <strong>{{consulta.atendimento.codigo_lif}}</strong> </div>
+                        <div class="col-md-5" style="padding-left: 0px">Paciente: <strong>{{consulta.atendimento.paciente}}</strong> </div>
+                        <div class="col-md-5" style="padding-left: 0px">Data nascimento: <strong>{{consulta.atendimento.paciente.data_nascimento}}</strong></div>
+                        <div class="col-md-5" style="padding-left: 0px">Sexo: <strong>{{consulta.atendimento.paciente.sexo}}</strong></div>
+                        <br>
+                        <div class="col-md-5" style="padding-left: 0px">Data consulta: <strong>{{consulta.data_consulta}}</strong> </div>
+                        <div class="col-md-5" style="padding-left: 0px">Procedimento: <strong>{{consulta.procedimento}}</strong> </div>
+                        <div class="col-md-5" style="padding-left: 0px">Observação: <strong>{{consulta.observacao}}</strong> </div>
+                    </h3>
+
+                    {% csrf_token %}
+                    
+                    <div class="col-lg-12">
+                        
+                        <table class="table table-hover table-striped">
+                            <colgroup>
+                                <col>
+                                <col span="2" style="background-color:rgba(0, 0, 0, 0.02);">
+                            </colgroup>
+                            <thead>
+                                <tr>
+                                    <th colspan="5" style="text-align: center;"><h3>Orelha Esquerda</h3></th>
+                                </tr>
+                                <tr>
+                                    <th>Frequência</th>
+                                    <th style="text-align: center;">Limiar VA</th>
+                                    <th style="text-align: center;">Mascaramento</th>
+
+                                    <th style="text-align: center;">Limiar VO</th>
+                                    <th style="text-align: center;">Mascaramento</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>250</td>
+                                    <td>{% render_field form.esquerdo_frequencia_250_limiar_va class="form-control" %}</td>
+                                    <td>{% render_field form.esquerdo_frequencia_250_limiar_va_mascaramento class="form-control" %}</td>
+                                    <td>{% render_field form.esquerdo_frequencia_250_limiar_vo class="form-control" %}</td>
+                                    <td>{% render_field form.esquerdo_frequencia_250_limiar_vo_mascaramento class="form-control" %}</td>
+                                </tr>
+                                <tr>
+                                    <td>500</td>
+                                    <td>{% render_field form.esquerdo_frequencia_500_limiar_va class="form-control" %}</td>
+                                    <td>{% render_field form.esquerdo_frequencia_500_limiar_va_mascaramento class="form-control" %}</td>
+                                    <td>{% render_field form.esquerdo_frequencia_500_limiar_vo class="form-control" %}</td>
+                                    <td>{% render_field form.esquerdo_frequencia_500_limiar_vo_mascaramento class="form-control" %}</td>
+                                </tr>
+                                <tr>
+                                    <td>1000</td>
+                                    <td>{% render_field form.esquerdo_frequencia_1000_limiar_va class="form-control" %}</td>
+                                    <td>{% render_field form.esquerdo_frequencia_1000_limiar_va_mascaramento class="form-control" %}</td>
+                                    <td>{% render_field form.esquerdo_frequencia_1000_limiar_vo class="form-control" %}</td>
+                                    <td>{% render_field form.esquerdo_frequencia_1000_limiar_vo_mascaramento class="form-control" %}</td>
+                                </tr>
+                                <tr>
+                                    <td>1500</td>
+                                    <td>{% render_field form.esquerdo_frequencia_1500_limiar_va class="form-control" %}</td>
+                                    <td>{% render_field form.esquerdo_frequencia_1500_limiar_va_mascaramento class="form-control" %}</td>
+                                    <td>{% render_field form.esquerdo_frequencia_1500_limiar_vo class="form-control" %}</td>
+                                    <td>{% render_field form.esquerdo_frequencia_1500_limiar_vo_mascaramento class="form-control" %}</td>
+                                </tr>
+                                <tr>
+                                    <td>2000</td>
+                                    <td>{% render_field form.esquerdo_frequencia_2000_limiar_va class="form-control" %}</td>
+                                    <td>{% render_field form.esquerdo_frequencia_2000_limiar_va_mascaramento class="form-control" %}</td>
+                                    <td>{% render_field form.esquerdo_frequencia_2000_limiar_vo class="form-control" %}</td>
+                                    <td>{% render_field form.esquerdo_frequencia_2000_limiar_vo_mascaramento class="form-control" %}</td>
+                                </tr>
+                                <tr>
+                                    <td>3000</td>
+                                    <td>{% render_field form.esquerdo_frequencia_3000_limiar_va class="form-control" %}</td>
+                                    <td>{% render_field form.esquerdo_frequencia_3000_limiar_va_mascaramento class="form-control" %}</td>
+                                    <td>{% render_field form.esquerdo_frequencia_3000_limiar_vo class="form-control" %}</td>
+                                    <td>{% render_field form.esquerdo_frequencia_3000_limiar_vo_mascaramento class="form-control" %}</td>
+                                </tr>
+                                <tr>
+                                    <td>4000</td>
+                                    <td>{% render_field form.esquerdo_frequencia_4000_limiar_va class="form-control" %}</td>
+                                    <td>{% render_field form.esquerdo_frequencia_4000_limiar_va_mascaramento class="form-control" %}</td>
+                                    <td>{% render_field form.esquerdo_frequencia_4000_limiar_vo class="form-control" %}</td>
+                                    <td>{% render_field form.esquerdo_frequencia_4000_limiar_vo_mascaramento class="form-control" %}</td>
+                                </tr>
+                                <tr>
+                                    <td>6000</td>
+                                    <td>{% render_field form.esquerdo_frequencia_6000_limiar_va class="form-control" %}</td>
+                                    <td>{% render_field form.esquerdo_frequencia_6000_limiar_va_mascaramento class="form-control" %}</td>
+                                    <td>{% render_field form.esquerdo_frequencia_6000_limiar_vo class="form-control" %}</td>
+                                    <td>{% render_field form.esquerdo_frequencia_6000_limiar_vo_mascaramento class="form-control" %}</td>
+                                </tr>
+                                <tr>
+                                    <td>8000</td>
+                                    <td>{% render_field form.esquerdo_frequencia_8000_limiar_va class="form-control" %}</td>
+                                    <td>{% render_field form.esquerdo_frequencia_8000_limiar_va_mascaramento class="form-control" %}</td>
+                                    <td>{% render_field form.esquerdo_frequencia_8000_limiar_vo class="form-control" %}</td>
+                                    <td>{% render_field form.esquerdo_frequencia_8000_limiar_vo_mascaramento class="form-control" %}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                        <table class="table table-hover table-striped">
+                            <colgroup>
+                                <col>
+                                <col span="2" style="background-color:rgba(0, 0, 0, 0.02);">
+                            </colgroup>
+                            <thead>
+                                <tr>
+                                    <th colspan="5" style="text-align: center;"><h3>Orelha Direita</h3></th>
+                                </tr>
+                                <tr>
+                                    <th>Frequência</th>
+                                    <th style="text-align: center;">Limiar VA</th>
+                                    <th style="text-align: center;">Mascaramento</th>
+
+                                    <th style="text-align: center;">Limiar VO</th>
+                                    <th style="text-align: center;">Mascaramento</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>250</td>
+                                    <td>{% render_field form.direito_frequencia_250_limiar_va class="form-control" %}</td>
+                                    <td>{% render_field form.direito_frequencia_250_limiar_va_mascaramento class="form-control" %}</td>
+                                    <td>{% render_field form.direito_frequencia_250_limiar_vo class="form-control" %}</td>
+                                    <td>{% render_field form.direito_frequencia_250_limiar_vo_mascaramento class="form-control" %}</td>
+                                </tr>
+                                <tr>
+                                    <td>500</td>
+                                    <td>{% render_field form.direito_frequencia_500_limiar_va class="form-control" %}</td>
+                                    <td>{% render_field form.direito_frequencia_500_limiar_va_mascaramento class="form-control" %}</td>
+                                    <td>{% render_field form.direito_frequencia_500_limiar_vo class="form-control" %}</td>
+                                    <td>{% render_field form.direito_frequencia_500_limiar_vo_mascaramento class="form-control" %}</td>
+                                </tr>
+                                <tr>
+                                    <td>1000</td>
+                                    <td>{% render_field form.direito_frequencia_1000_limiar_va class="form-control" %}</td>
+                                    <td>{% render_field form.direito_frequencia_1000_limiar_va_mascaramento class="form-control" %}</td>
+                                    <td>{% render_field form.direito_frequencia_1000_limiar_vo class="form-control" %}</td>
+                                    <td>{% render_field form.direito_frequencia_1000_limiar_vo_mascaramento class="form-control" %}</td>
+                                </tr>
+                                <tr>
+                                    <td>1500</td>
+                                    <td>{% render_field form.direito_frequencia_1500_limiar_va class="form-control" %}</td>
+                                    <td>{% render_field form.direito_frequencia_1500_limiar_va_mascaramento class="form-control" %}</td>
+                                    <td>{% render_field form.direito_frequencia_1500_limiar_vo class="form-control" %}</td>
+                                    <td>{% render_field form.direito_frequencia_1500_limiar_vo_mascaramento class="form-control" %}</td>
+                                </tr>
+                                <tr>
+                                    <td>2000</td>
+                                    <td>{% render_field form.direito_frequencia_2000_limiar_va class="form-control" %}</td>
+                                    <td>{% render_field form.direito_frequencia_2000_limiar_va_mascaramento class="form-control" %}</td>
+                                    <td>{% render_field form.direito_frequencia_2000_limiar_vo class="form-control" %}</td>
+                                    <td>{% render_field form.direito_frequencia_2000_limiar_vo_mascaramento class="form-control" %}</td>
+                                </tr>
+                                <tr>
+                                    <td>3000</td>
+                                    <td>{% render_field form.direito_frequencia_3000_limiar_va class="form-control" %}</td>
+                                    <td>{% render_field form.direito_frequencia_3000_limiar_va_mascaramento class="form-control" %}</td>
+                                    <td>{% render_field form.direito_frequencia_3000_limiar_vo class="form-control" %}</td>
+                                    <td>{% render_field form.direito_frequencia_3000_limiar_vo_mascaramento class="form-control" %}</td>
+                                </tr>
+                                <tr>
+                                    <td>4000</td>
+                                    <td>{% render_field form.direito_frequencia_4000_limiar_va class="form-control" %}</td>
+                                    <td>{% render_field form.direito_frequencia_4000_limiar_va_mascaramento class="form-control" %}</td>
+                                    <td>{% render_field form.direito_frequencia_4000_limiar_vo class="form-control" %}</td>
+                                    <td>{% render_field form.direito_frequencia_4000_limiar_vo_mascaramento class="form-control" %}</td>
+                                </tr>
+                                <tr>
+                                    <td>6000</td>
+                                    <td>{% render_field form.direito_frequencia_6000_limiar_va class="form-control" %}</td>
+                                    <td>{% render_field form.direito_frequencia_6000_limiar_va_mascaramento class="form-control" %}</td>
+                                    <td>{% render_field form.direito_frequencia_6000_limiar_vo class="form-control" %}</td>
+                                    <td>{% render_field form.direito_frequencia_6000_limiar_vo_mascaramento class="form-control" %}</td>
+                                </tr>
+                                <tr>
+                                    <td>8000</td>
+                                    <td>{% render_field form.direito_frequencia_8000_limiar_va class="form-control" %}</td>
+                                    <td>{% render_field form.direito_frequencia_8000_limiar_va_mascaramento class="form-control" %}</td>
+                                    <td>{% render_field form.direito_frequencia_8000_limiar_vo class="form-control" %}</td>
+                                    <td>{% render_field form.direito_frequencia_8000_limiar_vo_mascaramento class="form-control" %}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    
+                        <table class="table table-hover table-striped">
+                            <thead>
+                                <tr>
+                                    <th>Audiometria Vocal</th>
+                                    <th>SRT</th>
+                                    <th>IRF dB</th>
+                                    <th>IRF %</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Orelha Esquerda</td>
+                                    <td>{% render_field form.esquerdo_srt class="form-control" %}</td>
+                                    <td>{% render_field form.esquerdo_irf_dB class="form-control" %}</td>
+                                    <td>{% render_field form.esquerdo_irf_porcentagem class="form-control" %}</td>
+                                </tr>
+                                <tr>
+                                    <td>Orelha Direita</td>
+                                    <td>{% render_field form.direito_srt class="form-control" %}</td>
+                                    <td>{% render_field form.direito_irf_dB class="form-control" %}</td>
+                                    <td>{% render_field form.direito_irf_porcentagem class="form-control" %}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                        <table class="table table-hover table-striped">
+                            <thead>
+                                <tr>
+                                    <th colspan="4" style="text-align: center;"><h3>Imitânciometria</h3></th>
+                                </tr>
+                                <tr>
+                                    <th>Compilância</th>
+                                    <th>Orelha Esquerda</th>
+                                    <th>Orelha Direita</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Pressão da orelha Média (daPA)</td>
+                                    <td>{% render_field form.esquerdo_pressao class="form-control" %}</td>
+                                    <td>{% render_field form.direito_pressao class="form-control" %}</td>
+                                </tr>
+                                <tr>
+                                    <td>Máximo Relaxamento (ml)</td>
+                                    <td>{% render_field form.esquerdo_maximo_relax class="form-control" %}</td>
+                                    <td>{% render_field form.direito_maximo_relax class="form-control" %}</td>
+                                </tr>
+                                <tr>
+                                    <td>Compilância +200 daPA (ml)</td>
+                                    <td>{% render_field form.esquerdo_compilancia_200 class="form-control" %}</td>
+                                    <td>{% render_field form.direito_compilancia_200 class="form-control" %}</td>
+                                </tr>
+                                <tr>
+                                    <td>Compilância Estatica (ml)</td>
+                                    <td>{% render_field form.esquerdo_compilancia_estatica class="form-control" %}</td>
+                                    <td>{% render_field form.direito_compilancia_estatica class="form-control" %}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                        <table class="table table-hover table-striped">
+                            <thead>
+                                <tr>
+                                    <th colspan="4" style="text-align: center;"><h3>Timpânometria</h3></th>
+                                </tr>
+                                <tr>
+                                    <th>Orelha Esquerda</th>
+                                    <th>Orelha Direita</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>{% render_field form.esquerdo_timpanometria class="form-control" %}</td>
+                                    <td>{% render_field form.direito_timpanometria class="form-control" %}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                        <table class="table table-hover table-striped">
+                            <thead>
+                                <tr>
+                                    <th colspan="5" style="text-align: center;"><h3>Reflexo Acústico - Orelha Esquerda</h3></th>
+                                </tr>
+                                <tr>
+                                    <th>Frequência (Hz)</th>
+                                    <th style="text-align: center;">Limiar VA</th>
+                                    <th style="text-align: center;">Contra OE</th>
+                                    <th style="text-align: center;">Diferença</th>
+                                    <th style="text-align: center;">IPSI</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>500</td>
+                                    <td>{% render_field form.esquerdo_reflexo_frequencia_500_limiar class="form-control" %}</td>
+                                    <td>{% render_field form.esquerdo_reflexo_frequencia_500_contra class="form-control" %}</td>
+                                    <td>{% render_field form.esquerdo_reflexo_frequencia_500_diferenca class="form-control" %}</td>
+                                    <td>{% render_field form.esquerdo_reflexo_frequencia_500_ipsi class="form-control" %}</td>
+                                </tr>
+                                <tr>
+                                    <td>1000</td>
+                                    <td>{% render_field form.esquerdo_reflexo_frequencia_1000_limiar class="form-control" %}</td>
+                                    <td>{% render_field form.esquerdo_reflexo_frequencia_1000_contra class="form-control" %}</td>
+                                    <td>{% render_field form.esquerdo_reflexo_frequencia_1000_diferenca class="form-control" %}</td>
+                                    <td>{% render_field form.esquerdo_reflexo_frequencia_1000_ipsi class="form-control" %}</td>
+                                </tr>
+                                <tr>
+                                    <td>2000</td>
+                                    <td>{% render_field form.esquerdo_reflexo_frequencia_2000_limiar class="form-control" %}</td>
+                                    <td>{% render_field form.esquerdo_reflexo_frequencia_2000_contra class="form-control" %}</td>
+                                    <td>{% render_field form.esquerdo_reflexo_frequencia_2000_diferenca class="form-control" %}</td>
+                                    <td>{% render_field form.esquerdo_reflexo_frequencia_2000_ipsi class="form-control" %}</td>
+                                </tr>
+                                <tr>
+                                    <td>4000</td>
+                                    <td>{% render_field form.esquerdo_reflexo_frequencia_4000_limiar class="form-control" %}</td>
+                                    <td>{% render_field form.esquerdo_reflexo_frequencia_4000_contra class="form-control" %}</td>
+                                    <td>{% render_field form.esquerdo_reflexo_frequencia_4000_diferenca class="form-control" %}</td>
+                                    <td>{% render_field form.esquerdo_reflexo_frequencia_4000_ipsi class="form-control" %}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                        <table class="table table-hover table-striped">
+                            <thead>
+                                <tr>
+                                    <th colspan="5" style="text-align: center;"><h3>Reflexo Acústico - Orelha Direita</h3></th>
+                                </tr>
+                                <tr>
+                                    <th>Frequência (Hz)</th>
+                                    <th style="text-align: center;">Limiar VA</th>
+                                    <th style="text-align: center;">Contra OD</th>
+                                    <th style="text-align: center;">Diferença</th>
+                                    <th style="text-align: center;">IPSI</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>500</td>
+                                    <td>{% render_field form.direito_reflexo_frequencia_500_limiar class="form-control" %}</td>
+                                    <td>{% render_field form.direito_reflexo_frequencia_500_contra class="form-control" %}</td>
+                                    <td>{% render_field form.direito_reflexo_frequencia_500_diferenca class="form-control" %}</td>
+                                    <td>{% render_field form.direito_reflexo_frequencia_500_ipsi class="form-control" %}</td>
+                                </tr>
+                                <tr>
+                                    <td>1000</td>
+                                    <td>{% render_field form.direito_reflexo_frequencia_1000_limiar class="form-control" %}</td>
+                                    <td>{% render_field form.direito_reflexo_frequencia_1000_contra class="form-control" %}</td>
+                                    <td>{% render_field form.direito_reflexo_frequencia_1000_diferenca class="form-control" %}</td>
+                                    <td>{% render_field form.direito_reflexo_frequencia_1000_ipsi class="form-control" %}</td>
+                                </tr>
+                                <tr>
+                                    <td>2000</td>
+                                    <td>{% render_field form.direito_reflexo_frequencia_2000_limiar class="form-control" %}</td>
+                                    <td>{% render_field form.direito_reflexo_frequencia_2000_contra class="form-control" %}</td>
+                                    <td>{% render_field form.direito_reflexo_frequencia_2000_diferenca class="form-control" %}</td>
+                                    <td>{% render_field form.direito_reflexo_frequencia_2000_ipsi class="form-control" %}</td>
+                                </tr>
+                                <tr>
+                                    <td>4000</td>
+                                    <td>{% render_field form.direito_reflexo_frequencia_4000_limiar class="form-control" %}</td>
+                                    <td>{% render_field form.direito_reflexo_frequencia_4000_contra class="form-control" %}</td>
+                                    <td>{% render_field form.direito_reflexo_frequencia_4000_diferenca class="form-control" %}</td>
+                                    <td>{% render_field form.direito_reflexo_frequencia_4000_ipsi class="form-control" %}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label">Evolução</label>
+                        {% render_field form.evolucao class="form-control" %}
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Conclusão</label>
+                        {% render_field form.conclusao_exame class="form-control" %}
+                    </div>
+                    
+                    <div class="card-footer text-center">
+                        <a href={% url 'update_consulta' consulta.id %} class="btn btn-primary">Voltar</a>
+                        <button type="submit" class="btn btn-success">Atualizar</button>
+                    </div>
+                </div>
+
+            </form>
+        </div>
+    </div>
+</div>
+
+
+{% endblock content %}
+
+<!-- Specific Page JS goes HERE  -->
+{% block javascripts %}
+
+
+{% endblock javascripts %}
+<script prefer>
+    $(function(){
+        console.log('zqui')
+    })
+</script>
