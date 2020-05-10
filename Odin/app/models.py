@@ -50,13 +50,13 @@ class Procedimento(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
 
     def get_absolute_url(self):
-        return reverse('index_lifs', kwargs={'pk': self.pk})
+        return reverse('index_procedimentos', kwargs={'pk': self.pk})
 
     def __str__(self):
         return self.nome_procedimento
 
 
-class Atendimentos(models.Model):
+class Atendimento(models.Model):
     paciente = models.ForeignKey(to=Paciente, on_delete=models.CASCADE)
     lif = models.ForeignKey(to=Lif, on_delete=models.CASCADE)
     codigo_lif = models.CharField(max_length=20, unique=True)
@@ -71,7 +71,7 @@ class Atendimentos(models.Model):
 
 
 class Consulta(models.Model):
-    atendimento = models.ForeignKey(to=Atendimentos, on_delete=models.CASCADE)
+    atendimento = models.ForeignKey(to=Atendimento, on_delete=models.CASCADE)
     procedimento = models.ForeignKey(to=Procedimento, on_delete=models.CASCADE)
     data_consulta = models.DateField()
     observacao = models.CharField(max_length=200)
@@ -79,7 +79,7 @@ class Consulta(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
 
 
-class Bera(models.Model):
+class ResultadoBera(models.Model):
     consulta = models.ForeignKey(to=Consulta, on_delete=models.CASCADE)
 
     # Esquerdo
@@ -142,7 +142,7 @@ class Bera(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
 
 
-class Pac(models.Model):
+class ResultadoPac(models.Model):
     consulta = models.ForeignKey(to=Consulta, on_delete=models.CASCADE)
 
     esquerdo_picos_P300 = models.CharField(max_length=10)
@@ -163,7 +163,7 @@ class Pac(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
 
 
-class LaudoPadrao(models.Model):
+class ResultadoPadrao(models.Model):
     consulta = models.ForeignKey(to=Consulta, on_delete=models.CASCADE)
     evolucao = models.TextField()
     conclusao_exame = models.TextField()
@@ -171,7 +171,7 @@ class LaudoPadrao(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
 
 
-class Audiometria(models.Model):
+class ResultadoAudiometria(models.Model):
     consulta = models.ForeignKey(to=Consulta, on_delete=models.CASCADE)
 
     esquerdo_frequencia_250_limiar_va = models.CharField(max_length=10, blank=True)

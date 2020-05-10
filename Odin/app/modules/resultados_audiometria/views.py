@@ -1,12 +1,12 @@
 from django.utils.decorators import method_decorator
 from django.contrib.auth.decorators import login_required
 from django.urls import reverse
-from ...models import Consulta, Audiometria
-from django.views.generic import UpdateView, DeleteView
+from ...models import ResultadoAudiometria
+from django.views.generic import UpdateView
 
 
-class AudiUpdateView(UpdateView):
-    model = Audiometria
+class ResultadoAudiometriaUpdateView(UpdateView):
+    model = ResultadoAudiometria
     fields = [
         'conclusao_exame',
         'evolucao',

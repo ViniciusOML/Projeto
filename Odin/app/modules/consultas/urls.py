@@ -10,5 +10,5 @@ urlpatterns = [
     path('update/<int:pk>/', ConsultaUpdateView.as_view(), name='update_consulta'),
     path('<int:pk>/bera/new', ConsultaBeraUpdateView.as_view(), name='new_consulta_bera'),
     path('<int:pk>/pac/new', ConsultaPacUpdateView.as_view(), name='new_consulta_pac'),
-    path('<int:pk>/audi/new', ConsultaAudiUpdateView.as_view(), name='new_consulta_audi'),
+    path('<int:pk>/resultados_audiometria/new', ConsultaAudiUpdateView.as_view(), name='new_consulta_audi'),
 ]

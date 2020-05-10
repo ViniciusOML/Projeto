@@ -1,7 +1,7 @@
 from django.utils.decorators import method_decorator
 from django.contrib.auth.decorators import login_required
 from django.urls import reverse_lazy
-from ...models import Consulta, Atendimentos, Bera, Pac, Audiometria
+from ...models import Consulta, Atendimento, ResultadoBera, ResultadoPac, ResultadoAudiometria
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView
 
 
@@ -24,13 +24,13 @@ class ConsultaCreateView(CreateView):
     template_name = 'consulta_novo.html'
 
     def form_valid(self, form):
-        form.instance.atendimento = Atendimentos.objects.get(id=self.request.GET['atendimento'])
+        form.instance.atendimento = Atendimento.objects.get(id=self.request.GET['atendimento'])
         form.save()
         return super(ConsultaCreateView, self).form_valid(form)
 
     def get_context_data(self, *args, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['atendimento'] = Atendimentos.objects.get(id=self.kwargs['pk'])
+        context['atendimento'] = Atendimento.objects.get(id=self.kwargs['pk'])
         return context
 
 
@@ -50,11 +50,11 @@ class ConsultaUpdateView(UpdateView):
         context['procedimento'] = self.object.procedimento
 
         if self.object.procedimento.sigla == 'BERA':
-            context['laudos'] = Bera.objects.filter(consulta_id=self.kwargs['pk'])
+            context['laudos'] = ResultadoBera.objects.filter(consulta_id=self.kwargs['pk'])
         elif self.object.procedimento.sigla == 'PAC':
-            context['laudos'] = Pac.objects.filter(consulta_id=self.kwargs['pk'])
+            context['laudos'] = ResultadoPac.objects.filter(consulta_id=self.kwargs['pk'])
         elif self.object.procedimento.sigla == 'AUDI':
-            context['laudos'] = Audiometria.objects.filter(consulta_id=self.kwargs['pk'])
+            context['laudos'] = ResultadoAudiometria.objects.filter(consulta_id=self.kwargs['pk'])
         return context
 
     def form_valid(self, form):
@@ -64,7 +64,7 @@ class ConsultaUpdateView(UpdateView):
 
 class ConsultaBeraUpdateView(CreateView):
     success_url = reverse_lazy('index_consultas')
-    model = Bera
+    model = ResultadoBera
     fields = [
         'conclusao_exame',
         'evolucao',
@@ -117,7 +117,7 @@ class ConsultaBeraUpdateView(CreateView):
 
 class ConsultaPacUpdateView(CreateView):
     success_url = reverse_lazy('index_consultas')
-    model = Pac
+    model = ResultadoPac
     fields = [
         'conclusao_exame',
         'evolucao',
@@ -149,7 +149,7 @@ class ConsultaPacUpdateView(CreateView):
 
 class ConsultaAudiUpdateView(CreateView):
     success_url = reverse_lazy('index_consultas')
-    model = Audiometria
+    model = ResultadoAudiometria
     fields = [
         'conclusao_exame',
         'evolucao',

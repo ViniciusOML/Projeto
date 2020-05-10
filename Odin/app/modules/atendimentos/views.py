@@ -1,16 +1,16 @@
 # -*- encoding: utf-8 -*-
 from django.utils.decorators import method_decorator
 from django.contrib.auth.decorators import login_required
-from ...models import Atendimentos, Consulta, Paciente
+from ...models import Atendimento, Consulta, Paciente
 from django.urls import reverse_lazy, reverse
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView
 
 
 class AtendimentoListView(ListView):
     template_name = 'atendimento_index.html'
-    model = Atendimentos
+    model = Atendimento
     context_object_name = 'atendimentos'
-    queryset = Atendimentos.objects.all()  # Query padrão, pode ser omitid
+    queryset = Atendimento.objects.all()  # Query padrão, pode ser omitid
 
     @method_decorator(login_required)
     def dispatch(self, *args, **kwargs):
@@ -19,7 +19,7 @@ class AtendimentoListView(ListView):
 
 class AtendimentoCreateView(CreateView):
     fields = ['codigo_lif', 'lif']
-    model = Atendimentos
+    model = Atendimento
     template_name = 'atendimento_novo.html'
 
     def form_valid(self, form):
@@ -54,7 +54,7 @@ class AtendimentoConsultaCreateView(CreateView):
 
 
 class AtendimentoUpdateView(UpdateView):
-    model = Atendimentos
+    model = Atendimento
     fields = ['codigo_lif', 'lif']
     template_name = 'atendimento_editar.html'
 
@@ -74,7 +74,7 @@ class AtendimentoUpdateView(UpdateView):
 
 
 class AtendimentoDeleteView(DeleteView):
-    model = Atendimentos
+    model = Atendimento
     success_url = reverse_lazy('index_atendimentos')
     template_name = "atendimento_excluir.html"
     context_object_name = "atendimento"

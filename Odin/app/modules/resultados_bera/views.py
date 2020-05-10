@@ -1,12 +1,12 @@
 from django.utils.decorators import method_decorator
 from django.contrib.auth.decorators import login_required
 from django.urls import reverse
-from ...models import Consulta, Bera
-from django.views.generic import UpdateView, DeleteView
+from ...models import ResultadoBera
+from django.views.generic import UpdateView
 
 
-class BeraUpdateView(UpdateView):
-    model = Bera
+class ResultadoBeraUpdateView(UpdateView):
+    model = ResultadoBera
     fields = [
         'conclusao_exame',
         'evolucao',

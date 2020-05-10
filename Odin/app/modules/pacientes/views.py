@@ -1,7 +1,7 @@
 # -*- encoding: utf-8 -*-
 from django.utils.decorators import method_decorator
 from django.contrib.auth.decorators import login_required
-from ...models import Paciente, Atendimentos, Consulta
+from ...models import Paciente, Atendimento, Consulta
 from django.urls import reverse_lazy
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView
 
@@ -28,7 +28,7 @@ class PacienteCreateView(CreateView):
 class PacienteAtendimentoCreateView(CreateView):
     success_url = reverse_lazy('index_atendimentos')
     fields = ['codigo_lif', 'lif']
-    model = Atendimentos
+    model = Atendimento
     template_name = 'paciente_atendimento_novo.html'
 
     def form_valid(self, form):
@@ -62,7 +62,7 @@ class PacienteUpdateView(UpdateView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
 
-        atendimentos = Atendimentos.objects.filter(paciente_id=self.object.id)
+        atendimentos = Atendimento.objects.filter(paciente_id=self.object.id)
 
         context['atendimentos'] = []
         context['consultas'] = []

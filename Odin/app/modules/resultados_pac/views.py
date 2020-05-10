@@ -1,12 +1,12 @@
 from django.utils.decorators import method_decorator
 from django.contrib.auth.decorators import login_required
 from django.urls import reverse
-from ...models import Consulta, Pac
-from django.views.generic import UpdateView, DeleteView
+from ...models import ResultadoPac
+from django.views.generic import UpdateView
 
 
-class PacUpdateView(UpdateView):
-    model = Pac
+class ResultadoPacUpdateView(UpdateView):
+    model = ResultadoPac
     fields = [
         'conclusao_exame',
         'evolucao',

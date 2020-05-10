@@ -12,7 +12,7 @@ urlpatterns = [
     path("atendimentos/", include("app.modules.atendimentos.urls")),
     path("procedimentos/", include("app.modules.procedimentos.urls")),
     path("consultas/", include("app.modules.consultas.urls")),
-    path("beras/", include("app.modules.beras.urls")),
-    path("pacs/", include("app.modules.pacs.urls")),
-    path("audi/", include("app.modules.audi.urls")),
+    path("resultados_bera/", include("app.modules.resultados_bera.urls")),
+    path("resultados_pac/", include("app.modules.resultados_pac.urls")),
+    path("resultados_audiometria/", include("app.modules.resultados_audiometria.urls")),
 ]
