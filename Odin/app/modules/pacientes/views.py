@@ -1,37 +1,37 @@
 # -*- encoding: utf-8 -*-
-from django.utils.decorators import method_decorator
-from django.contrib.auth.decorators import login_required
+from django.contrib.auth.mixins import LoginRequiredMixin
 from ...models import Paciente, Atendimento, Consulta
 from django.urls import reverse_lazy
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView
 
 
-class PacienteListView(ListView):
+class PacienteListView(LoginRequiredMixin, ListView):
+    login_url = '/'
+
+    model = Paciente
     template_name = 'paciente/index.html'
-    model = Paciente
     context_object_name = 'pacientes'
-    queryset = Paciente.objects.all()  # Query padrão, pode ser omitid
-
-    @method_decorator(login_required)
-    def dispatch(self, *args, **kwargs):
-        return super().dispatch(*args, **kwargs)
 
 
-class PacienteCreateView(CreateView):
-    template_name = 'paciente/novo.html'
+class PacienteCreateView(LoginRequiredMixin, CreateView):
+    login_url = '/'
+
     model = Paciente
+    fields = [
+        'nome_completo', 'cpf', 'rg', 'data_nascimento',
+        'sexo', 'tem_responsavel', 'nome_responsavel', 'rg_responsavel'
+    ]
+    template_name = 'paciente/novo.html'
     success_url = reverse_lazy('index_pacientes')
 
-    fields = ['nome_completo', 'cpf', 'rg', 'data_nascimento',
-              'sexo', 'tem_responsavel', 'nome_responsavel', 'rg_responsavel']
 
+class PacienteAtendimentoCreateView(LoginRequiredMixin, CreateView):
+    login_url = '/'
 
-class PacienteAtendimentoCreateView(CreateView):
-    template_name = 'paciente/atendimento_novo.html'
     model = Atendimento
-    success_url = reverse_lazy('index_atendimentos')
-
     fields = ['codigo_lif', 'lif']
+    template_name = 'paciente/atendimento_novo.html'
+    success_url = reverse_lazy('index_atendimentos')
 
     def form_valid(self, form):
         form.instance.paciente = Paciente.objects.get(id=self.kwargs['pk'])
@@ -44,21 +44,19 @@ class PacienteAtendimentoCreateView(CreateView):
         return context
 
 
-class PacienteUpdateView(UpdateView):
-    template_name = 'paciente/editar.html'
-    model = Paciente
-    success_url = reverse_lazy('index_pacientes')
+class PacienteUpdateView(LoginRequiredMixin, UpdateView):
+    login_url = '/'
 
+    model = Paciente
     fields = ['nome_completo', 'cpf', 'rg', 'data_nascimento',
               'sexo', 'tem_responsavel', 'nome_responsavel', 'rg_responsavel']
-
-    @method_decorator(login_required)
-    def dispatch(self, *args, **kwargs):
-        return super().dispatch(*args, **kwargs)
+    template_name = 'paciente/editar.html'
+    success_url = reverse_lazy('index_pacientes')
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
 
+        # Obtendo os atendimentos do paciente
         atendimentos = Atendimento.objects.filter(paciente_id=self.object.id)
 
         context['atendimentos'] = []
@@ -67,21 +65,18 @@ class PacienteUpdateView(UpdateView):
         for atendimento in atendimentos:
             context['atendimentos'].append(atendimento)            
 
+            # Obtendo as consultas do atendimento
             consultas = Consulta.objects.filter(atendimento_id=atendimento.id)
 
             for consulta in consultas:
                 context['consultas'].append(consulta)
-
         return context
 
 
-class PacienteDeleteView(DeleteView):
+class PacienteDeleteView(LoginRequiredMixin, DeleteView):
+    login_url = '/'
+
+    model = Paciente
     template_name = "paciente/excluir.html"
     success_url = reverse_lazy('index_pacientes')
-    model = Paciente
-
     context_object_name = "paciente"
-
-    @method_decorator(login_required)
-    def dispatch(self, *args, **kwargs):
-        return super().dispatch(*args, **kwargs)

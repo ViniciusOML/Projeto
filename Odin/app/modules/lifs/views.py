@@ -1,46 +1,40 @@
-from django.utils.decorators import method_decorator
-from django.contrib.auth.decorators import login_required
+# -*- encoding: utf-8 -*-
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.urls import reverse_lazy
 from ...models import Lif
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView
 
 
-class LifListView(ListView):
-    template_name = 'lif/index.html'
+class LifListView(LoginRequiredMixin, ListView):
+    login_url = '/'
+
     model = Lif
+    template_name = 'lif/index.html'
     context_object_name = 'lifs'
-    queryset = Lif.objects.all()
-
-    @method_decorator(login_required)
-    def dispatch(self, *args, **kwargs):
-        return super().dispatch(*args, **kwargs)
 
 
-class LifCreateView(CreateView):
-    success_url = reverse_lazy('index_lifs')
+class LifCreateView(LoginRequiredMixin, CreateView):
+    login_url = '/'
+
     model = Lif
     fields = ['nome_lif']
     template_name = 'lif/novo.html'
+    success_url = reverse_lazy('index_lifs')
 
 
-class LifUpdateView(UpdateView):
+class LifUpdateView(LoginRequiredMixin, UpdateView):
+    login_url = '/'
+
     model = Lif
     fields = ['nome_lif']
     template_name = 'lif/editar.html'
-
     success_url = reverse_lazy('index_lifs')
 
-    @method_decorator(login_required)
-    def dispatch(self, *args, **kwargs):
-        return super().dispatch(*args, **kwargs)
 
+class LifDeleteView(LoginRequiredMixin, DeleteView):
+    login_url = '/'
 
-class LifDeleteView(DeleteView):
     model = Lif
-    success_url = reverse_lazy('index_lifs')
     template_name = "lif/excluir.html"
+    success_url = reverse_lazy('index_lifs')
     context_object_name = "lif"
-
-    @method_decorator(login_required)
-    def dispatch(self, *args, **kwargs):
-        return super().dispatch(*args, **kwargs)
