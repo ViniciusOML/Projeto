@@ -37,23 +37,23 @@
                 </div>
 
                 <div class="card-body">
-                    <h3 class="card-title" style="text-align: center;"><strong>Laudo</strong></h3>
+                    <h3 class="card-title" style="text-align: center;"><strong>Resultado</strong></h3>
                     
                     {% if not laudos%}
                         <h3 class="card-title" style="text-align: center;">
                             <strong>
                                 {% if procedimento.sigla == 'BERA' %}
-                                    <a style="color: white"  href={% url 'new_consulta_bera' consulta.id %} class="btn btn-primary">Inserir Laudo</a>
+                                    <a style="color: white"  href={% url 'new_consulta_bera' consulta.id %} class="btn btn-primary">Inserir Resultado</a>
                                 {% elif procedimento.sigla == 'AUDI' %}
-                                    <a style="color: white"  href={% url 'new_consulta_audi' consulta.id %} class="btn btn-primary">Inserir Laudo</a>
+                                    <a style="color: white"  href={% url 'new_consulta_audi' consulta.id %} class="btn btn-primary">Inserir Resultado</a>
                                 {% elif procedimento.sigla == 'PAC' %}
-                                    <a style="color: white"  href={% url 'new_consulta_pac' consulta.id %} class="btn btn-primary">Inserir Laudo</a>
+                                    <a style="color: white"  href={% url 'new_consulta_pac' consulta.id %} class="btn btn-primary">Inserir Resultado</a>
                                 {% endif %}
                             </strong>
                         </h3>
                     {% else %}
                         {% if procedimento.sigla == 'BERA' %}
-                            {% for laudo in laudos %}
+                            {% for resultado in laudos %}
                                 <div class="col-lg-12">
                                     <table class="table table-hover table-striped">
                                         <colgroup>
@@ -63,8 +63,8 @@
                                         <thead>
                                             <tr>
                                                 <th></th>
-                                                <th colspan="2" style="text-align: center;"><h3>Orelha Esquerda</h3></th>
                                                 <th colspan="2" style="text-align: center;"><h3>Orelha Direita</h3></th>
+                                                <th colspan="2" style="text-align: center;"><h3>Orelha Esquerda</h3></th>
                                             </tr>
                                             <tr>
                                                 <th>Picos</th>
@@ -78,52 +78,52 @@
                                         <tbody>
                                             <tr>
                                                 <td>I</td>
-                                                <td style="text-align: center;">{{laudo.esquerdo_picos_latencia_abosoluta_I}}</td>
-                                                <td style="text-align: center;">{{laudo.esquerdo_picos_inter_latencias_I}}</td>
-                                                <td style="text-align: center;">{{laudo.direito_picos_latencia_abosoluta_I}}</td>
-                                                <td style="text-align: center;">{{laudo.direito_picos_inter_latencias_I}}</td>
+                                                <td style="text-align: center;">{{resultado.direito_picos_latencia_abosoluta_I}}</td>
+                                                <td style="text-align: center;">{{resultado.direito_picos_inter_latencias_I}}</td>
+                                                <td style="text-align: center;">{{resultado.esquerdo_picos_latencia_abosoluta_I}}</td>
+                                                <td style="text-align: center;">{{resultado.esquerdo_picos_inter_latencias_I}}</td>
                                             </tr>
                                             <tr>
                                                 <td>III</td>
-                                                <td style="text-align: center;">{{laudo.esquerdo_picos_latencia_abosoluta_III}}</td>
-                                                <td style="text-align: center;">{{laudo.esquerdo_picos_inter_latencias_III}}</td>
-                                                <td style="text-align: center;">{{laudo.direito_picos_latencia_abosoluta_III}}</td>
-                                                <td style="text-align: center;">{{laudo.direito_picos_inter_latencias_III}}</td>
+                                                <td style="text-align: center;">{{resultado.direito_picos_latencia_abosoluta_III}}</td>
+                                                <td style="text-align: center;">{{resultado.direito_picos_inter_latencias_III}}</td>
+                                                <td style="text-align: center;">{{resultado.esquerdo_picos_latencia_abosoluta_III}}</td>
+                                                <td style="text-align: center;">{{resultado.esquerdo_picos_inter_latencias_III}}</td>
                                             </tr>
                                             <tr>
                                                 <td>V</td>
-                                                <td style="text-align: center;">{{laudo.esquerdo_picos_latencia_abosoluta_V}}</td>
-                                                <td style="text-align: center;">{{laudo.esquerdo_picos_inter_latencias_V}}</td>
-                                                <td style="text-align: center;">{{laudo.direito_picos_latencia_abosoluta_V}}</td>
-                                                <td style="text-align: center;">{{laudo.direito_picos_inter_latencias_V}}</td>
+                                                <td style="text-align: center;">{{resultado.direito_picos_latencia_abosoluta_V}}</td>
+                                                <td style="text-align: center;">{{resultado.direito_picos_inter_latencias_V}}</td>
+                                                <td style="text-align: center;">{{resultado.esquerdo_picos_latencia_abosoluta_V}}</td>
+                                                <td style="text-align: center;">{{resultado.esquerdo_picos_inter_latencias_V}}</td>
                                             </tr>
                                             <tr>
                                                 <td>Intepicos</td>
-                                                <td style="text-align: center;">{{laudo.esquerdo_picos_latencia_abosoluta_interpicos}}</td>
-                                                <td style="text-align: center;">{{laudo.esquerdo_picos_inter_latencias_interpicos}}</td>
-                                                <td style="text-align: center;">{{laudo.direito_picos_latencia_abosoluta_interpicos}}</td>
-                                                <td style="text-align: center;">{{laudo.direito_picos_inter_latencias_interpicos}}</td>
+                                                <td style="text-align: center;">{{resultado.direito_picos_latencia_abosoluta_interpicos}}</td>
+                                                <td style="text-align: center;">{{resultado.direito_picos_inter_latencias_interpicos}}</td>
+                                                <td style="text-align: center;">{{resultado.esquerdo_picos_latencia_abosoluta_interpicos}}</td>
+                                                <td style="text-align: center;">{{resultado.esquerdo_picos_inter_latencias_interpicos}}</td>
                                             </tr>
                                             <tr>
                                                 <td>I-III</td>
-                                                <td style="text-align: center;">{{laudo.esquerdo_picos_latencia_abosoluta_I_III}}</td>
-                                                <td style="text-align: center;">{{laudo.esquerdo_picos_inter_latencias_I_III}}</td>
-                                                <td style="text-align: center;">{{laudo.direito_picos_latencia_abosoluta_I_III}}</td>
-                                                <td style="text-align: center;">{{laudo.direito_picos_inter_latencias_I_III}}</td>
+                                                <td style="text-align: center;">{{resultado.direito_picos_latencia_abosoluta_I_III}}</td>
+                                                <td style="text-align: center;">{{resultado.direito_picos_inter_latencias_I_III}}</td>
+                                                <td style="text-align: center;">{{resultado.esquerdo_picos_latencia_abosoluta_I_III}}</td>
+                                                <td style="text-align: center;">{{resultado.esquerdo_picos_inter_latencias_I_III}}</td>
                                             </tr>
                                             <tr>
                                                 <td>I-V</td>
-                                                <td style="text-align: center;">{{laudo.esquerdo_picos_latencia_abosoluta_I_V}}</td>
-                                                <td style="text-align: center;">{{laudo.esquerdo_picos_inter_latencias_I_V}}</td>
-                                                <td style="text-align: center;">{{laudo.direito_picos_latencia_abosoluta_I_V}}</td>
-                                                <td style="text-align: center;">{{laudo.direito_picos_inter_latencias_I_V}}</td>
+                                                <td style="text-align: center;">{{resultado.direito_picos_latencia_abosoluta_I_V}}</td>
+                                                <td style="text-align: center;">{{resultado.direito_picos_inter_latencias_I_V}}</td>
+                                                <td style="text-align: center;">{{resultado.esquerdo_picos_latencia_abosoluta_I_V}}</td>
+                                                <td style="text-align: center;">{{resultado.esquerdo_picos_inter_latencias_I_V}}</td>
                                             </tr>
                                             <tr>
                                                 <td>III-V</td>
-                                                <td style="text-align: center;">{{laudo.esquerdo_picos_latencia_abosoluta_III_V}}</td>
-                                                <td style="text-align: center;">{{laudo.esquerdo_picos_inter_latencias_III_V}}</td>
-                                                <td style="text-align: center;">{{laudo.direito_picos_latencia_abosoluta_III_V}}</td>
-                                                <td style="text-align: center;">{{laudo.direito_picos_inter_latencias_III_V}}</td>
+                                                <td style="text-align: center;">{{resultado.direito_picos_latencia_abosoluta_III_V}}</td>
+                                                <td style="text-align: center;">{{resultado.direito_picos_inter_latencias_III_V}}</td>
+                                                <td style="text-align: center;">{{resultado.esquerdo_picos_latencia_abosoluta_III_V}}</td>
+                                                <td style="text-align: center;">{{resultado.esquerdo_picos_inter_latencias_III_V}}</td>
                                             </tr>
                                         </tbody>
                                     </table>
@@ -131,22 +131,22 @@
                                     <section>
                                         <!-- <strong>Evolução:</strong><br> -->
                                         <h3 class="card-title"><strong>Evolução:</strong></h3>
-                                        {{laudo.evolucao}}
+                                        {{resultado.evolucao}}
                                     </section>
                                     <br>
                                     <section>
                                         <!-- <strong>Conclusão:</strong><br> -->
                                         <h3 class="card-title"><strong>Conclusão:</strong></h3>
-                                        {{laudo.conclusao_exame}}
+                                        {{resultado.conclusao_exame}}
                                     </section>
                                     <h3 class="card-title" style="text-align: center; color:white">
-                                        <a href={% url 'update_bera' laudo.id %} class="btn btn-primary">Editar laudo</a>
+                                        <a href={% url 'update_bera' resultado.id %} class="btn btn-primary">Editar resultado</a>
                                     </h3>
                                     
                                 </div>
                             {% endfor %}
                         {% elif procedimento.sigla == 'PAC' %}
-                            {% for laudo in laudos %}
+                            {% for resultado in laudos %}
                                 <div class="col-lg-12">
                                     <table class="table table-hover table-striped">
                                         <colgroup>
@@ -163,49 +163,49 @@
                                         <tbody>
                                             <tr>
                                                 <td>P300</td>
-                                                <td>{{laudo.esquerdo_picos_P300}}</td>
-                                                <td>{{laudo.direito_picos_P300}}</td>
+                                                <td>{{resultado.esquerdo_picos_P300}}</td>
+                                                <td>{{resultado.direito_picos_P300}}</td>
                                             </tr>
                                             <tr>
                                                 <td>P1</td>
-                                                <td>{{laudo.esquerdo_picos_P1}}</td>
-                                                <td>{{laudo.direito_picos_P1}}</td>
+                                                <td>{{resultado.esquerdo_picos_P1}}</td>
+                                                <td>{{resultado.direito_picos_P1}}</td>
                                             </tr>
                                             <tr>
                                                 <td>N1</td>
-                                                <td>{{laudo.esquerdo_picos_N1}}</td>
-                                                <td>{{laudo.direito_picos_N1}}</td>
+                                                <td>{{resultado.esquerdo_picos_N1}}</td>
+                                                <td>{{resultado.direito_picos_N1}}</td>
                                             </tr>
                                             <tr>
                                                 <td>P2</td>
-                                                <td>{{laudo.esquerdo_picos_P2}}</td>
-                                                <td>{{laudo.direito_picos_P2}}</td>
+                                                <td>{{resultado.esquerdo_picos_P2}}</td>
+                                                <td>{{resultado.direito_picos_P2}}</td>
                                             </tr>
                                             <tr>
                                                 <td>N2</td>
-                                                <td>{{laudo.esquerdo_picos_N2}}</td>
-                                                <td>{{laudo.direito_picos_N2}}</td>
+                                                <td>{{resultado.esquerdo_picos_N2}}</td>
+                                                <td>{{resultado.direito_picos_N2}}</td>
                                             </tr>
                                         </tbody>
                                     </table>
                                     <section>
                                         <!-- <strong>Evolução:</strong><br> -->
                                         <h3 class="card-title"><strong>Evolução:</strong></h3>
-                                        {{laudo.evolucao}}
+                                        {{resultado.evolucao}}
                                     </section>
                                     <br>
                                     <section>
                                         <!-- <strong>Conclusão:</strong><br> -->
                                         <h3 class="card-title"><strong>Conclusão:</strong></h3>
-                                        {{laudo.conclusao_exame}}
+                                        {{resultado.conclusao_exame}}
                                     </section>
                                     <h3 class="card-title" style="text-align: center; color:white">
-                                        <a href={% url 'update_pac' laudo.id %} class="btn btn-primary">Editar laudo</a>
+                                        <a href={% url 'update_pac' resultado.id %} class="btn btn-primary">Editar resultado</a>
                                     </h3>
                                 </div>
                             {% endfor %}
                         {% elif procedimento.sigla == 'AUDI' %}
-                            {% for laudo in laudos %}
+                            {% for resultado in laudos %}
                                 <div class="col-lg-12">
                                     <table class="table table-hover table-striped">
                                         <colgroup>
@@ -228,66 +228,66 @@
                                         <tbody>
                                             <tr>
                                                 <td>250</td>
-                                                <td style="text-align: center;">{{laudo.esquerdo_frequencia_250_limiar_va}}</td>
-                                                <td style="text-align: center;">{{laudo.esquerdo_frequencia_250_limiar_va_mascaramento}}</td>
-                                                <td style="text-align: center;">{{laudo.esquerdo_frequencia_250_limiar_vo}}</td>
-                                                <td style="text-align: center;">{{laudo.esquerdo_frequencia_250_limiar_vo_mascaramento}}</td>
+                                                <td style="text-align: center;">{{resultado.esquerdo_frequencia_250_limiar_va}}</td>
+                                                <td style="text-align: center;">{{resultado.esquerdo_frequencia_250_limiar_va_mascaramento}}</td>
+                                                <td style="text-align: center;">{{resultado.esquerdo_frequencia_250_limiar_vo}}</td>
+                                                <td style="text-align: center;">{{resultado.esquerdo_frequencia_250_limiar_vo_mascaramento}}</td>
                                             </tr>
                                             <tr>
                                                 <td>500</td>
-                                                <td style="text-align: center;">{{laudo.esquerdo_frequencia_500_limiar_va}}</td>
-                                                <td style="text-align: center;">{{laudo.esquerdo_frequencia_500_limiar_va_mascaramento}}</td>
-                                                <td style="text-align: center;">{{laudo.esquerdo_frequencia_500_limiar_vo}}</td>
-                                                <td style="text-align: center;">{{laudo.esquerdo_frequencia_500_limiar_vo_mascaramento}}</td>
+                                                <td style="text-align: center;">{{resultado.esquerdo_frequencia_500_limiar_va}}</td>
+                                                <td style="text-align: center;">{{resultado.esquerdo_frequencia_500_limiar_va_mascaramento}}</td>
+                                                <td style="text-align: center;">{{resultado.esquerdo_frequencia_500_limiar_vo}}</td>
+                                                <td style="text-align: center;">{{resultado.esquerdo_frequencia_500_limiar_vo_mascaramento}}</td>
                                             </tr>
                                             <tr>
                                                 <td>1000</td>
-                                                <td style="text-align: center;">{{laudo.esquerdo_frequencia_1000_limiar_va}}</td>
-                                                <td style="text-align: center;">{{laudo.esquerdo_frequencia_1000_limiar_va_mascaramento}}</td>
-                                                <td style="text-align: center;">{{laudo.esquerdo_frequencia_1000_limiar_vo}}</td>
-                                                <td style="text-align: center;">{{laudo.esquerdo_frequencia_1000_limiar_vo_mascaramento}}</td>
+                                                <td style="text-align: center;">{{resultado.esquerdo_frequencia_1000_limiar_va}}</td>
+                                                <td style="text-align: center;">{{resultado.esquerdo_frequencia_1000_limiar_va_mascaramento}}</td>
+                                                <td style="text-align: center;">{{resultado.esquerdo_frequencia_1000_limiar_vo}}</td>
+                                                <td style="text-align: center;">{{resultado.esquerdo_frequencia_1000_limiar_vo_mascaramento}}</td>
                                             </tr>
                                             <tr>
                                                 <td>1500</td>
-                                                <td style="text-align: center;">{{laudo.esquerdo_frequencia_1500_limiar_va}}</td>
-                                                <td style="text-align: center;">{{laudo.esquerdo_frequencia_1500_limiar_va_mascaramento}}</td>
-                                                <td style="text-align: center;">{{laudo.esquerdo_frequencia_1500_limiar_vo}}</td>
-                                                <td style="text-align: center;">{{laudo.esquerdo_frequencia_1500_limiar_vo_mascaramento}}</td>
+                                                <td style="text-align: center;">{{resultado.esquerdo_frequencia_1500_limiar_va}}</td>
+                                                <td style="text-align: center;">{{resultado.esquerdo_frequencia_1500_limiar_va_mascaramento}}</td>
+                                                <td style="text-align: center;">{{resultado.esquerdo_frequencia_1500_limiar_vo}}</td>
+                                                <td style="text-align: center;">{{resultado.esquerdo_frequencia_1500_limiar_vo_mascaramento}}</td>
                                             </tr>
                                             <tr>
                                                 <td>2000</td>
-                                                <td style="text-align: center;">{{laudo.esquerdo_frequencia_2000_limiar_va}}</td>
-                                                <td style="text-align: center;">{{laudo.esquerdo_frequencia_2000_limiar_va_mascaramento}}</td>
-                                                <td style="text-align: center;">{{laudo.esquerdo_frequencia_2000_limiar_vo}}</td>
-                                                <td style="text-align: center;">{{laudo.esquerdo_frequencia_2000_limiar_vo_mascaramento}}</td>
+                                                <td style="text-align: center;">{{resultado.esquerdo_frequencia_2000_limiar_va}}</td>
+                                                <td style="text-align: center;">{{resultado.esquerdo_frequencia_2000_limiar_va_mascaramento}}</td>
+                                                <td style="text-align: center;">{{resultado.esquerdo_frequencia_2000_limiar_vo}}</td>
+                                                <td style="text-align: center;">{{resultado.esquerdo_frequencia_2000_limiar_vo_mascaramento}}</td>
                                             </tr>
                                             <tr>
                                                 <td>3000</td>
-                                                <td style="text-align: center;">{{laudo.esquerdo_frequencia_3000_limiar_va}}</td>
-                                                <td style="text-align: center;">{{laudo.esquerdo_frequencia_3000_limiar_va_mascaramento}}</td>
-                                                <td style="text-align: center;">{{laudo.esquerdo_frequencia_3000_limiar_vo}}</td>
-                                                <td style="text-align: center;">{{laudo.esquerdo_frequencia_3000_limiar_vo_mascaramento}}</td>
+                                                <td style="text-align: center;">{{resultado.esquerdo_frequencia_3000_limiar_va}}</td>
+                                                <td style="text-align: center;">{{resultado.esquerdo_frequencia_3000_limiar_va_mascaramento}}</td>
+                                                <td style="text-align: center;">{{resultado.esquerdo_frequencia_3000_limiar_vo}}</td>
+                                                <td style="text-align: center;">{{resultado.esquerdo_frequencia_3000_limiar_vo_mascaramento}}</td>
                                             </tr>
                                             <tr>
                                                 <td>4000</td>
-                                                <td style="text-align: center;">{{laudo.esquerdo_frequencia_4000_limiar_va}}</td>
-                                                <td style="text-align: center;">{{laudo.esquerdo_frequencia_4000_limiar_va_mascaramento}}</td>
-                                                <td style="text-align: center;">{{laudo.esquerdo_frequencia_4000_limiar_vo}}</td>
-                                                <td style="text-align: center;">{{laudo.esquerdo_frequencia_4000_limiar_vo_mascaramento}}</td>
+                                                <td style="text-align: center;">{{resultado.esquerdo_frequencia_4000_limiar_va}}</td>
+                                                <td style="text-align: center;">{{resultado.esquerdo_frequencia_4000_limiar_va_mascaramento}}</td>
+                                                <td style="text-align: center;">{{resultado.esquerdo_frequencia_4000_limiar_vo}}</td>
+                                                <td style="text-align: center;">{{resultado.esquerdo_frequencia_4000_limiar_vo_mascaramento}}</td>
                                             </tr>
                                             <tr>
                                                 <td>6000</td>
-                                                <td style="text-align: center;">{{laudo.esquerdo_frequencia_6000_limiar_va}}</td>
-                                                <td style="text-align: center;">{{laudo.esquerdo_frequencia_6000_limiar_va_mascaramento}}</td>
-                                                <td style="text-align: center;">{{laudo.esquerdo_frequencia_6000_limiar_vo}}</td>
-                                                <td style="text-align: center;">{{laudo.esquerdo_frequencia_6000_limiar_vo_mascaramento}}</td>
+                                                <td style="text-align: center;">{{resultado.esquerdo_frequencia_6000_limiar_va}}</td>
+                                                <td style="text-align: center;">{{resultado.esquerdo_frequencia_6000_limiar_va_mascaramento}}</td>
+                                                <td style="text-align: center;">{{resultado.esquerdo_frequencia_6000_limiar_vo}}</td>
+                                                <td style="text-align: center;">{{resultado.esquerdo_frequencia_6000_limiar_vo_mascaramento}}</td>
                                             </tr>
                                             <tr>
                                                 <td>8000</td>
-                                                <td style="text-align: center;">{{laudo.esquerdo_frequencia_8000_limiar_va}}</td>
-                                                <td style="text-align: center;">{{laudo.esquerdo_frequencia_8000_limiar_va_mascaramento}}</td>
-                                                <td style="text-align: center;">{{laudo.esquerdo_frequencia_8000_limiar_vo}}</td>
-                                                <td style="text-align: center;">{{laudo.esquerdo_frequencia_8000_limiar_vo_mascaramento}}</td>
+                                                <td style="text-align: center;">{{resultado.esquerdo_frequencia_8000_limiar_va}}</td>
+                                                <td style="text-align: center;">{{resultado.esquerdo_frequencia_8000_limiar_va_mascaramento}}</td>
+                                                <td style="text-align: center;">{{resultado.esquerdo_frequencia_8000_limiar_vo}}</td>
+                                                <td style="text-align: center;">{{resultado.esquerdo_frequencia_8000_limiar_vo_mascaramento}}</td>
                                             </tr>
                                         </tbody>
                                     </table>
@@ -313,66 +313,66 @@
                                         <tbody>
                                             <tr>
                                                 <td>250</td>
-                                                <td style="text-align: center;">{{laudo.direito_frequencia_250_limiar_va}}</td>
-                                                <td style="text-align: center;">{{laudo.direito_frequencia_250_limiar_va_mascaramento}}</td>
-                                                <td style="text-align: center;">{{laudo.direito_frequencia_250_limiar_vo}}</td>
-                                                <td style="text-align: center;">{{laudo.direito_frequencia_250_limiar_vo_mascaramento}}</td>
+                                                <td style="text-align: center;">{{resultado.direito_frequencia_250_limiar_va}}</td>
+                                                <td style="text-align: center;">{{resultado.direito_frequencia_250_limiar_va_mascaramento}}</td>
+                                                <td style="text-align: center;">{{resultado.direito_frequencia_250_limiar_vo}}</td>
+                                                <td style="text-align: center;">{{resultado.direito_frequencia_250_limiar_vo_mascaramento}}</td>
                                             </tr>
                                             <tr>
                                                 <td>500</td>
-                                                <td style="text-align: center;">{{laudo.direito_frequencia_500_limiar_va}}</td>
-                                                <td style="text-align: center;">{{laudo.direito_frequencia_500_limiar_va_mascaramento}}</td>
-                                                <td style="text-align: center;">{{laudo.direito_frequencia_500_limiar_vo}}</td>
-                                                <td style="text-align: center;">{{laudo.direito_frequencia_500_limiar_vo_mascaramento}}</td>
+                                                <td style="text-align: center;">{{resultado.direito_frequencia_500_limiar_va}}</td>
+                                                <td style="text-align: center;">{{resultado.direito_frequencia_500_limiar_va_mascaramento}}</td>
+                                                <td style="text-align: center;">{{resultado.direito_frequencia_500_limiar_vo}}</td>
+                                                <td style="text-align: center;">{{resultado.direito_frequencia_500_limiar_vo_mascaramento}}</td>
                                             </tr>
                                             <tr>
                                                 <td>1000</td>
-                                                <td style="text-align: center;">{{laudo.direito_frequencia_1000_limiar_va}}</td>
-                                                <td style="text-align: center;">{{laudo.direito_frequencia_1000_limiar_va_mascaramento}}</td>
-                                                <td style="text-align: center;">{{laudo.direito_frequencia_1000_limiar_vo}}</td>
-                                                <td style="text-align: center;">{{laudo.direito_frequencia_1000_limiar_vo_mascaramento}}</td>
+                                                <td style="text-align: center;">{{resultado.direito_frequencia_1000_limiar_va}}</td>
+                                                <td style="text-align: center;">{{resultado.direito_frequencia_1000_limiar_va_mascaramento}}</td>
+                                                <td style="text-align: center;">{{resultado.direito_frequencia_1000_limiar_vo}}</td>
+                                                <td style="text-align: center;">{{resultado.direito_frequencia_1000_limiar_vo_mascaramento}}</td>
                                             </tr>
                                             <tr>
                                                 <td>1500</td>
-                                                <td style="text-align: center;">{{laudo.direito_frequencia_1500_limiar_va}}</td>
-                                                <td style="text-align: center;">{{laudo.direito_frequencia_1500_limiar_va_mascaramento}}</td>
-                                                <td style="text-align: center;">{{laudo.direito_frequencia_1500_limiar_vo}}</td>
-                                                <td style="text-align: center;">{{laudo.direito_frequencia_1500_limiar_vo_mascaramento}}</td>
+                                                <td style="text-align: center;">{{resultado.direito_frequencia_1500_limiar_va}}</td>
+                                                <td style="text-align: center;">{{resultado.direito_frequencia_1500_limiar_va_mascaramento}}</td>
+                                                <td style="text-align: center;">{{resultado.direito_frequencia_1500_limiar_vo}}</td>
+                                                <td style="text-align: center;">{{resultado.direito_frequencia_1500_limiar_vo_mascaramento}}</td>
                                             </tr>
                                             <tr>
                                                 <td>2000</td>
-                                                <td style="text-align: center;">{{laudo.direito_frequencia_2000_limiar_va}}</td>
-                                                <td style="text-align: center;">{{laudo.direito_frequencia_2000_limiar_va_mascaramento}}</td>
-                                                <td style="text-align: center;">{{laudo.direito_frequencia_2000_limiar_vo}}</td>
-                                                <td style="text-align: center;">{{laudo.direito_frequencia_2000_limiar_vo_mascaramento}}</td>
+                                                <td style="text-align: center;">{{resultado.direito_frequencia_2000_limiar_va}}</td>
+                                                <td style="text-align: center;">{{resultado.direito_frequencia_2000_limiar_va_mascaramento}}</td>
+                                                <td style="text-align: center;">{{resultado.direito_frequencia_2000_limiar_vo}}</td>
+                                                <td style="text-align: center;">{{resultado.direito_frequencia_2000_limiar_vo_mascaramento}}</td>
                                             </tr>
                                             <tr>
                                                 <td>3000</td>
-                                                <td style="text-align: center;">{{laudo.direito_frequencia_3000_limiar_va}}</td>
-                                                <td style="text-align: center;">{{laudo.direito_frequencia_3000_limiar_va_mascaramento}}</td>
-                                                <td style="text-align: center;">{{laudo.direito_frequencia_3000_limiar_vo}}</td>
-                                                <td style="text-align: center;">{{laudo.direito_frequencia_3000_limiar_vo_mascaramento}}</td>
+                                                <td style="text-align: center;">{{resultado.direito_frequencia_3000_limiar_va}}</td>
+                                                <td style="text-align: center;">{{resultado.direito_frequencia_3000_limiar_va_mascaramento}}</td>
+                                                <td style="text-align: center;">{{resultado.direito_frequencia_3000_limiar_vo}}</td>
+                                                <td style="text-align: center;">{{resultado.direito_frequencia_3000_limiar_vo_mascaramento}}</td>
                                             </tr>
                                             <tr>
                                                 <td>4000</td>
-                                                <td style="text-align: center;">{{laudo.direito_frequencia_4000_limiar_va}}</td>
-                                                <td style="text-align: center;">{{laudo.direito_frequencia_4000_limiar_va_mascaramento}}</td>
-                                                <td style="text-align: center;">{{laudo.direito_frequencia_4000_limiar_vo}}</td>
-                                                <td style="text-align: center;">{{laudo.direito_frequencia_4000_limiar_vo_mascaramento}}</td>
+                                                <td style="text-align: center;">{{resultado.direito_frequencia_4000_limiar_va}}</td>
+                                                <td style="text-align: center;">{{resultado.direito_frequencia_4000_limiar_va_mascaramento}}</td>
+                                                <td style="text-align: center;">{{resultado.direito_frequencia_4000_limiar_vo}}</td>
+                                                <td style="text-align: center;">{{resultado.direito_frequencia_4000_limiar_vo_mascaramento}}</td>
                                             </tr>
                                             <tr>
                                                 <td>6000</td>
-                                                <td style="text-align: center;">{{laudo.direito_frequencia_6000_limiar_va}}</td>
-                                                <td style="text-align: center;">{{laudo.direito_frequencia_6000_limiar_va_mascaramento}}</td>
-                                                <td style="text-align: center;">{{laudo.direito_frequencia_6000_limiar_vo}}</td>
-                                                <td style="text-align: center;">{{laudo.direito_frequencia_6000_limiar_vo_mascaramento}}</td>
+                                                <td style="text-align: center;">{{resultado.direito_frequencia_6000_limiar_va}}</td>
+                                                <td style="text-align: center;">{{resultado.direito_frequencia_6000_limiar_va_mascaramento}}</td>
+                                                <td style="text-align: center;">{{resultado.direito_frequencia_6000_limiar_vo}}</td>
+                                                <td style="text-align: center;">{{resultado.direito_frequencia_6000_limiar_vo_mascaramento}}</td>
                                             </tr>
                                             <tr>
                                                 <td>8000</td>
-                                                <td style="text-align: center;">{{laudo.direito_frequencia_8000_limiar_va}}</td>
-                                                <td style="text-align: center;">{{laudo.direito_frequencia_8000_limiar_va_mascaramento}}</td>
-                                                <td style="text-align: center;">{{laudo.direito_frequencia_8000_limiar_vo}}</td>
-                                                <td style="text-align: center;">{{laudo.direito_frequencia_8000_limiar_vo_mascaramento}}</td>
+                                                <td style="text-align: center;">{{resultado.direito_frequencia_8000_limiar_va}}</td>
+                                                <td style="text-align: center;">{{resultado.direito_frequencia_8000_limiar_va_mascaramento}}</td>
+                                                <td style="text-align: center;">{{resultado.direito_frequencia_8000_limiar_vo}}</td>
+                                                <td style="text-align: center;">{{resultado.direito_frequencia_8000_limiar_vo_mascaramento}}</td>
                                             </tr>
                                         </tbody>
                                     </table>
@@ -388,16 +388,16 @@
                                         </thead>
                                         <tbody>
                                             <tr>
-                                                <td>Orelha Esquerda</td>
-                                                <td>{{laudo.esquerdo_srt}}</td>
-                                                <td>{{laudo.esquerdo_irf_dB}}</td>
-                                                <td>{{laudo.esquerdo_irf_porcentagem}}</td>
+                                                <td>Orelha Direita</td>
+                                                <td>{{resultado.direito_srt}}</td>
+                                                <td>{{resultado.direito_irf_dB}}</td>
+                                                <td>{{resultado.direito_irf_porcentagem}}</td>
                                             </tr>
                                             <tr>
-                                                <td>Orelha Direita</td>
-                                                <td>{{laudo.direito_srt}}</td>
-                                                <td>{{laudo.direito_irf_dB}}</td>
-                                                <td>{{laudo.direito_irf_porcentagem}}</td>
+                                                <td>Orelha Esquerda</td>
+                                                <td>{{resultado.esquerdo_srt}}</td>
+                                                <td>{{resultado.esquerdo_irf_dB}}</td>
+                                                <td>{{resultado.esquerdo_irf_porcentagem}}</td>
                                             </tr>
                                         </tbody>
                                     </table>
@@ -409,30 +409,30 @@
                                             </tr>
                                             <tr>
                                                 <th>Compilância</th>
-                                                <th>Orelha Esquerda</th>
                                                 <th>Orelha Direita</th>
+                                                <th>Orelha Esquerda</th>
                                             </tr>
                                         </thead>
                                         <tbody>
                                             <tr>
                                                 <td>Pressão da orelha Média (daPA)</td>
-                                                <td>{{laudo.esquerdo_pressao}}</td>
-                                                <td>{{laudo.direito_pressao}}</td>
+                                                <td>{{resultado.direito_pressao}}</td>
+                                                <td>{{resultado.esquerdo_pressao}}</td>
                                             </tr>
                                             <tr>
                                                 <td>Máximo Relaxamento (ml)</td>
-                                                <td>{{laudo.esquerdo_maximo_relax}}</td>
-                                                <td>{{laudo.direito_maximo_relax}}</td>
+                                                <td>{{resultado.direito_maximo_relax}}</td>
+                                                <td>{{resultado.esquerdo_maximo_relax}}</td>
                                             </tr>
                                             <tr>
                                                 <td>Compilância +200 daPA (ml)</td>
-                                                <td>{{laudo.esquerdo_compilancia_200}}</td>
-                                                <td>{{laudo.direito_compilancia_200}}</td>
+                                                <td>{{resultado.direito_compilancia_200}}</td>
+                                                <td>{{resultado.esquerdo_compilancia_200}}</td>
                                             </tr>
                                             <tr>
                                                 <td>Compilância Estatica (ml)</td>
-                                                <td>{{laudo.esquerdo_compilancia_estatica}}</td>
-                                                <td>{{laudo.direito_compilancia_estatica}}</td>
+                                                <td>{{resultado.direito_compilancia_estatica}}</td>
+                                                <td>{{resultado.esquerdo_compilancia_estatica}}</td>
                                             </tr>
                                         </tbody>
                                     </table>
@@ -443,14 +443,14 @@
                                                 <th colspan="4" style="text-align: center;"><h3>Timpânometria</h3></th>
                                             </tr>
                                             <tr>
-                                                <th>Orelha Esquerda</th>
                                                 <th>Orelha Direita</th>
+                                                <th>Orelha Esquerda</th>
                                             </tr>
                                         </thead>
                                         <tbody>
                                             <tr>
-                                                <td>{{laudo.esquerdo_timpanometria}}</td>
-                                                <td>{{laudo.direito_timpanometria}}</td>
+                                                <td>{{resultado.direito_timpanometria}}</td>
+                                                <td>{{resultado.esquerdo_timpanometria}}</td>
                                             </tr>
                                         </tbody>
                                     </table>
@@ -471,31 +471,31 @@
                                         <tbody>
                                             <tr>
                                                 <td>500</td>
-                                                <td style="text-align: center;">{{laudo.esquerdo_reflexo_frequencia_500_limiar}}</td>
-                                                <td style="text-align: center;">{{laudo.esquerdo_reflexo_frequencia_500_contra}}</td>
-                                                <td style="text-align: center;">{{laudo.esquerdo_reflexo_frequencia_500_diferenca}}</td>
-                                                <td style="text-align: center;">{{laudo.esquerdo_reflexo_frequencia_500_ipsi}}</td>
+                                                <td style="text-align: center;">{{resultado.esquerdo_reflexo_frequencia_500_limiar}}</td>
+                                                <td style="text-align: center;">{{resultado.esquerdo_reflexo_frequencia_500_contra}}</td>
+                                                <td style="text-align: center;">{{resultado.esquerdo_reflexo_frequencia_500_diferenca}}</td>
+                                                <td style="text-align: center;">{{resultado.esquerdo_reflexo_frequencia_500_ipsi}}</td>
                                             </tr>
                                             <tr>
                                                 <td>1000</td>
-                                                <td style="text-align: center;">{{laudo.esquerdo_reflexo_frequencia_1000_limiar}}</td>
-                                                <td style="text-align: center;">{{laudo.esquerdo_reflexo_frequencia_1000_contra}}</td>
-                                                <td style="text-align: center;">{{laudo.esquerdo_reflexo_frequencia_1000_diferenca}}</td>
-                                                <td style="text-align: center;">{{laudo.esquerdo_reflexo_frequencia_1000_ipsi}}</td>
+                                                <td style="text-align: center;">{{resultado.esquerdo_reflexo_frequencia_1000_limiar}}</td>
+                                                <td style="text-align: center;">{{resultado.esquerdo_reflexo_frequencia_1000_contra}}</td>
+                                                <td style="text-align: center;">{{resultado.esquerdo_reflexo_frequencia_1000_diferenca}}</td>
+                                                <td style="text-align: center;">{{resultado.esquerdo_reflexo_frequencia_1000_ipsi}}</td>
                                             </tr>
                                             <tr>
                                                 <td>2000</td>
-                                                <td style="text-align: center;">{{laudo.esquerdo_reflexo_frequencia_2000_limiar}}</td>
-                                                <td style="text-align: center;">{{laudo.esquerdo_reflexo_frequencia_2000_contra}}</td>
-                                                <td style="text-align: center;">{{laudo.esquerdo_reflexo_frequencia_2000_diferenca}}</td>
-                                                <td style="text-align: center;">{{laudo.esquerdo_reflexo_frequencia_2000_ipsi}}</td>
+                                                <td style="text-align: center;">{{resultado.esquerdo_reflexo_frequencia_2000_limiar}}</td>
+                                                <td style="text-align: center;">{{resultado.esquerdo_reflexo_frequencia_2000_contra}}</td>
+                                                <td style="text-align: center;">{{resultado.esquerdo_reflexo_frequencia_2000_diferenca}}</td>
+                                                <td style="text-align: center;">{{resultado.esquerdo_reflexo_frequencia_2000_ipsi}}</td>
                                             </tr>
                                             <tr>
                                                 <td>4000</td>
-                                                <td style="text-align: center;">{{laudo.esquerdo_reflexo_frequencia_4000_limiar}}</td>
-                                                <td style="text-align: center;">{{laudo.esquerdo_reflexo_frequencia_4000_contra}}</td>
-                                                <td style="text-align: center;">{{laudo.esquerdo_reflexo_frequencia_4000_diferenca}}</td>
-                                                <td style="text-align: center;">{{laudo.esquerdo_reflexo_frequencia_4000_ipsi}}</td>
+                                                <td style="text-align: center;">{{resultado.esquerdo_reflexo_frequencia_4000_limiar}}</td>
+                                                <td style="text-align: center;">{{resultado.esquerdo_reflexo_frequencia_4000_contra}}</td>
+                                                <td style="text-align: center;">{{resultado.esquerdo_reflexo_frequencia_4000_diferenca}}</td>
+                                                <td style="text-align: center;">{{resultado.esquerdo_reflexo_frequencia_4000_ipsi}}</td>
                                             </tr>
                                         </tbody>
                                     </table>
@@ -516,31 +516,31 @@
                                         <tbody>
                                             <tr>
                                                 <td>500</td>
-                                                <td style="text-align: center;">{{laudo.direito_reflexo_frequencia_500_limiar}}</td>
-                                                <td style="text-align: center;">{{laudo.direito_reflexo_frequencia_500_contra}}</td>
-                                                <td style="text-align: center;">{{laudo.direito_reflexo_frequencia_500_diferenca}}</td>
-                                                <td style="text-align: center;">{{laudo.direito_reflexo_frequencia_500_ipsi}}</td>
+                                                <td style="text-align: center;">{{resultado.direito_reflexo_frequencia_500_limiar}}</td>
+                                                <td style="text-align: center;">{{resultado.direito_reflexo_frequencia_500_contra}}</td>
+                                                <td style="text-align: center;">{{resultado.direito_reflexo_frequencia_500_diferenca}}</td>
+                                                <td style="text-align: center;">{{resultado.direito_reflexo_frequencia_500_ipsi}}</td>
                                             </tr>
                                             <tr>
                                                 <td>1000</td>
-                                                <td style="text-align: center;">{{laudo.direito_reflexo_frequencia_1000_limiar}}</td>
-                                                <td style="text-align: center;">{{laudo.direito_reflexo_frequencia_1000_contra}}</td>
-                                                <td style="text-align: center;">{{laudo.direito_reflexo_frequencia_1000_diferenca}}</td>
-                                                <td style="text-align: center;">{{laudo.direito_reflexo_frequencia_1000_ipsi}}</td>
+                                                <td style="text-align: center;">{{resultado.direito_reflexo_frequencia_1000_limiar}}</td>
+                                                <td style="text-align: center;">{{resultado.direito_reflexo_frequencia_1000_contra}}</td>
+                                                <td style="text-align: center;">{{resultado.direito_reflexo_frequencia_1000_diferenca}}</td>
+                                                <td style="text-align: center;">{{resultado.direito_reflexo_frequencia_1000_ipsi}}</td>
                                             </tr>
                                             <tr>
                                                 <td>2000</td>
-                                                <td style="text-align: center;">{{laudo.direito_reflexo_frequencia_2000_limiar}}</td>
-                                                <td style="text-align: center;">{{laudo.direito_reflexo_frequencia_2000_contra}}</td>
-                                                <td style="text-align: center;">{{laudo.direito_reflexo_frequencia_2000_diferenca}}</td>
-                                                <td style="text-align: center;">{{laudo.direito_reflexo_frequencia_2000_ipsi}}</td>
+                                                <td style="text-align: center;">{{resultado.direito_reflexo_frequencia_2000_limiar}}</td>
+                                                <td style="text-align: center;">{{resultado.direito_reflexo_frequencia_2000_contra}}</td>
+                                                <td style="text-align: center;">{{resultado.direito_reflexo_frequencia_2000_diferenca}}</td>
+                                                <td style="text-align: center;">{{resultado.direito_reflexo_frequencia_2000_ipsi}}</td>
                                             </tr>
                                             <tr>
                                                 <td>4000</td>
-                                                <td style="text-align: center;">{{laudo.direito_reflexo_frequencia_4000_limiar}}</td>
-                                                <td style="text-align: center;">{{laudo.direito_reflexo_frequencia_4000_contra}}</td>
-                                                <td style="text-align: center;">{{laudo.direito_reflexo_frequencia_4000_diferenca}}</td>
-                                                <td style="text-align: center;">{{laudo.direito_reflexo_frequencia_4000_ipsi}}</td>
+                                                <td style="text-align: center;">{{resultado.direito_reflexo_frequencia_4000_limiar}}</td>
+                                                <td style="text-align: center;">{{resultado.direito_reflexo_frequencia_4000_contra}}</td>
+                                                <td style="text-align: center;">{{resultado.direito_reflexo_frequencia_4000_diferenca}}</td>
+                                                <td style="text-align: center;">{{resultado.direito_reflexo_frequencia_4000_ipsi}}</td>
                                             </tr>
                                         </tbody>
                                     </table>
@@ -548,16 +548,16 @@
                                     <section>
                                         <!-- <strong>Evolução:</strong><br> -->
                                         <h3 class="card-title"><strong>Evolução:</strong></h3>
-                                        {{laudo.evolucao}}
+                                        {{resultado.evolucao}}
                                     </section>
                                     <br>
                                     <section>
                                         <!-- <strong>Conclusão:</strong><br> -->
                                         <h3 class="card-title"><strong>Conclusão:</strong></h3>
-                                        {{laudo.conclusao_exame}}
+                                        {{resultado.conclusao_exame}}
                                     </section>
                                     <h3 class="card-title" style="text-align: center; color:white">
-                                        <a href={% url 'update_audi' laudo.id %} class="btn btn-primary">Editar laudo</a>
+                                        <a href={% url 'update_audi' resultado.id %} class="btn btn-primary">Editar Resultado</a>
                                     </h3>
                                 </div>
                             {% endfor %}
