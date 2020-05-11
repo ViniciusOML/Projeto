@@ -46,6 +46,7 @@ class Lif(models.Model):
 class Procedimento(models.Model):
     sigla = models.CharField(max_length=50)
     nome_procedimento = models.CharField(max_length=50)
+    cid = models.CharField(max_length=50, null=True, blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
@@ -92,8 +93,6 @@ class ResultadoBera(models.Model):
 
     esquerdo_picos_latencia_abosoluta_I_III = models.CharField(max_length=10, blank=True)
     esquerdo_picos_latencia_abosoluta_I_V = models.CharField(max_length=10, blank=True)
-    esquerdo_picos_latencia_abosoluta_I_III = models.CharField(max_length=10, blank=True)
-
     esquerdo_picos_latencia_abosoluta_III_V = models.CharField(max_length=10, blank=True)
 
     # picos_inter_latencias
@@ -105,8 +104,6 @@ class ResultadoBera(models.Model):
 
     esquerdo_picos_inter_latencias_I_III = models.CharField(max_length=10, blank=True)
     esquerdo_picos_inter_latencias_I_V = models.CharField(max_length=10, blank=True)
-    esquerdo_picos_inter_latencias_I_III = models.CharField(max_length=10, blank=True)
-
     esquerdo_picos_inter_latencias_III_V = models.CharField(max_length=10, blank=True)
 
     # DIREITO
@@ -119,8 +116,6 @@ class ResultadoBera(models.Model):
 
     direito_picos_latencia_abosoluta_I_III = models.CharField(max_length=10, blank=True)
     direito_picos_latencia_abosoluta_I_V = models.CharField(max_length=10, blank=True)
-    direito_picos_latencia_abosoluta_I_III = models.CharField(max_length=10, blank=True)
-
     direito_picos_latencia_abosoluta_III_V = models.CharField(max_length=10, blank=True)
 
     # picos_inter_latencias
@@ -132,8 +127,6 @@ class ResultadoBera(models.Model):
 
     direito_picos_inter_latencias_I_III = models.CharField(max_length=10, blank=True)
     direito_picos_inter_latencias_I_V = models.CharField(max_length=10, blank=True)
-    direito_picos_inter_latencias_I_III = models.CharField(max_length=10, blank=True)
-
     direito_picos_inter_latencias_III_V = models.CharField(max_length=10, blank=True)
 
     evolucao = models.TextField()

@@ -24,13 +24,18 @@
                         {% render_field form.nome_procedimento class="form-control" %}
                     </div>
 
+                    <div class="form-group">
+                        <label class="form-label">CID</label>
+                        {% render_field form.cid class="form-control" %}
+                    </div>
+
                     {% if errors %}
                         <div class="alert alert-danger"> {{ errors }} </div>
                     {% endif %}
                 </div>
 
                 <div class="card-footer text-center">
-                    <a href={% url 'index_procedimentos' %} class="btn btn-primary">Voltar</a>
+                    <a href="{% url 'index_procedimentos' %}" class="btn btn-primary">Voltar</a>
                     <button type="submit" class="btn btn-success">Cadastrar</button>
                 </div>
             </form>

@@ -30,8 +30,8 @@
                             <td> {{ lif.id }} </td>
                             <td> {{ lif.nome_lif }} </td>
                             <td align="right"> 
-                                <a href={% url 'update_lif' lif.id %} class="btn btn-primary">Visualizar</a>
-                                <a href={% url 'delete_lif' lif.id %} class="btn btn-danger">Deletar</a> 
+                                <a href="{% url 'update_lif' lif.id %}" class="btn btn-primary">Visualizar</a>
+                                <a href="{% url 'delete_lif' lif.id %}" class="btn btn-danger">Deletar</a>
                             </td>
                         </tr>
                         {% endfor %}
