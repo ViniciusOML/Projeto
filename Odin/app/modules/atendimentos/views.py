@@ -40,7 +40,7 @@ class AtendimentoConsultaCreateView(CreateView):
     success_url = reverse_lazy('index_atendimentos')
     model = Consulta
     fields = ['data_consulta', 'data_consulta', 'observacao', 'procedimento']
-    template_name = 'atendimento/novo.html'
+    template_name = 'atendimento/consulta_novo.html'
 
     def form_valid(self, form):
         form.instance.atendimento = Atendimento.objects.get(id=self.kwargs['pk'])

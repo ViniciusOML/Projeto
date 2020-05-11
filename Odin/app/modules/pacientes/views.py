@@ -27,7 +27,7 @@ class PacienteCreateView(CreateView):
 
 
 class PacienteAtendimentoCreateView(CreateView):
-    template_name = 'paciente/novo.html'
+    template_name = 'paciente/atendimento_novo.html'
     model = Atendimento
     success_url = reverse_lazy('index_atendimentos')
 
