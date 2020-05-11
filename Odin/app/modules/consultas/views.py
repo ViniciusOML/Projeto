@@ -1,26 +1,25 @@
-from django.utils.decorators import method_decorator
-from django.contrib.auth.decorators import login_required
-from django.urls import reverse_lazy
+# -*- encoding: utf-8 -*-
+from django.contrib.auth.mixins import LoginRequiredMixin
 from ...models import Consulta, Atendimento, ResultadoBera, ResultadoPac, ResultadoAudiometria
+from django.urls import reverse_lazy
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView
 
 
-class ConsultaListView(ListView):
-    template_name = 'consulta/index.html'
+class ConsultaListView(LoginRequiredMixin, ListView):
+    login_url = '/'
+
     model = Consulta
+    template_name = 'consulta/index.html'
     context_object_name = 'consultas'
-    queryset = Consulta.objects.all()  # Query padrão, pode ser omitid
-
-    @method_decorator(login_required)
-    def dispatch(self, *args, **kwargs):
-        return super().dispatch(*args, **kwargs)
 
 
-class ConsultaCreateView(CreateView):
-    success_url = reverse_lazy('index_consultas')
+class ConsultaCreateView(LoginRequiredMixin, CreateView):
+    login_url = '/'
+
     model = Consulta
     fields = ['data_consulta', 'data_consulta', 'observacao']
     template_name = 'consulta/novo.html'
+    success_url = reverse_lazy('index_consultas')
 
     def form_valid(self, form):
         form.instance.atendimento = Atendimento.objects.get(id=self.request.GET['atendimento'])
@@ -33,20 +32,16 @@ class ConsultaCreateView(CreateView):
         return context
 
 
-class ConsultaUpdateView(UpdateView):
-    success_url = reverse_lazy('index_consultas')
+class ConsultaUpdateView(LoginRequiredMixin, UpdateView):
+    login_url = '/'
+
     model = Consulta
     fields = ['data_consulta', 'data_consulta', 'observacao']
     template_name = 'consulta/editar.html'
-
-    @method_decorator(login_required)
-    def dispatch(self, *args, **kwargs):
-        return super().dispatch(*args, **kwargs)
+    success_url = reverse_lazy('index_consultas')
 
     def get_context_data(self, *args, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['atendimento'] = self.object.atendimento
-        context['procedimento'] = self.object.procedimento
 
         if self.object.procedimento.sigla == 'BERA':
             context['laudos'] = ResultadoBera.objects.filter(consulta_id=self.kwargs['pk'])
@@ -56,13 +51,10 @@ class ConsultaUpdateView(UpdateView):
             context['laudos'] = ResultadoAudiometria.objects.filter(consulta_id=self.kwargs['pk'])
         return context
 
-    def form_valid(self, form):
-        form.save()
-        return super(ConsultaUpdateView, self).form_valid(form)
 
+class ConsultaBeraUpdateView(LoginRequiredMixin, CreateView):
+    login_url = '/'
 
-class ConsultaBeraUpdateView(CreateView):
-    success_url = reverse_lazy('index_consultas')
     model = ResultadoBera
     fields = [
         'conclusao_exame',
@@ -102,6 +94,7 @@ class ConsultaBeraUpdateView(CreateView):
         'direito_picos_inter_latencias_III_V',
     ]
     template_name = 'consulta/bera_novo.html'
+    success_url = reverse_lazy('index_consultas')
 
     def form_valid(self, form):
         form.instance.consulta = Consulta.objects.get(id=self.kwargs['pk'])
@@ -114,8 +107,9 @@ class ConsultaBeraUpdateView(CreateView):
         return context
 
 
-class ConsultaPacUpdateView(CreateView):
-    success_url = reverse_lazy('index_consultas')
+class ConsultaPacUpdateView(LoginRequiredMixin, CreateView):
+    login_url = '/'
+
     model = ResultadoPac
     fields = [
         'conclusao_exame',
@@ -134,6 +128,7 @@ class ConsultaPacUpdateView(CreateView):
         'direito_picos_N2',
     ]
     template_name = 'consulta/pac_novo.html'
+    success_url = reverse_lazy('index_consultas')
 
     def form_valid(self, form):
         form.instance.consulta = Consulta.objects.get(id=self.kwargs['pk'])
@@ -146,8 +141,9 @@ class ConsultaPacUpdateView(CreateView):
         return context
 
 
-class ConsultaAudiUpdateView(CreateView):
-    success_url = reverse_lazy('index_consultas')
+class ConsultaAudiUpdateView(LoginRequiredMixin, CreateView):
+    login_url = '/'
+
     model = ResultadoAudiometria
     fields = [
         'conclusao_exame',
@@ -294,6 +290,7 @@ class ConsultaAudiUpdateView(CreateView):
         'direito_reflexo_frequencia_4000_ipsi',
     ]
     template_name = 'consulta/audi_novo.html'
+    success_url = reverse_lazy('index_consultas')
 
     def form_valid(self, form):
         form.instance.consulta = Consulta.objects.get(id=self.kwargs['pk'])
@@ -306,12 +303,8 @@ class ConsultaAudiUpdateView(CreateView):
         return context
 
 
-class ConsultaDeleteView(DeleteView):
+class ConsultaDeleteView(LoginRequiredMixin, DeleteView):
     model = Consulta
-    success_url = reverse_lazy('index_consultas')
     template_name = "consulta/consulta_excluir.html"
+    success_url = reverse_lazy('index_consultas')
     context_object_name = "consulta"
-
-    @method_decorator(login_required)
-    def dispatch(self, *args, **kwargs):
-        return super().dispatch(*args, **kwargs)

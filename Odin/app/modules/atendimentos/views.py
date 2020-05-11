@@ -1,25 +1,23 @@
 # -*- encoding: utf-8 -*-
-from django.utils.decorators import method_decorator
-from django.contrib.auth.decorators import login_required
+from django.contrib.auth.mixins import LoginRequiredMixin
 from ...models import Atendimento, Consulta, Paciente
 from django.urls import reverse_lazy, reverse
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView
 
 
-class AtendimentoListView(ListView):
+class AtendimentoListView(LoginRequiredMixin, ListView):
+    login_url = '/'
+
+    model = Atendimento
     template_name = 'atendimento/index.html'
-    model = Atendimento
     context_object_name = 'atendimentos'
-    queryset = Atendimento.objects.all()  # Query padrão, pode ser omitid
-
-    @method_decorator(login_required)
-    def dispatch(self, *args, **kwargs):
-        return super().dispatch(*args, **kwargs)
 
 
-class AtendimentoCreateView(CreateView):
-    fields = ['codigo_lif', 'lif']
+class AtendimentoCreateView(LoginRequiredMixin, CreateView):
+    login_url = '/'
+
     model = Atendimento
+    fields = ['codigo_lif', 'lif']
     template_name = 'atendimento/novo.html'
 
     def form_valid(self, form):
@@ -36,11 +34,13 @@ class AtendimentoCreateView(CreateView):
         return context
 
 
-class AtendimentoConsultaCreateView(CreateView):
-    success_url = reverse_lazy('index_atendimentos')
+class AtendimentoConsultaCreateView(LoginRequiredMixin, CreateView):
+    login_url = '/'
+
     model = Consulta
     fields = ['data_consulta', 'data_consulta', 'observacao', 'procedimento']
     template_name = 'atendimento/consulta_novo.html'
+    success_url = reverse_lazy('index_atendimentos')
 
     def form_valid(self, form):
         form.instance.atendimento = Atendimento.objects.get(id=self.kwargs['pk'])
@@ -53,16 +53,13 @@ class AtendimentoConsultaCreateView(CreateView):
         return context
 
 
-class AtendimentoUpdateView(UpdateView):
+class AtendimentoUpdateView(LoginRequiredMixin, UpdateView):
+    login_url = '/'
+
     model = Atendimento
     fields = ['codigo_lif', 'lif']
     template_name = 'atendimento/editar.html'
-
     success_url = reverse_lazy('index_atendimentos')
-
-    @method_decorator(login_required)
-    def dispatch(self, *args, **kwargs):
-        return super().dispatch(*args, **kwargs)
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -73,12 +70,10 @@ class AtendimentoUpdateView(UpdateView):
         return context
 
 
-class AtendimentoDeleteView(DeleteView):
-    model = Atendimento
-    success_url = reverse_lazy('index_atendimentos')
-    template_name = "atendimento/excluir.html"
-    context_object_name = "atendimento"
+class AtendimentoDeleteView(LoginRequiredMixin, DeleteView):
+    login_url = '/'
 
-    @method_decorator(login_required)
-    def dispatch(self, *args, **kwargs):
-        return super().dispatch(*args, **kwargs)
+    model = Atendimento
+    template_name = "atendimento/excluir.html"
+    success_url = reverse_lazy('index_atendimentos')
+    context_object_name = "atendimento"
