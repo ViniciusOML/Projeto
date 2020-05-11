@@ -7,7 +7,7 @@ from django.views.generic import ListView, CreateView, UpdateView, DeleteView
 
 
 class PacienteListView(ListView):
-    template_name = 'paciente_index.html'
+    template_name = 'paciente/index.html'
     model = Paciente
     context_object_name = 'pacientes'
     queryset = Paciente.objects.all()  # Query padrão, pode ser omitid
@@ -18,18 +18,20 @@ class PacienteListView(ListView):
 
 
 class PacienteCreateView(CreateView):
-    success_url = reverse_lazy('index_pacientes')
+    template_name = 'paciente/novo.html'
     model = Paciente
+    success_url = reverse_lazy('index_pacientes')
+
     fields = ['nome_completo', 'cpf', 'rg', 'data_nascimento',
               'sexo', 'tem_responsavel', 'nome_responsavel', 'rg_responsavel']
-    template_name = 'paciente_novo.html'
 
 
 class PacienteAtendimentoCreateView(CreateView):
-    success_url = reverse_lazy('index_atendimentos')
-    fields = ['codigo_lif', 'lif']
+    template_name = 'paciente/novo.html'
     model = Atendimento
-    template_name = 'paciente_atendimento_novo.html'
+    success_url = reverse_lazy('index_atendimentos')
+
+    fields = ['codigo_lif', 'lif']
 
     def form_valid(self, form):
         form.instance.paciente = Paciente.objects.get(id=self.kwargs['pk'])
@@ -41,19 +43,14 @@ class PacienteAtendimentoCreateView(CreateView):
         context['paciente'] = Paciente.objects.get(id=self.kwargs['pk'])
         return context
 
-    # def get_form(self, *args, **kwargs):
-    #     form = super(CreateView, self).get_form(*args, **kwargs)        
-    #     form.fields['lif'].queryset = lif_usados
-    #     return form
-
 
 class PacienteUpdateView(UpdateView):
+    template_name = 'paciente/editar.html'
     model = Paciente
+    success_url = reverse_lazy('index_pacientes')
+
     fields = ['nome_completo', 'cpf', 'rg', 'data_nascimento',
               'sexo', 'tem_responsavel', 'nome_responsavel', 'rg_responsavel']
-    template_name = 'paciente_editar.html'
-
-    success_url = reverse_lazy('index_pacientes')
 
     @method_decorator(login_required)
     def dispatch(self, *args, **kwargs):
@@ -79,10 +76,10 @@ class PacienteUpdateView(UpdateView):
 
 
 class PacienteDeleteView(DeleteView):
-
-    model = Paciente
+    template_name = "paciente/excluir.html"
     success_url = reverse_lazy('index_pacientes')
-    template_name = "paciente_excluir.html"
+    model = Paciente
+
     context_object_name = "paciente"
 
     @method_decorator(login_required)

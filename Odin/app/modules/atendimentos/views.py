@@ -7,7 +7,7 @@ from django.views.generic import ListView, CreateView, UpdateView, DeleteView
 
 
 class AtendimentoListView(ListView):
-    template_name = 'atendimento_index.html'
+    template_name = 'atendimento/index.html'
     model = Atendimento
     context_object_name = 'atendimentos'
     queryset = Atendimento.objects.all()  # Query padrão, pode ser omitid
@@ -20,7 +20,7 @@ class AtendimentoListView(ListView):
 class AtendimentoCreateView(CreateView):
     fields = ['codigo_lif', 'lif']
     model = Atendimento
-    template_name = 'atendimento_novo.html'
+    template_name = 'atendimento/novo.html'
 
     def form_valid(self, form):
         form.instance.paciente = Paciente.objects.get(id=self.request.POST['paciente'])
@@ -40,23 +40,23 @@ class AtendimentoConsultaCreateView(CreateView):
     success_url = reverse_lazy('index_atendimentos')
     model = Consulta
     fields = ['data_consulta', 'data_consulta', 'observacao', 'procedimento']
-    template_name = 'atendimento_consulta_novo.html'
+    template_name = 'atendimento/novo.html'
 
     def form_valid(self, form):
-        form.instance.atendimento = Atendimentos.objects.get(id=self.kwargs['pk'])
+        form.instance.atendimento = Atendimento.objects.get(id=self.kwargs['pk'])
         form.save()
         return super(AtendimentoConsultaCreateView, self).form_valid(form)
 
     def get_context_data(self, *args, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['atendimento'] = Atendimentos.objects.get(id=self.kwargs['pk'])
+        context['atendimento'] = Atendimento.objects.get(id=self.kwargs['pk'])
         return context
 
 
 class AtendimentoUpdateView(UpdateView):
     model = Atendimento
     fields = ['codigo_lif', 'lif']
-    template_name = 'atendimento_editar.html'
+    template_name = 'atendimento/editar.html'
 
     success_url = reverse_lazy('index_atendimentos')
 
@@ -76,7 +76,7 @@ class AtendimentoUpdateView(UpdateView):
 class AtendimentoDeleteView(DeleteView):
     model = Atendimento
     success_url = reverse_lazy('index_atendimentos')
-    template_name = "atendimento_excluir.html"
+    template_name = "atendimento/excluir.html"
     context_object_name = "atendimento"
 
     @method_decorator(login_required)

@@ -6,8 +6,7 @@ from django.views.generic import ListView, CreateView, UpdateView, DeleteView
 
 
 class ConsultaListView(ListView):
-
-    template_name = 'consulta_index.html'
+    template_name = 'consulta/index.html'
     model = Consulta
     context_object_name = 'consultas'
     queryset = Consulta.objects.all()  # Query padrão, pode ser omitid
@@ -21,7 +20,7 @@ class ConsultaCreateView(CreateView):
     success_url = reverse_lazy('index_consultas')
     model = Consulta
     fields = ['data_consulta', 'data_consulta', 'observacao']
-    template_name = 'consulta_novo.html'
+    template_name = 'consulta/novo.html'
 
     def form_valid(self, form):
         form.instance.atendimento = Atendimento.objects.get(id=self.request.GET['atendimento'])
@@ -38,7 +37,7 @@ class ConsultaUpdateView(UpdateView):
     success_url = reverse_lazy('index_consultas')
     model = Consulta
     fields = ['data_consulta', 'data_consulta', 'observacao']
-    template_name = 'consulta_editar.html'
+    template_name = 'consulta/editar.html'
 
     @method_decorator(login_required)
     def dispatch(self, *args, **kwargs):
@@ -102,7 +101,7 @@ class ConsultaBeraUpdateView(CreateView):
         'direito_picos_inter_latencias_I_III',
         'direito_picos_inter_latencias_III_V',
     ]
-    template_name = 'consulta_bera_novo.html'
+    template_name = 'consulta/bera_novo.html'
 
     def form_valid(self, form):
         form.instance.consulta = Consulta.objects.get(id=self.kwargs['pk'])
@@ -134,7 +133,7 @@ class ConsultaPacUpdateView(CreateView):
         'direito_picos_P2',
         'direito_picos_N2',
     ]
-    template_name = 'consulta_pac_novo.html'
+    template_name = 'consulta/pac_novo.html'
 
     def form_valid(self, form):
         form.instance.consulta = Consulta.objects.get(id=self.kwargs['pk'])
@@ -294,7 +293,7 @@ class ConsultaAudiUpdateView(CreateView):
         'direito_reflexo_frequencia_2000_ipsi',
         'direito_reflexo_frequencia_4000_ipsi',
     ]
-    template_name = 'consulta_audi_novo.html'
+    template_name = 'consulta/audi_novo.html'
 
     def form_valid(self, form):
         form.instance.consulta = Consulta.objects.get(id=self.kwargs['pk'])
@@ -310,7 +309,7 @@ class ConsultaAudiUpdateView(CreateView):
 class ConsultaDeleteView(DeleteView):
     model = Consulta
     success_url = reverse_lazy('index_consultas')
-    template_name = "consulta_excluir.html"
+    template_name = "consulta/consulta_excluir.html"
     context_object_name = "consulta"
 
     @method_decorator(login_required)
