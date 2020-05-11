@@ -75,7 +75,7 @@ class Consulta(models.Model):
     atendimento = models.ForeignKey(to=Atendimento, on_delete=models.CASCADE)
     procedimento = models.ForeignKey(to=Procedimento, on_delete=models.CASCADE)
     data_consulta = models.DateField()
-    observacao = models.CharField(max_length=200)
+    observacao = models.CharField(max_length=200, null=True, blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
@@ -129,8 +129,8 @@ class ResultadoBera(models.Model):
     direito_picos_inter_latencias_I_V = models.CharField(max_length=10, blank=True)
     direito_picos_inter_latencias_III_V = models.CharField(max_length=10, blank=True)
 
-    evolucao = models.TextField()
-    conclusao_exame = models.TextField()
+    evolucao = models.TextField(null=True, blank=True)
+    conclusao_exame = models.TextField(null=True, blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
@@ -150,16 +150,16 @@ class ResultadoPac(models.Model):
     direito_picos_P2 = models.CharField(max_length=10, blank=True)
     direito_picos_N2 = models.CharField(max_length=10, blank=True)
 
-    evolucao = models.TextField()
-    conclusao_exame = models.TextField()
+    evolucao = models.TextField(null=True, blank=True)
+    conclusao_exame = models.TextField(null=True, blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
 
 class ResultadoPadrao(models.Model):
     consulta = models.ForeignKey(to=Consulta, on_delete=models.CASCADE)
-    evolucao = models.TextField()
-    conclusao_exame = models.TextField()
+    evolucao = models.TextField(null=True, blank=True)
+    conclusao_exame = models.TextField(null=True, blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
@@ -308,7 +308,7 @@ class ResultadoAudiometria(models.Model):
     direito_reflexo_frequencia_2000_ipsi = models.CharField(max_length=10, blank=True)
     direito_reflexo_frequencia_4000_ipsi = models.CharField(max_length=10, blank=True)
 
-    evolucao = models.TextField()
-    conclusao_exame = models.TextField()
+    evolucao = models.TextField(null=True, blank=True)
+    conclusao_exame = models.TextField(null=True, blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
