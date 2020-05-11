@@ -84,50 +84,78 @@ class ResultadoBera(models.Model):
     consulta = models.ForeignKey(to=Consulta, on_delete=models.CASCADE)
 
     # Esquerdo
-    # picos_latencia_abosoluta
-    esquerdo_picos_latencia_abosoluta_I = models.CharField(max_length=10, blank=True)
-    esquerdo_picos_latencia_abosoluta_III = models.CharField(max_length=10, blank=True)
-    esquerdo_picos_latencia_abosoluta_V = models.CharField(max_length=10, blank=True)
+    # picos_latencia_absoluta
+    esquerdo_picos_latencia_absoluta_I = \
+        models.CharField(max_length=10, blank=True)
+    esquerdo_picos_latencia_absoluta_III = \
+        models.CharField(max_length=10, blank=True)
+    esquerdo_picos_latencia_absoluta_V = \
+        models.CharField(max_length=10, blank=True)
 
-    esquerdo_picos_latencia_abosoluta_interpicos = models.CharField(max_length=10, blank=True)
+    esquerdo_picos_latencia_absoluta_interpicos = \
+        models.CharField(max_length=10, blank=True)
 
-    esquerdo_picos_latencia_abosoluta_I_III = models.CharField(max_length=10, blank=True)
-    esquerdo_picos_latencia_abosoluta_I_V = models.CharField(max_length=10, blank=True)
-    esquerdo_picos_latencia_abosoluta_III_V = models.CharField(max_length=10, blank=True)
+    esquerdo_picos_latencia_absoluta_I_III = \
+        models.CharField(max_length=10, blank=True)
+    esquerdo_picos_latencia_absoluta_I_V = \
+        models.CharField(max_length=10, blank=True)
+    esquerdo_picos_latencia_absoluta_III_V = \
+        models.CharField(max_length=10, blank=True)
 
     # picos_inter_latencias
-    esquerdo_picos_inter_latencias_I = models.CharField(max_length=10, blank=True)
-    esquerdo_picos_inter_latencias_III = models.CharField(max_length=10, blank=True)
-    esquerdo_picos_inter_latencias_V = models.CharField(max_length=10, blank=True)
+    esquerdo_picos_inter_latencias_I = \
+        models.CharField(max_length=10, blank=True)
+    esquerdo_picos_inter_latencias_III = \
+        models.CharField(max_length=10, blank=True)
+    esquerdo_picos_inter_latencias_V = \
+        models.CharField(max_length=10, blank=True)
 
-    esquerdo_picos_inter_latencias_interpicos = models.CharField(max_length=10, blank=True)
+    esquerdo_picos_inter_latencias_interpicos = \
+        models.CharField(max_length=10, blank=True)
 
-    esquerdo_picos_inter_latencias_I_III = models.CharField(max_length=10, blank=True)
-    esquerdo_picos_inter_latencias_I_V = models.CharField(max_length=10, blank=True)
-    esquerdo_picos_inter_latencias_III_V = models.CharField(max_length=10, blank=True)
+    esquerdo_picos_inter_latencias_I_III = \
+        models.CharField(max_length=10, blank=True)
+    esquerdo_picos_inter_latencias_I_V = \
+        models.CharField(max_length=10, blank=True)
+    esquerdo_picos_inter_latencias_III_V = \
+        models.CharField(max_length=10, blank=True)
 
     # DIREITO
-    # picos_latencia_abosoluta
-    direito_picos_latencia_abosoluta_I = models.CharField(max_length=10, blank=True)
-    direito_picos_latencia_abosoluta_III = models.CharField(max_length=10, blank=True)
-    direito_picos_latencia_abosoluta_V = models.CharField(max_length=10, blank=True)
+    # picos_latencia_absoluta
+    direito_picos_latencia_absoluta_I = \
+        models.CharField(max_length=10, blank=True)
+    direito_picos_latencia_absoluta_III = \
+        models.CharField(max_length=10, blank=True)
+    direito_picos_latencia_absoluta_V = \
+        models.CharField(max_length=10, blank=True)
 
-    direito_picos_latencia_abosoluta_interpicos = models.CharField(max_length=10, blank=True)
+    direito_picos_latencia_absoluta_interpicos = \
+        models.CharField(max_length=10, blank=True)
 
-    direito_picos_latencia_abosoluta_I_III = models.CharField(max_length=10, blank=True)
-    direito_picos_latencia_abosoluta_I_V = models.CharField(max_length=10, blank=True)
-    direito_picos_latencia_abosoluta_III_V = models.CharField(max_length=10, blank=True)
+    direito_picos_latencia_absoluta_I_III = \
+        models.CharField(max_length=10, blank=True)
+    direito_picos_latencia_absoluta_I_V = \
+        models.CharField(max_length=10, blank=True)
+    direito_picos_latencia_absoluta_III_V = \
+        models.CharField(max_length=10, blank=True)
 
     # picos_inter_latencias
-    direito_picos_inter_latencias_I = models.CharField(max_length=10, blank=True)
-    direito_picos_inter_latencias_III = models.CharField(max_length=10, blank=True)
-    direito_picos_inter_latencias_V = models.CharField(max_length=10, blank=True)
+    direito_picos_inter_latencias_I = \
+        models.CharField(max_length=10, blank=True)
+    direito_picos_inter_latencias_III = \
+        models.CharField(max_length=10, blank=True)
+    direito_picos_inter_latencias_V = \
+        models.CharField(max_length=10, blank=True)
 
-    direito_picos_inter_latencias_interpicos = models.CharField(max_length=10, blank=True)
+    direito_picos_inter_latencias_interpicos = \
+        models.CharField(max_length=10, blank=True)
 
-    direito_picos_inter_latencias_I_III = models.CharField(max_length=10, blank=True)
-    direito_picos_inter_latencias_I_V = models.CharField(max_length=10, blank=True)
-    direito_picos_inter_latencias_III_V = models.CharField(max_length=10, blank=True)
+    direito_picos_inter_latencias_I_III = \
+        models.CharField(max_length=10, blank=True)
+    direito_picos_inter_latencias_I_V = \
+        models.CharField(max_length=10, blank=True)
+    direito_picos_inter_latencias_III_V = \
+        models.CharField(max_length=10, blank=True)
 
     evolucao = models.TextField(null=True, blank=True)
     conclusao_exame = models.TextField(null=True, blank=True)
@@ -167,85 +195,157 @@ class ResultadoPadrao(models.Model):
 class ResultadoAudiometria(models.Model):
     consulta = models.ForeignKey(to=Consulta, on_delete=models.CASCADE)
 
-    esquerdo_frequencia_250_limiar_va = models.CharField(max_length=10, blank=True)
-    esquerdo_frequencia_500_limiar_va = models.CharField(max_length=10, blank=True)
-    esquerdo_frequencia_1000_limiar_va = models.CharField(max_length=10, blank=True)
-    esquerdo_frequencia_1500_limiar_va = models.CharField(max_length=10, blank=True)
-    esquerdo_frequencia_2000_limiar_va = models.CharField(max_length=10, blank=True)
-    esquerdo_frequencia_3000_limiar_va = models.CharField(max_length=10, blank=True)
-    esquerdo_frequencia_4000_limiar_va = models.CharField(max_length=10, blank=True)
-    esquerdo_frequencia_6000_limiar_va = models.CharField(max_length=10, blank=True)
-    esquerdo_frequencia_8000_limiar_va = models.CharField(max_length=10, blank=True)
+    esquerdo_frequencia_250_limiar_va = \
+        models.CharField(max_length=10, blank=True)
+    esquerdo_frequencia_500_limiar_va = \
+        models.CharField(max_length=10, blank=True)
+    esquerdo_frequencia_1000_limiar_va = \
+        models.CharField(max_length=10, blank=True)
+    esquerdo_frequencia_1500_limiar_va = \
+        models.CharField(max_length=10, blank=True)
+    esquerdo_frequencia_2000_limiar_va = \
+        models.CharField(max_length=10, blank=True)
+    esquerdo_frequencia_3000_limiar_va = \
+        models.CharField(max_length=10, blank=True)
+    esquerdo_frequencia_4000_limiar_va = \
+        models.CharField(max_length=10, blank=True)
+    esquerdo_frequencia_6000_limiar_va = \
+        models.CharField(max_length=10, blank=True)
+    esquerdo_frequencia_8000_limiar_va = \
+        models.CharField(max_length=10, blank=True)
 
-    esquerdo_frequencia_250_limiar_va_mascaramento = models.CharField(max_length=10, blank=True)
-    esquerdo_frequencia_500_limiar_va_mascaramento = models.CharField(max_length=10, blank=True)
-    esquerdo_frequencia_1000_limiar_va_mascaramento = models.CharField(max_length=10, blank=True)
-    esquerdo_frequencia_1500_limiar_va_mascaramento = models.CharField(max_length=10, blank=True)
-    esquerdo_frequencia_2000_limiar_va_mascaramento = models.CharField(max_length=10, blank=True)
-    esquerdo_frequencia_3000_limiar_va_mascaramento = models.CharField(max_length=10, blank=True)
-    esquerdo_frequencia_4000_limiar_va_mascaramento = models.CharField(max_length=10, blank=True)
-    esquerdo_frequencia_6000_limiar_va_mascaramento = models.CharField(max_length=10, blank=True)
-    esquerdo_frequencia_8000_limiar_va_mascaramento = models.CharField(max_length=10, blank=True)
+    esquerdo_frequencia_250_limiar_va_mascaramento = \
+        models.CharField(max_length=10, blank=True)
+    esquerdo_frequencia_500_limiar_va_mascaramento = \
+        models.CharField(max_length=10, blank=True)
+    esquerdo_frequencia_1000_limiar_va_mascaramento = \
+        models.CharField(max_length=10, blank=True)
+    esquerdo_frequencia_1500_limiar_va_mascaramento = \
+        models.CharField(max_length=10, blank=True)
+    esquerdo_frequencia_2000_limiar_va_mascaramento = \
+        models.CharField(max_length=10, blank=True)
+    esquerdo_frequencia_3000_limiar_va_mascaramento = \
+        models.CharField(max_length=10, blank=True)
+    esquerdo_frequencia_4000_limiar_va_mascaramento = \
+        models.CharField(max_length=10, blank=True)
+    esquerdo_frequencia_6000_limiar_va_mascaramento = \
+        models.CharField(max_length=10, blank=True)
+    esquerdo_frequencia_8000_limiar_va_mascaramento = \
+        models.CharField(max_length=10, blank=True)
 
-    esquerdo_frequencia_250_limiar_vo = models.CharField(max_length=10, blank=True)
-    esquerdo_frequencia_500_limiar_vo = models.CharField(max_length=10, blank=True)
-    esquerdo_frequencia_1000_limiar_vo = models.CharField(max_length=10, blank=True)
-    esquerdo_frequencia_1500_limiar_vo = models.CharField(max_length=10, blank=True)
-    esquerdo_frequencia_2000_limiar_vo = models.CharField(max_length=10, blank=True)
-    esquerdo_frequencia_3000_limiar_vo = models.CharField(max_length=10, blank=True)
-    esquerdo_frequencia_4000_limiar_vo = models.CharField(max_length=10, blank=True)
-    esquerdo_frequencia_6000_limiar_vo = models.CharField(max_length=10, blank=True)
-    esquerdo_frequencia_8000_limiar_vo = models.CharField(max_length=10, blank=True)
+    esquerdo_frequencia_250_limiar_vo = \
+        models.CharField(max_length=10, blank=True)
+    esquerdo_frequencia_500_limiar_vo = \
+        models.CharField(max_length=10, blank=True)
+    esquerdo_frequencia_1000_limiar_vo = \
+        models.CharField(max_length=10, blank=True)
+    esquerdo_frequencia_1500_limiar_vo = \
+        models.CharField(max_length=10, blank=True)
+    esquerdo_frequencia_2000_limiar_vo = \
+        models.CharField(max_length=10, blank=True)
+    esquerdo_frequencia_3000_limiar_vo = \
+        models.CharField(max_length=10, blank=True)
+    esquerdo_frequencia_4000_limiar_vo = \
+        models.CharField(max_length=10, blank=True)
+    esquerdo_frequencia_6000_limiar_vo = \
+        models.CharField(max_length=10, blank=True)
+    esquerdo_frequencia_8000_limiar_vo = \
+        models.CharField(max_length=10, blank=True)
 
-    esquerdo_frequencia_250_limiar_vo_mascaramento = models.CharField(max_length=10, blank=True)
-    esquerdo_frequencia_500_limiar_vo_mascaramento = models.CharField(max_length=10, blank=True)
-    esquerdo_frequencia_1000_limiar_vo_mascaramento = models.CharField(max_length=10, blank=True)
-    esquerdo_frequencia_1500_limiar_vo_mascaramento = models.CharField(max_length=10, blank=True)
-    esquerdo_frequencia_2000_limiar_vo_mascaramento = models.CharField(max_length=10, blank=True)
-    esquerdo_frequencia_3000_limiar_vo_mascaramento = models.CharField(max_length=10, blank=True)
-    esquerdo_frequencia_4000_limiar_vo_mascaramento = models.CharField(max_length=10, blank=True)
-    esquerdo_frequencia_6000_limiar_vo_mascaramento = models.CharField(max_length=10, blank=True)
-    esquerdo_frequencia_8000_limiar_vo_mascaramento = models.CharField(max_length=10, blank=True)
+    esquerdo_frequencia_250_limiar_vo_mascaramento = \
+        models.CharField(max_length=10, blank=True)
+    esquerdo_frequencia_500_limiar_vo_mascaramento = \
+        models.CharField(max_length=10, blank=True)
+    esquerdo_frequencia_1000_limiar_vo_mascaramento = \
+        models.CharField(max_length=10, blank=True)
+    esquerdo_frequencia_1500_limiar_vo_mascaramento = \
+        models.CharField(max_length=10, blank=True)
+    esquerdo_frequencia_2000_limiar_vo_mascaramento = \
+        models.CharField(max_length=10, blank=True)
+    esquerdo_frequencia_3000_limiar_vo_mascaramento = \
+        models.CharField(max_length=10, blank=True)
+    esquerdo_frequencia_4000_limiar_vo_mascaramento = \
+        models.CharField(max_length=10, blank=True)
+    esquerdo_frequencia_6000_limiar_vo_mascaramento = \
+        models.CharField(max_length=10, blank=True)
+    esquerdo_frequencia_8000_limiar_vo_mascaramento = \
+        models.CharField(max_length=10, blank=True)
 
-    direito_frequencia_250_limiar_va = models.CharField(max_length=10, blank=True)
-    direito_frequencia_500_limiar_va = models.CharField(max_length=10, blank=True)
-    direito_frequencia_1000_limiar_va = models.CharField(max_length=10, blank=True)
-    direito_frequencia_1500_limiar_va = models.CharField(max_length=10, blank=True)
-    direito_frequencia_2000_limiar_va = models.CharField(max_length=10, blank=True)
-    direito_frequencia_3000_limiar_va = models.CharField(max_length=10, blank=True)
-    direito_frequencia_4000_limiar_va = models.CharField(max_length=10, blank=True)
-    direito_frequencia_6000_limiar_va = models.CharField(max_length=10, blank=True)
-    direito_frequencia_8000_limiar_va = models.CharField(max_length=10, blank=True)
+    direito_frequencia_250_limiar_va = \
+        models.CharField(max_length=10, blank=True)
+    direito_frequencia_500_limiar_va = \
+        models.CharField(max_length=10, blank=True)
+    direito_frequencia_1000_limiar_va = \
+        models.CharField(max_length=10, blank=True)
+    direito_frequencia_1500_limiar_va = \
+        models.CharField(max_length=10, blank=True)
+    direito_frequencia_2000_limiar_va = \
+        models.CharField(max_length=10, blank=True)
+    direito_frequencia_3000_limiar_va = \
+        models.CharField(max_length=10, blank=True)
+    direito_frequencia_4000_limiar_va = \
+        models.CharField(max_length=10, blank=True)
+    direito_frequencia_6000_limiar_va = \
+        models.CharField(max_length=10, blank=True)
+    direito_frequencia_8000_limiar_va = \
+        models.CharField(max_length=10, blank=True)
 
-    direito_frequencia_250_limiar_va_mascaramento = models.CharField(max_length=10, blank=True)
-    direito_frequencia_500_limiar_va_mascaramento = models.CharField(max_length=10, blank=True)
-    direito_frequencia_1000_limiar_va_mascaramento = models.CharField(max_length=10, blank=True)
-    direito_frequencia_1500_limiar_va_mascaramento = models.CharField(max_length=10, blank=True)
-    direito_frequencia_2000_limiar_va_mascaramento = models.CharField(max_length=10, blank=True)
-    direito_frequencia_3000_limiar_va_mascaramento = models.CharField(max_length=10, blank=True)
-    direito_frequencia_4000_limiar_va_mascaramento = models.CharField(max_length=10, blank=True)
-    direito_frequencia_6000_limiar_va_mascaramento = models.CharField(max_length=10, blank=True)
-    direito_frequencia_8000_limiar_va_mascaramento = models.CharField(max_length=10, blank=True)
+    direito_frequencia_250_limiar_va_mascaramento = \
+        models.CharField(max_length=10, blank=True)
+    direito_frequencia_500_limiar_va_mascaramento = \
+        models.CharField(max_length=10, blank=True)
+    direito_frequencia_1000_limiar_va_mascaramento = \
+        models.CharField(max_length=10, blank=True)
+    direito_frequencia_1500_limiar_va_mascaramento = \
+        models.CharField(max_length=10, blank=True)
+    direito_frequencia_2000_limiar_va_mascaramento = \
+        models.CharField(max_length=10, blank=True)
+    direito_frequencia_3000_limiar_va_mascaramento = \
+        models.CharField(max_length=10, blank=True)
+    direito_frequencia_4000_limiar_va_mascaramento = \
+        models.CharField(max_length=10, blank=True)
+    direito_frequencia_6000_limiar_va_mascaramento = \
+        models.CharField(max_length=10, blank=True)
+    direito_frequencia_8000_limiar_va_mascaramento = \
+        models.CharField(max_length=10, blank=True)
 
-    direito_frequencia_250_limiar_vo = models.CharField(max_length=10, blank=True)
-    direito_frequencia_500_limiar_vo = models.CharField(max_length=10, blank=True)
-    direito_frequencia_1000_limiar_vo = models.CharField(max_length=10, blank=True)
-    direito_frequencia_1500_limiar_vo = models.CharField(max_length=10, blank=True)
-    direito_frequencia_2000_limiar_vo = models.CharField(max_length=10, blank=True)
-    direito_frequencia_3000_limiar_vo = models.CharField(max_length=10, blank=True)
-    direito_frequencia_4000_limiar_vo = models.CharField(max_length=10, blank=True)
-    direito_frequencia_6000_limiar_vo = models.CharField(max_length=10, blank=True)
-    direito_frequencia_8000_limiar_vo = models.CharField(max_length=10, blank=True)
+    direito_frequencia_250_limiar_vo = \
+        models.CharField(max_length=10, blank=True)
+    direito_frequencia_500_limiar_vo = \
+        models.CharField(max_length=10, blank=True)
+    direito_frequencia_1000_limiar_vo = \
+        models.CharField(max_length=10, blank=True)
+    direito_frequencia_1500_limiar_vo = \
+        models.CharField(max_length=10, blank=True)
+    direito_frequencia_2000_limiar_vo = \
+        models.CharField(max_length=10, blank=True)
+    direito_frequencia_3000_limiar_vo = \
+        models.CharField(max_length=10, blank=True)
+    direito_frequencia_4000_limiar_vo = \
+        models.CharField(max_length=10, blank=True)
+    direito_frequencia_6000_limiar_vo = \
+        models.CharField(max_length=10, blank=True)
+    direito_frequencia_8000_limiar_vo = \
+        models.CharField(max_length=10, blank=True)
 
-    direito_frequencia_250_limiar_vo_mascaramento = models.CharField(max_length=10, blank=True)
-    direito_frequencia_500_limiar_vo_mascaramento = models.CharField(max_length=10, blank=True)
-    direito_frequencia_1000_limiar_vo_mascaramento = models.CharField(max_length=10, blank=True)
-    direito_frequencia_1500_limiar_vo_mascaramento = models.CharField(max_length=10, blank=True)
-    direito_frequencia_2000_limiar_vo_mascaramento = models.CharField(max_length=10, blank=True)
-    direito_frequencia_3000_limiar_vo_mascaramento = models.CharField(max_length=10, blank=True)
-    direito_frequencia_4000_limiar_vo_mascaramento = models.CharField(max_length=10, blank=True)
-    direito_frequencia_6000_limiar_vo_mascaramento = models.CharField(max_length=10, blank=True)
-    direito_frequencia_8000_limiar_vo_mascaramento = models.CharField(max_length=10, blank=True)
+    direito_frequencia_250_limiar_vo_mascaramento = \
+        models.CharField(max_length=10, blank=True)
+    direito_frequencia_500_limiar_vo_mascaramento = \
+        models.CharField(max_length=10, blank=True)
+    direito_frequencia_1000_limiar_vo_mascaramento = \
+        models.CharField(max_length=10, blank=True)
+    direito_frequencia_1500_limiar_vo_mascaramento = \
+        models.CharField(max_length=10, blank=True)
+    direito_frequencia_2000_limiar_vo_mascaramento = \
+        models.CharField(max_length=10, blank=True)
+    direito_frequencia_3000_limiar_vo_mascaramento = \
+        models.CharField(max_length=10, blank=True)
+    direito_frequencia_4000_limiar_vo_mascaramento = \
+        models.CharField(max_length=10, blank=True)
+    direito_frequencia_6000_limiar_vo_mascaramento = \
+        models.CharField(max_length=10, blank=True)
+    direito_frequencia_8000_limiar_vo_mascaramento = \
+        models.CharField(max_length=10, blank=True)
 
     esquerdo_srt = models.CharField(max_length=10, blank=True)
     esquerdo_irf_dB = models.CharField(max_length=10, blank=True)
@@ -268,45 +368,77 @@ class ResultadoAudiometria(models.Model):
     esquerdo_timpanometria = models.CharField(max_length=10, blank=True)
     direito_timpanometria = models.CharField(max_length=10, blank=True)
 
-    esquerdo_reflexo_frequencia_500_limiar = models.CharField(max_length=10, blank=True)
-    esquerdo_reflexo_frequencia_1000_limiar = models.CharField(max_length=10, blank=True)
-    esquerdo_reflexo_frequencia_2000_limiar = models.CharField(max_length=10, blank=True)
-    esquerdo_reflexo_frequencia_4000_limiar = models.CharField(max_length=10, blank=True)
+    esquerdo_reflexo_frequencia_500_limiar = \
+        models.CharField(max_length=10, blank=True)
+    esquerdo_reflexo_frequencia_1000_limiar = \
+        models.CharField(max_length=10, blank=True)
+    esquerdo_reflexo_frequencia_2000_limiar = \
+        models.CharField(max_length=10, blank=True)
+    esquerdo_reflexo_frequencia_4000_limiar = \
+        models.CharField(max_length=10, blank=True)
 
-    esquerdo_reflexo_frequencia_500_contra = models.CharField(max_length=10, blank=True)
-    esquerdo_reflexo_frequencia_1000_contra = models.CharField(max_length=10, blank=True)
-    esquerdo_reflexo_frequencia_2000_contra = models.CharField(max_length=10, blank=True)
-    esquerdo_reflexo_frequencia_4000_contra = models.CharField(max_length=10, blank=True)
+    esquerdo_reflexo_frequencia_500_contra = \
+        models.CharField(max_length=10, blank=True)
+    esquerdo_reflexo_frequencia_1000_contra = \
+        models.CharField(max_length=10, blank=True)
+    esquerdo_reflexo_frequencia_2000_contra = \
+        models.CharField(max_length=10, blank=True)
+    esquerdo_reflexo_frequencia_4000_contra = \
+        models.CharField(max_length=10, blank=True)
 
-    esquerdo_reflexo_frequencia_500_diferenca = models.CharField(max_length=10, blank=True)
-    esquerdo_reflexo_frequencia_1000_diferenca = models.CharField(max_length=10, blank=True)
-    esquerdo_reflexo_frequencia_2000_diferenca = models.CharField(max_length=10, blank=True)
-    esquerdo_reflexo_frequencia_4000_diferenca = models.CharField(max_length=10, blank=True)
+    esquerdo_reflexo_frequencia_500_diferenca = \
+        models.CharField(max_length=10, blank=True)
+    esquerdo_reflexo_frequencia_1000_diferenca = \
+        models.CharField(max_length=10, blank=True)
+    esquerdo_reflexo_frequencia_2000_diferenca = \
+        models.CharField(max_length=10, blank=True)
+    esquerdo_reflexo_frequencia_4000_diferenca = \
+        models.CharField(max_length=10, blank=True)
 
-    esquerdo_reflexo_frequencia_500_ipsi = models.CharField(max_length=10, blank=True)
-    esquerdo_reflexo_frequencia_1000_ipsi = models.CharField(max_length=10, blank=True)
-    esquerdo_reflexo_frequencia_2000_ipsi = models.CharField(max_length=10, blank=True)
-    esquerdo_reflexo_frequencia_4000_ipsi = models.CharField(max_length=10, blank=True)
+    esquerdo_reflexo_frequencia_500_ipsi = \
+        models.CharField(max_length=10, blank=True)
+    esquerdo_reflexo_frequencia_1000_ipsi = \
+        models.CharField(max_length=10, blank=True)
+    esquerdo_reflexo_frequencia_2000_ipsi = \
+        models.CharField(max_length=10, blank=True)
+    esquerdo_reflexo_frequencia_4000_ipsi = \
+        models.CharField(max_length=10, blank=True)
 
-    direito_reflexo_frequencia_500_limiar = models.CharField(max_length=10, blank=True)
-    direito_reflexo_frequencia_1000_limiar = models.CharField(max_length=10, blank=True)
-    direito_reflexo_frequencia_2000_limiar = models.CharField(max_length=10, blank=True)
-    direito_reflexo_frequencia_4000_limiar = models.CharField(max_length=10, blank=True)
+    direito_reflexo_frequencia_500_limiar = \
+        models.CharField(max_length=10, blank=True)
+    direito_reflexo_frequencia_1000_limiar = \
+        models.CharField(max_length=10, blank=True)
+    direito_reflexo_frequencia_2000_limiar = \
+        models.CharField(max_length=10, blank=True)
+    direito_reflexo_frequencia_4000_limiar = \
+        models.CharField(max_length=10, blank=True)
 
-    direito_reflexo_frequencia_500_contra = models.CharField(max_length=10, blank=True)
-    direito_reflexo_frequencia_1000_contra = models.CharField(max_length=10, blank=True)
-    direito_reflexo_frequencia_2000_contra = models.CharField(max_length=10, blank=True)
-    direito_reflexo_frequencia_4000_contra = models.CharField(max_length=10, blank=True)
+    direito_reflexo_frequencia_500_contra = \
+        models.CharField(max_length=10, blank=True)
+    direito_reflexo_frequencia_1000_contra = \
+        models.CharField(max_length=10, blank=True)
+    direito_reflexo_frequencia_2000_contra = \
+        models.CharField(max_length=10, blank=True)
+    direito_reflexo_frequencia_4000_contra = \
+        models.CharField(max_length=10, blank=True)
 
-    direito_reflexo_frequencia_500_diferenca = models.CharField(max_length=10, blank=True)
-    direito_reflexo_frequencia_1000_diferenca = models.CharField(max_length=10, blank=True)
-    direito_reflexo_frequencia_2000_diferenca = models.CharField(max_length=10, blank=True)
-    direito_reflexo_frequencia_4000_diferenca = models.CharField(max_length=10, blank=True)
+    direito_reflexo_frequencia_500_diferenca = \
+        models.CharField(max_length=10, blank=True)
+    direito_reflexo_frequencia_1000_diferenca = \
+        models.CharField(max_length=10, blank=True)
+    direito_reflexo_frequencia_2000_diferenca = \
+        models.CharField(max_length=10, blank=True)
+    direito_reflexo_frequencia_4000_diferenca = \
+        models.CharField(max_length=10, blank=True)
 
-    direito_reflexo_frequencia_500_ipsi = models.CharField(max_length=10, blank=True)
-    direito_reflexo_frequencia_1000_ipsi = models.CharField(max_length=10, blank=True)
-    direito_reflexo_frequencia_2000_ipsi = models.CharField(max_length=10, blank=True)
-    direito_reflexo_frequencia_4000_ipsi = models.CharField(max_length=10, blank=True)
+    direito_reflexo_frequencia_500_ipsi = \
+        models.CharField(max_length=10, blank=True)
+    direito_reflexo_frequencia_1000_ipsi = \
+        models.CharField(max_length=10, blank=True)
+    direito_reflexo_frequencia_2000_ipsi = \
+        models.CharField(max_length=10, blank=True)
+    direito_reflexo_frequencia_4000_ipsi = \
+        models.CharField(max_length=10, blank=True)
 
     evolucao = models.TextField(null=True, blank=True)
     conclusao_exame = models.TextField(null=True, blank=True)
