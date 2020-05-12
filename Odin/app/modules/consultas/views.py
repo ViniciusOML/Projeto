@@ -1,6 +1,6 @@
 # -*- encoding: utf-8 -*-
 from django.contrib.auth.mixins import LoginRequiredMixin
-from ...models import Consulta, Atendimento, ResultadoBera, ResultadoPac, ResultadoAudiometria
+from ...models import Consulta, Atendimento, ResultadoBera, ResultadoPac, ResultadoAudiometria, ResultadoPadrao
 from django.urls import reverse_lazy
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView
 
@@ -49,6 +49,8 @@ class ConsultaUpdateView(LoginRequiredMixin, UpdateView):
             context['laudos'] = ResultadoPac.objects.filter(consulta_id=self.kwargs['pk'])
         elif self.object.procedimento.sigla == 'AUDI':
             context['laudos'] = ResultadoAudiometria.objects.filter(consulta_id=self.kwargs['pk'])
+        else:
+            context['laudos'] = ResultadoPadrao.objects.filter(consulta_id=self.kwargs['pk'])
         return context
 
 
@@ -134,6 +136,28 @@ class ConsultaPacUpdateView(LoginRequiredMixin, CreateView):
         form.instance.consulta = Consulta.objects.get(id=self.kwargs['pk'])
         form.save()
         return super(ConsultaPacUpdateView, self).form_valid(form)
+
+    def get_context_data(self, *args, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['consulta'] = Consulta.objects.get(id=self.kwargs['pk'])
+        return context
+
+
+class ConsultaResultadoPadraoCreateView(LoginRequiredMixin, CreateView):
+    login_url = '/'
+
+    model = ResultadoPadrao
+    fields = [
+        'conclusao_exame',
+        'evolucao',
+    ]
+    template_name = 'consulta/resultado_padrao_novo.html'
+    success_url = reverse_lazy('index_consultas')
+
+    def form_valid(self, form):
+        form.instance.consulta = Consulta.objects.get(id=self.kwargs['pk'])
+        form.save()
+        return super(ConsultaResultadoPadraoCreateView, self).form_valid(form)
 
     def get_context_data(self, *args, **kwargs):
         context = super().get_context_data(**kwargs)

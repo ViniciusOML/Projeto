@@ -15,4 +15,5 @@ urlpatterns = [
     path("resultados_bera/", include("app.modules.resultados_bera.urls")),
     path("resultados_pac/", include("app.modules.resultados_pac.urls")),
     path("resultados_audiometria/", include("app.modules.resultados_audiometria.urls")),
+    path("resultados_padrao/", include("app.modules.resultados_padrao.urls")),
 ]
