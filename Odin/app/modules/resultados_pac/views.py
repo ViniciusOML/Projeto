@@ -1,11 +1,13 @@
-from django.utils.decorators import method_decorator
-from django.contrib.auth.decorators import login_required
+# -*- encoding: utf-8 -*-
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.urls import reverse
 from ...models import ResultadoPac
 from django.views.generic import UpdateView
 
 
-class ResultadoPacUpdateView(UpdateView):
+class ResultadoPacUpdateView(LoginRequiredMixin, UpdateView):
+    login_url = '/'
+
     model = ResultadoPac
     fields = [
         'conclusao_exame',
@@ -24,10 +26,6 @@ class ResultadoPacUpdateView(UpdateView):
         'direito_picos_N2',
     ]
     template_name = 'pac_editar.html'
-
-    @method_decorator(login_required)
-    def dispatch(self, *args, **kwargs):
-        return super().dispatch(*args, **kwargs)
 
     def get_success_url(self):
         return reverse('update_consulta', args=(self.object.consulta.id,))

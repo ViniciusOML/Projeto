@@ -1,11 +1,13 @@
-from django.utils.decorators import method_decorator
-from django.contrib.auth.decorators import login_required
+# -*- encoding: utf-8 -*-
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.urls import reverse
 from ...models import ResultadoBera
 from django.views.generic import UpdateView
 
 
-class ResultadoBeraUpdateView(UpdateView):
+class ResultadoBeraUpdateView(LoginRequiredMixin, UpdateView):
+    login_url = '/'
+
     model = ResultadoBera
     fields = [
         'conclusao_exame',
@@ -45,10 +47,6 @@ class ResultadoBeraUpdateView(UpdateView):
         'direito_picos_inter_latencias_III_V',
     ]
     template_name = 'bera_editar.html'
-
-    @method_decorator(login_required)
-    def dispatch(self, *args, **kwargs):
-        return super().dispatch(*args, **kwargs)
 
     def get_success_url(self):
         return reverse('update_consulta', args=(self.object.consulta.id,))
