@@ -30,18 +30,6 @@
                         </div>
                     </h3>
 
-                    {% if paciente.tem_responsavel %}
-                        <h3 class="card-title" style="text-align: center;"><strong>Dados do Respónsavel</strong></h3>
-                        <h3 class="card-title">
-                            <div class="col-md-5" style="padding-left: 0px">Nome: <strong>{{paciente.nome_responsavel}}</strong> </div>
-                            <div class="col-md-5" style="padding-left: 0px">RG: <strong>{{paciente.rg_responsavel}}</strong> </div>
-                        </h3>
-                    {% endif %}
-
-                    <div class="card-footer text-center">
-                        <a href="{% url 'index_pacientes' %}" class="btn btn-primary">Voltar para listagem</a>
-                        <a href="{% url 'delete_paciente' paciente.id %}" class="btn btn-danger">Deletar paciente</a>
-                    </div>
                 </div>
             </div>
 
@@ -57,30 +45,30 @@
 
                     <div class="table-responsive">
                         <table class="table card-table table-vcenter text-nowrap datatable">
-                                <thead>
-                                    <tr>
-                                        <th>#</th>
-                                        <th>Código LIF</th>
-                                        <th>LIF</th>
-                                        <th></th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                {% for atendimento in atendimentos %}
-                                    <tr style="height: 10px">
-                                        <td>{{ atendimento.id }}</td>
-                                        <td>{{ atendimento.codigo_lif }}</td>
-                                        <td>{{ atendimento.lif }}</td>
-                                        <td style="text-align: center;">
-                                            <a style="color: white;" href="{% url 'new_atendimento_consulta' atendimento.id %}" class="btn btn-success">
-                                                Adicionar Consulta
-                                            </a>
-                                            <a href="{% url 'update_atendimento' atendimento.id %}" class="btn btn-primary">Visualizar</a>
-                                        </td>
-                                    </tr>
-                                {% endfor %}
-                                </tbody>
-                            </table>
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>Código LIF</th>
+                                    <th>LIF</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            {% for atendimento in atendimentos %}
+                                <tr style="height: 10px">
+                                    <td>{{ atendimento.id }}</td>
+                                    <td>{{ atendimento.codigo_lif }}</td>
+                                    <td>{{ atendimento.lif }}</td>
+                                    <td style="text-align: center;">
+                                        <a style="color: white;" href="{% url 'new_atendimento_consulta' atendimento.id %}" class="btn btn-success">
+                                            Adicionar Consulta
+                                        </a>
+                                        <a href="{% url 'show_atendimento' atendimento.id %}" class="btn btn-primary">Visualizar</a>
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
                     </div>
                 </div>
             </div>

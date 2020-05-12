@@ -2,7 +2,7 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
 from ...models import Atendimento, Consulta, Paciente
 from django.urls import reverse_lazy, reverse
-from django.views.generic import ListView, CreateView, UpdateView, DeleteView
+from django.views.generic import ListView, CreateView, UpdateView, DeleteView, DetailView
 
 
 class AtendimentoListView(LoginRequiredMixin, ListView):
@@ -11,6 +11,21 @@ class AtendimentoListView(LoginRequiredMixin, ListView):
     model = Atendimento
     template_name = 'atendimento/index.html'
     context_object_name = 'atendimentos'
+
+
+class AtendimentoDetailView(LoginRequiredMixin, DetailView):
+    login_url = '/'
+
+    model = Atendimento
+    template_name = 'atendimento/show.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+
+        context['atendimento'] = self.object
+        context['consultas'] = Consulta.objects.filter(atendimento_id=self.object.id)
+
+        return context
 
 
 class AtendimentoCreateView(LoginRequiredMixin, CreateView):
@@ -40,7 +55,6 @@ class AtendimentoConsultaCreateView(LoginRequiredMixin, CreateView):
     model = Consulta
     fields = ['data_consulta', 'data_consulta', 'observacao', 'procedimento']
     template_name = 'atendimento/consulta_novo.html'
-    success_url = reverse_lazy('index_atendimentos')
 
     def form_valid(self, form):
         form.instance.atendimento = Atendimento.objects.get(id=self.kwargs['pk'])
@@ -52,6 +66,9 @@ class AtendimentoConsultaCreateView(LoginRequiredMixin, CreateView):
         context['atendimento'] = Atendimento.objects.get(id=self.kwargs['pk'])
         return context
 
+    def get_success_url(self):
+        return reverse('show_atendimento', kwargs={'pk': self.object.atendimento.id})
+
 
 class AtendimentoUpdateView(LoginRequiredMixin, UpdateView):
     login_url = '/'
@@ -59,15 +76,9 @@ class AtendimentoUpdateView(LoginRequiredMixin, UpdateView):
     model = Atendimento
     fields = ['codigo_lif', 'lif']
     template_name = 'atendimento/editar.html'
-    success_url = reverse_lazy('index_atendimentos')
 
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-
-        context['atendimento'] = self.object
-        context['consultas'] = Consulta.objects.filter(atendimento_id=self.object.id)
-
-        return context
+    def get_success_url(self):
+        return reverse('show_atendimento', kwargs={'pk': self.object.id})
 
 
 class AtendimentoDeleteView(LoginRequiredMixin, DeleteView):

@@ -34,8 +34,7 @@
                             <td> {{ atendimento.paciente }} </td>
                             <td> {{ atendimento.lif }} </td>
                             <td align="center"> 
-                                <a href="{% url 'update_atendimento' atendimento.id %}" class="btn btn-primary">Visualizar</a>
-                                <a href="{% url 'delete_atendimento' atendimento.id %}" class="btn btn-danger">Deletar</a>
+                                <a href="{% url 'show_atendimento' atendimento.id %}" class="btn btn-primary">Visualizar</a>
                             </td>
                         </tr>
                         {% endfor %}

@@ -1,6 +1,6 @@
 {% extends "layouts/base-site.html" %}
 
-{% block title %} Atualizar Atendimento {% endblock %}
+{% block title %} Detalhes do Atendimento {% endblock %}
 
 {% block content %}
 {% load widget_tweaks %}
@@ -12,11 +12,10 @@
                 <div class="card-body">
                     <h3 class="card-title" style="text-align: center;">
                         <strong>Dados do Paciente</strong>
+                        <!--<a style="color: white" href="{% url 'show_paciente' atendimento.paciente.id %}" class="btn btn-primary">Visualisar</span></a>-->
                     </h3>
                     <h3 class="card-title">
                         <div class="col-md-5" style="padding-left: 0px">Paciente: <strong>{{atendimento.paciente.nome_completo}}</strong> </div>
-                        <div class="col-md-5" style="padding-left: 0px">CPF: <strong>{{atendimento.paciente.cpf}}</strong> </div>
-                        <div class="col-md-5" style="padding-left: 0px">RG: <strong>{{atendimento.paciente.rg}}</strong> </div>
                         <div class="col-md-5" style="padding-left: 0px">Data nascimento: <strong>{{atendimento.paciente.data_nascimento}}</strong></div>
                         <div class="col-md-5" style="padding-left: 0px">Sexo:
                             {% if atendimento.paciente.sexo == 'M' %}
@@ -28,44 +27,66 @@
                             {% endif %}
                         </div>
                     </h3>
+                    <div class="card-footer text-center">
+                            <a style="color: white" href="{% url 'show_paciente' atendimento.paciente.id %}" class="btn btn-primary">Ver detalhes</span></a>
+                    </div>
 
-                    {% if atendimento.paciente.tem_responsavel %}
-                        <h3 class="card-title" style="text-align: center;"><strong>Dados do Respónsavel</strong></h3>
-                        <h3 class="card-title">
-                            <div class="col-md-5" style="padding-left: 0px">Nome: <strong>{{atendimento.paciente.nome_responsavel}}</strong> </div>
-                            <div class="col-md-5" style="padding-left: 0px">RG: <strong>{{atendimento.paciente.rg_responsavel}}</strong> </div>
-                        </h3>
-                    {% endif %}
                 </div>
-</div>
-            <form class="card" method="POST">
+            </div>
+
+            <div class="card">
                 <div class="card-body">
+                    <h3 class="card-title" style="text-align: center;">
+                        <strong>Dados do Atendimento</strong>
+                        <a style="color: white" href="{% url 'update_atendimento' atendimento.id %}" class="btn btn-primary">Editar</span></a>
+                    </h3>
+                    <h3 class="card-title">
+                        <div class="col-md-5" style="padding-left: 0px">Nome: <strong>{{atendimento.codigo_lif}}</strong> </div>
+                        <div class="col-md-5" style="padding-left: 0px">LIF: <strong>{{atendimento.lif}}</strong> </div>
+                    </h3>
 
-                    <h3 class="card-title" style="text-align: center;"><strong>Atendimento</strong></h3>
 
-                    {% csrf_token %}
+                    <!--<div class="card-footer text-center">-->
+                        <!--<a href="{% url 'update_atendimento' atendimento.id %}" class="btn btn-primary">Editar dados do atendimento</span></a>-->
+                    <!--</div>-->
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-body">
+                    <h3 class="card-title" style="text-align: center;">
+                        <strong>Consultas</strong>
+                        <a style="color: white;" href="{% url 'new_atendimento_consulta' atendimento.id %}" class="btn btn-success">
+                            <span class="fa fa-plus"></span>
+                        </a>
+                    </h3>
                     
-                    <div class="form-group">
-                        <label class="form-label">Código LIF</label>
-                        {% render_field form.codigo_lif class="form-control" %}
+                    <div class="table-responsive">
+                        <table class="table card-table table-vcenter text-nowrap datatable">
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>Data consulta</th>
+                                    <th>Procedimento</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for consulta in consultas %}
+                                <tr style="height: 10px">
+                                    <td> {{ consulta.id }} </td>
+                                    <td> {{ consulta.data_consulta }} </td>
+                                    <td> {{ consulta.procedimento }} </td>
+                                    <td align="center"> 
+                                        <a href="{% url 'update_consulta' consulta.id %}" class="btn btn-primary">Visualizar</a>
+                                    </td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
                     </div>
-
-                    <div class="form-group">
-                        <label class="form-label">LIF</label>
-                        {% render_field form.lif class="form-control" %}
-                    </div>
-
-                    {% if errors %}
-                        <div class="alert alert-danger"> {{ errors }} </div>
-                    {% endif %}
                 </div>
-
-                <div class="card-footer text-center">
-                    <a href="{% url 'show_atendimento' atendimento.id %}" class="btn btn-primary">Voltar</a>
-                    <button type="submit" class="btn btn-success">Atualizar</button>
-                    <a href="{% url 'delete_atendimento' atendimento.id %}" class="btn btn-danger">Deletar</a>
-                </div>
-            </form>
+            </div>
         </div>
     </div>
 </div>
