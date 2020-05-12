@@ -43,7 +43,7 @@
                             <strong>
                                 {% if consulta.procedimento.tipo_laudo == 'BERA' %}
                                     <a style="color: white"  href="{% url 'new_consulta_resultado_bera' consulta.id %}" class="btn btn-primary">Inserir Resultado</a>
-                                {% elif consulta.procedimento.tipo_laudo == 'AUDI' %}
+                                {% elif consulta.procedimento.tipo_laudo == 'AUDIOMETRIA' %}
                                     <a style="color: white"  href="{% url 'new_consulta_resultado_audiometria' consulta.id %}" class="btn btn-primary">Inserir Resultado</a>
                                 {% elif consulta.procedimento.tipo_laudo == 'PAC' %}
                                     <a style="color: white"  href="{% url 'new_consulta_resultado_pac' consulta.id %}" class="btn btn-primary">Inserir Resultado</a>
