@@ -7,7 +7,8 @@ from django.views.generic import ListView, CreateView, UpdateView, DeleteView
 fields_form = [
     'nome_procedimento',
     'sigla',
-    'cid'
+    'cid',
+    'tipo_laudo'
 ]
 
 class ProcedimentoListView(LoginRequiredMixin, ListView):

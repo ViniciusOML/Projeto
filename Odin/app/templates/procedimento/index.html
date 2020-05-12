@@ -24,6 +24,7 @@
                             <th>#</th>
                             <th>Sigla</th>
                             <th>Nome</th>
+                            <th>Tipo de laudo</th>
                             <th>CID</th>
                             <th></th>
                         </tr>
@@ -34,6 +35,7 @@
                             <td> {{ procedimento.id }} </td>
                             <td> {{ procedimento.sigla }} </td>
                             <td> {{ procedimento.nome_procedimento }} </td>
+                            <td> {{ procedimento.tipo_laudo }} </td>
                             <td> {% firstof procedimento.cid '' %} </td>
                             <td align="right"> 
                                 <a href="{% url 'update_procedimento' procedimento.id %}" class="btn btn-primary">Visualizar</a>

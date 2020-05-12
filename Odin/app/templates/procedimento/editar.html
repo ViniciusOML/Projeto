@@ -28,10 +28,15 @@
                         <label class="form-label">CID</label>
                         {% render_field form.cid class="form-control" %}
                     </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Tipo de laudo</label>
+                        {% render_field form.tipo_laudo class="form-control" %}
+                    </div>
                     
                 </div>
                 <div class="card-footer text-center">
-                    <a href={% url 'index_procedimentos' %} class="btn btn-primary">Voltar</a>
+                    <a href="{% url 'index_procedimentos' %}" class="btn btn-primary">Voltar</a>
                     <button type="submit" class="btn btn-success">Atualizar</button>
                 </div>
             </form>

@@ -43,11 +43,11 @@ class ConsultaUpdateView(LoginRequiredMixin, UpdateView):
     def get_context_data(self, *args, **kwargs):
         context = super().get_context_data(**kwargs)
 
-        if self.object.procedimento.sigla == 'BERA':
+        if self.object.procedimento.tipo_laudo == 'BERA':
             context['laudos'] = ResultadoBera.objects.filter(consulta_id=self.kwargs['pk'])
-        elif self.object.procedimento.sigla == 'PAC':
+        elif self.object.procedimento.tipo_laudo == 'PAC':
             context['laudos'] = ResultadoPac.objects.filter(consulta_id=self.kwargs['pk'])
-        elif self.object.procedimento.sigla == 'AUDI':
+        elif self.object.procedimento.tipo_laudo == 'AUDIOMETRIA':
             context['laudos'] = ResultadoAudiometria.objects.filter(consulta_id=self.kwargs['pk'])
         else:
             context['laudos'] = ResultadoPadrao.objects.filter(consulta_id=self.kwargs['pk'])
