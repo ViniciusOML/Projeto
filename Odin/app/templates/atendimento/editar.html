@@ -32,7 +32,7 @@
                     
                     <h3 class="card-title" style="text-align: center;">
                         <strong>Consultas</strong>
-                        <a style="color: white;" href={% url 'new_atendimento_consulta' atendimento.id %} class="btn btn-success">
+                        <a style="color: white;" href="{% url 'new_atendimento_consulta' atendimento.id %}" class="btn btn-success">
                             <span class="fa fa-plus"></span>
                         </a>
                     </h3>
@@ -54,7 +54,7 @@
                                     <td> {{ consulta.data_consulta }} </td>
                                     <td> {{ consulta.procedimento }} </td>
                                     <td align="center"> 
-                                        <a href={% url 'update_consulta' consulta.id %} class="btn btn-primary">Visualizar</a>
+                                        <a href="{% url 'update_consulta' consulta.id %}" class="btn btn-primary">Visualizar</a>
                                     </td>
                                 </tr>
                                 {% endfor %}
