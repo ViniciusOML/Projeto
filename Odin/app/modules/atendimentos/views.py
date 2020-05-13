@@ -32,7 +32,7 @@ class AtendimentoCreateView(LoginRequiredMixin, CreateView):
     login_url = '/'
 
     model = Atendimento
-    fields = ['codigo_lif', 'lif']
+    fields = ['lif']
     template_name = 'atendimento/novo.html'
 
     def form_valid(self, form):

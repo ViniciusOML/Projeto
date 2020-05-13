@@ -1,4 +1,4 @@
-from django.db import models
+from django.db import models, transaction, IntegrityError
 from django.urls import reverse
 from django.contrib.auth.models import User
 
@@ -33,6 +33,7 @@ class Paciente(models.Model):
 class Lif(models.Model):
 
     nome_lif = models.CharField(max_length=50)
+    codigo_lif_atual = models.IntegerField(default=0)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
@@ -74,6 +75,22 @@ class Atendimento(models.Model):
 
     class Meta:
         unique_together = ('paciente', 'lif',)
+
+    def save(self, *args, **kwargs):
+        if not self.pk:
+            try:
+                with transaction.atomic():
+                    lif = Lif.objects.get(id=self.lif.id)
+                    lif.codigo_lif_atual += 1
+                    lif.save()
+
+                    self.codigo_lif = self.lif.codigo_lif_atual
+                    super(Atendimento, self).save(*args, **kwargs)
+            except Exception as e:
+                transaction.rollback()
+                print(e)
+        else:
+            super(Atendimento, self).save(*args, **kwargs)
 
     def __str__(self):
         return self.codigo_lif

@@ -21,6 +21,7 @@
                         <tr>
                             <th>#</th>
                             <th>Nome</th>
+                            <th>Código do LIF atual</th>
                             <th></th>
                         </tr>
                     </thead>
@@ -29,6 +30,7 @@
                         <tr style="height: 10px">
                             <td> {{ lif.id }} </td>
                             <td> {{ lif.nome_lif }} </td>
+                            <td> {{ lif.codigo_lif_atual }} </td>
                             <td align="right"> 
                                 <a href="{% url 'update_lif' lif.id %}" class="btn btn-primary">Visualizar</a>
                                 <a href="{% url 'delete_lif' lif.id %}" class="btn btn-danger">Deletar</a>

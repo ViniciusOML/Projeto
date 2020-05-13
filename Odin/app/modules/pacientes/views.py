@@ -58,7 +58,7 @@ class PacienteAtendimentoCreateView(LoginRequiredMixin, CreateView):
     login_url = '/'
 
     model = Atendimento
-    fields = ['codigo_lif', 'lif']
+    fields = ['lif']
     template_name = 'paciente/atendimento_novo.html'
 
     def form_valid(self, form):
