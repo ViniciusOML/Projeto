@@ -14,7 +14,7 @@
                         <strong>Dados do Paciente</strong>
                     </h3>
                     
-                    <table>
+                    <table class="table">
                         <tbody>
                             <tr>
                                 <td>Paciente: </td>
@@ -38,9 +38,10 @@
                             </tr>
                         </tbody>
                     </table>
-                    <div class="card-footer text-center">
-                            <a style="color: white" href="{% url 'show_paciente' atendimento.paciente.id %}" class="btn btn-primary">Ver detalhes</span></a>
-                    </div>
+
+                </div>
+                <div class="card-footer text-center">
+                    <a href="{% url 'show_paciente' atendimento.paciente.id %}" class="btn btn-primary">Ver detalhes</a>
                 </div>
             </div>
 
@@ -49,7 +50,7 @@
                     <h3 class="card-title" style="text-align: center;">
                         <strong>Dados do Atendimento</strong>
                     </h3>
-                    <table>
+                    <table class="table">
                         <tbody>
                             <tr>
                                 <td>Código LIF: </td>
@@ -65,10 +66,9 @@
                             </tr>
                         </tbody>
                     </table>
-
-                    <div class="card-footer text-center">
-                        <a href="{% url 'update_atendimento' atendimento.id %}" class="btn btn-primary">Editar dados do atendimento</span></a>
-                    </div>
+                </div>
+                <div class="card-footer text-center">
+                    <a href="{% url 'update_atendimento' atendimento.id %}" class="btn btn-primary">Editar dados do atendimento</a>
                 </div>
             </div>
         </div>
@@ -103,11 +103,11 @@
                             </tbody>
                         </table>
                     </div>
-                    <div class="card-footer text-center">
-                        <a style="color: white;" href="{% url 'new_atendimento_consulta' atendimento.id %}" class="btn btn-success">
-                            Adicionar nova consulta
-                        </a>
-                    </div>
+                </div>
+                <div class="card-footer text-center">
+                    <a href="{% url 'new_atendimento_consulta' atendimento.id %}" class="btn btn-success">
+                        Adicionar nova consulta
+                    </a>
                 </div>
             </div>
         </div>

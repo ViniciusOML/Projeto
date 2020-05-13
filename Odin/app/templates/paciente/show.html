@@ -12,24 +12,65 @@
                 <div class="card-body">
                     <h3 class="card-title" style="text-align: center;">
                         <strong>Dados do Paciente</strong>
-                        <a style="color: white" href="{% url 'update_paciente' paciente.id %}" class="btn btn-primary">Editar</span></a>
                     </h3>
-                    <h3 class="card-title">
-                        <div class="col-md-5" style="padding-left: 0px">Paciente: <strong>{{paciente.nome_completo}}</strong> </div>
-                        <div class="col-md-5" style="padding-left: 0px">CPF: <strong>{{paciente.cpf}}</strong> </div>
-                        <div class="col-md-5" style="padding-left: 0px">RG: <strong>{{paciente.rg}}</strong> </div>
-                        <div class="col-md-5" style="padding-left: 0px">Data nascimento: <strong>{{paciente.data_nascimento}}</strong></div>
-                        <div class="col-md-5" style="padding-left: 0px">Sexo:
-                            {% if paciente.sexo == 'M' %}
-                                <strong>Masculino</strong>
-                            {% elif paciente.sexo == 'F' %}
-                                <strong>Feminino</strong>
-                            {% else %}
-                                <strong>Outros</strong>
-                            {% endif %}
+                    <section style="display: inline-flex; width: 100%;">
+                        {% if paciente.tem_responsavel%}
+                            <div class="col-lg-6" style="max-width: 49%; margin-right: auto;"> 
+                        {% endif %}
+                            <table class="table">
+                                <tbody>
+                                    <tr>
+                                        <td>Paciente: </td>
+                                        <td><strong>{{paciente.nome_completo}}</strong></td>
+                                    </tr>
+                                    <tr>
+                                        <td>CPF: </td>
+                                        <td><strong>{{paciente.cpf}}</strong></td>
+                                    </tr>
+                                    <tr>
+                                        <td>RG: </td>
+                                        <td><strong>{{paciente.rg}}</strong></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Data de Nascimento: </td>
+                                        <td><strong>{{paciente.data_nascimento}}<strong></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Sexo: </td>
+                                        <td>
+                                            {% if atendimento.paciente.sexo == 'M' %}
+                                                <strong>Masculino</strong>
+                                            {% elif atendimento.paciente.sexo == 'F' %}
+                                                <strong>Feminino</strong>
+                                            {% else %}
+                                                <strong>Outros</strong>
+                                            {% endif %}
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
                         </div>
-                    </h3>
 
+                        {% if paciente.tem_responsavel%}
+                            <div class="col-lg-6" style="max-width: 49%;"> 
+                                <table class="table">
+                                    <tbody>
+                                        <tr>
+                                            <td>Resposánvel: </td>
+                                            <td><strong>{{paciente.nome_responsavel}}</strong></td>
+                                        </tr>
+                                        <tr>
+                                            <td>RG do Resposánvel: </td>
+                                            <td><strong>{{paciente.rg_responsavel}}</strong></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        {% endif %}
+                    </section>
+                    <div class="card-footer text-center">
+                        <a style="color: white" href="{% url 'update_paciente' paciente.id %}" class="btn btn-primary">Editar dados do paciente</span></a>
+                    </div>
                 </div>
             </div>
 
@@ -38,9 +79,6 @@
                 <div class="card-body">
                     <h3 class="card-title" style="text-align: center;">
                         <strong>Atendimentos</strong>
-                        <a style="color: white;" href="{% url 'new_paciente_atendimento' paciente.id %}" class="btn btn-success">
-                            <span class="fa fa-plus"></span>
-                        </a>
                     </h3>
 
                     <div class="table-responsive">
@@ -60,15 +98,18 @@
                                     <td>{{ atendimento.codigo_lif }}</td>
                                     <td>{{ atendimento.lif }}</td>
                                     <td style="text-align: center;">
-                                        <a style="color: white;" href="{% url 'new_atendimento_consulta' atendimento.id %}" class="btn btn-success">
-                                            Adicionar Consulta
-                                        </a>
                                         <a href="{% url 'show_atendimento' atendimento.id %}" class="btn btn-primary">Visualizar</a>
                                     </td>
                                 </tr>
                             {% endfor %}
                             </tbody>
                         </table>
+                    </div>
+
+                    <div class="card-footer text-center">
+                        <a style="color: white;" href="{% url 'new_paciente_atendimento' paciente.id %}" class="btn btn-success">
+                            Adicionar novo atendimento
+                        </a>
                     </div>
                 </div>
             </div>

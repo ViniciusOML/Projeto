@@ -19,6 +19,11 @@
                         <label class="form-label">Nome</label>
                         {% render_field form.nome_lif class="form-control" %}
                     </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Numero atual do LIF</label>
+                        {% render_field form.codigo_lif_atual class="form-control" %}
+                    </div>
                 </div>
                 <div class="card-footer text-center">
                     <a href={% url 'index_lifs' %} class="btn btn-primary">Voltar</a>
