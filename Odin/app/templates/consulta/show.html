@@ -1,6 +1,6 @@
 {% extends "layouts/base-site.html" %}
 
-{% block title %} Inserção de Resultado {% endblock %}
+{% block title %} Adicionar Consulta {% endblock %}
 
 {% block content %}
 {% load widget_tweaks %}
@@ -8,7 +8,27 @@
 <div class="my-3 my-md-5">
     <div class="container">
         <div class="col-lg-12" style="display: inline-flex;">
-            <div class="card col-lg-4" style="max-width: 33%; margin-right: auto;">
+            <div class="card">
+                <div class="card-body">
+                    <table>
+                        <tr>
+                            <td class="col-md-3">Data de criação: </td>
+                            <td class="col-md-4"><strong>{{ consulta.created_at }}</strong></td>
+                            <td class="col-md-1">Operador: </td>
+                            <td class="col-md-4"><strong>Manoel Mateus David Simão(teste)</strong></td>
+                        </tr>
+                        <tr>
+                            <td class="col-md-3">Data da ultima atualização: </td>
+                            <td class="col-md-4"><strong>{{ consulta.updated_at }}</strong></td>
+                            <td class="col-md-1"></td>
+                            <td class="col-md-4"></td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-12" style="display: inline-flex;">
+            <div class="card col-lg-6" style="max-width: 49%; margin-right: auto;">
                 <div class="card-body">
                     <h3 class="card-title" style="text-align: center;">
                         <strong>Dados do Paciente</strong>
@@ -45,7 +65,7 @@
                 </div>
             </div>
 
-            <div class="card col-lg-4" style="max-width: 33%; margin-right: auto;">
+            <div class="card col-lg-6" style="max-width: 49%;">
                 <div class="card-body">
                     <h3 class="card-title" style="text-align: center;">
                         <strong>Dados do Atendimento</strong>
@@ -71,8 +91,9 @@
                     <a href="{% url 'show_atendimento' consulta.atendimento.id %}" class="btn btn-primary">Ver detalhes</a>
                 </div>
             </div>
-
-            <div class="card col-lg-4" style="max-width: 33%;">
+        </div>
+        <div class="col-lg-12">
+            <div class="card">
                 <div class="card-body">
                     <h3 class="card-title" style="text-align: center;"><strong>Dados da Consulta</strong></h3>
 
@@ -80,42 +101,45 @@
                         <tr>
                             <td>Data consulta:</td>
                             <td><strong>{{consulta.data_consulta}}</strong></td>
-                        </tr>
-                        <tr>
+
                             <td>Procedimento:</td>
                             <td><strong>{{consulta.procedimento}}</strong></td>
+                        </tr>
+                        <tr>
+                            <td>Observação:</td>
+                            <td colspan="3"><strong>{%firstof consulta.observacao ''%}</strong></td>
                         </tr>
                     </table>
                 </div>
                 <div class="card-footer text-center">
-                    <a href="{% url 'show_consulta' consulta.id %}" class="btn btn-primary">Ver detalhes</a>
+                    <a href="{% url 'update_consulta' consulta.id %}" class="btn btn-primary">Editar dados da consulta</a>
+                    {% if not laudos %}
+                        {% if consulta.procedimento.tipo_laudo == 'BERA' %}
+                            <a style="color: white"  href="{% url 'new_consulta_resultado_bera' consulta.id %}" class="btn btn-primary">Inserir Resultado</a>
+                        {% elif consulta.procedimento.tipo_laudo == 'AUDIOMETRIA' %}
+                            <a style="color: white"  href="{% url 'new_consulta_resultado_audiometria' consulta.id %}" class="btn btn-primary">Inserir Resultado</a>
+                        {% elif consulta.procedimento.tipo_laudo == 'PAC' %}
+                            <a style="color: white"  href="{% url 'new_consulta_resultado_pac' consulta.id %}" class="btn btn-primary">Inserir Resultado</a>
+                        {% else %}
+                            <a style="color: white"  href="{% url 'new_consulta_resultado_padrao' consulta.id %}" class="btn btn-primary">Inserir Resultado</a>
+                        {% endif %}
+                    {% else %}
+                        {% for resultado in laudos%}
+                            {% if consulta.procedimento.tipo_laudo == 'BERA' %}
+                                <a href="{% url 'show_resultado_bera' resultado.id %}" class="btn btn-primary">Visualizar resultado</a>
+                            {% elif consulta.procedimento.tipo_laudo == 'PAC' %}
+                                <a href="{% url 'show_resultado_pac' resultado.id %}" class="btn btn-primary">Visualizar resultado</a>
+                            {% elif consulta.procedimento.tipo_laudo == 'AUDIOMETRIA' %}
+                                <a href="{% url 'show_resultado_audiometria' resultado.id %}" class="btn btn-primary">Visualizar Resultado</a>
+                            {% else %}
+                                <a href="{% url 'show_resultado_padrao' resultado.id %}" class="btn btn-primary">Visualizar Resultado</a>
+                            {% endif %}
+                        {% endfor %}
+                    {% endif %}
                 </div>
             </div>
         </div>
-        <div class="col-lg-12">
-            <form class="card" method="POST">
-                <div class="card-body">
 
-                    {% csrf_token %}
-                    
-                    <div class="form-group">
-                        <label class="form-label">Evolução</label>
-                        {% render_field form.evolucao class="form-control" %}
-                    </div>
-
-                    <div class="form-group">
-                        <label class="form-label">Conclusão</label>
-                        {% render_field form.conclusao_exame class="form-control" %}
-                    </div>
-                    
-                    <div class="card-footer text-center">
-                        <a href="{% url 'show_consulta' consulta.id %}" class="btn btn-primary">Voltar</a>
-                        <button type="submit" class="btn btn-success">Cadastrar</button>
-                    </div>
-                </div>
-
-            </form>
-        </div>
     </div>
 </div>
 

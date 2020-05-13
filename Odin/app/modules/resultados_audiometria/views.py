@@ -2,10 +2,26 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.urls import reverse
 from ...models import ResultadoAudiometria
-from django.views.generic import UpdateView
+from django.views.generic import UpdateView, DetailView
+
+
+class ResultadoAudiometriaDetailView(LoginRequiredMixin, DetailView):
+    login_url = '/'
+
+    model = ResultadoAudiometria
+    template_name = 'resultado/audi_show.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['consulta'] = self.object.consulta
+        context['resultado'] = self.object
+
+        return context
 
 
 class ResultadoAudiometriaUpdateView(LoginRequiredMixin, UpdateView):
+    login_url = '/'
+
     model = ResultadoAudiometria
     fields = [
         'conclusao_exame',
@@ -152,10 +168,10 @@ class ResultadoAudiometriaUpdateView(LoginRequiredMixin, UpdateView):
         'direito_reflexo_frequencia_2000_ipsi',
         'direito_reflexo_frequencia_4000_ipsi',
     ]
-    template_name = 'audi_editar.html'
+    template_name = 'resultado/audi_editar.html'
 
     def get_success_url(self):
-        return reverse('update_consulta', args=(self.object.consulta.id,))
+        return reverse('show_resultado_audiometria', args=(self.object.id,))
 
     def get_context_data(self, *args, **kwargs):
         context = super().get_context_data(**kwargs)

@@ -8,6 +8,26 @@
 <div class="my-3 my-md-5">
     <div class="container">
         <div class="col-lg-12" style="display: inline-flex;">
+            <div class="card">
+                <div class="card-body">
+                    <table>
+                        <tr>
+                            <td class="col-md-3">Data de criação: </td>
+                            <td class="col-md-4"><strong>{{ atendimento.created_at }}</strong></td>
+                            <td class="col-md-1">Operador: </td>
+                            <td class="col-md-4"><strong>Manoel Mateus David Simão(teste)</strong></td>
+                        </tr>
+                        <tr>
+                            <td class="col-md-3">Data da ultima atualização: </td>
+                            <td class="col-md-4"><strong>{{ atendimento.updated_at }}</strong></td>
+                            <td class="col-md-1"></td>
+                            <td class="col-md-4"></td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-12" style="display: inline-flex;">
             <div class="card col-lg-6" style="max-width: 49%; margin-right: auto;"> 
                 <div class="card-body">
                     <h3 class="card-title" style="text-align: center;">
@@ -22,7 +42,7 @@
                             </tr>
                             <tr>
                                 <td>Data de Nascimento: </td>
-                                <td><strong>{{atendimento.paciente.data_nascimento}}<strong></td>
+                                <td><strong>{{atendimento.paciente.data_nascimento}}</strong></td>
                             </tr>
                             <tr>
                                 <td>Sexo: </td>
@@ -96,7 +116,7 @@
                                     <td> {{ consulta.data_consulta }} </td>
                                     <td> {{ consulta.procedimento }} </td>
                                     <td align="center"> 
-                                        <a href="{% url 'update_consulta' consulta.id %}" class="btn btn-primary">Visualizar</a>
+                                        <a href="{% url 'show_consulta' consulta.id %}" class="btn btn-primary">Visualizar</a>
                                     </td>
                                 </tr>
                                 {% endfor %}

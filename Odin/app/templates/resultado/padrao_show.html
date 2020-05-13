@@ -1,6 +1,6 @@
 {% extends "layouts/base-site.html" %}
 
-{% block title %} Atualizar Consulta {% endblock %}
+{% block title %} Adicionar Consulta {% endblock %}
 
 {% block content %}
 {% load widget_tweaks %}
@@ -8,7 +8,27 @@
 <div class="my-3 my-md-5">
     <div class="container">
         <div class="col-lg-12" style="display: inline-flex;">
-            <div class="card col-lg-6" style="max-width: 49%; margin-right: auto;">
+            <div class="card">
+                <div class="card-body">
+                    <table>
+                        <tr>
+                            <td class="col-md-3">Data de criação: </td>
+                            <td class="col-md-4"><strong>{{ resultado.created_at }}</strong></td>
+                            <td class="col-md-1">Operador: </td>
+                            <td class="col-md-4"><strong>Manoel Mateus David Simão(teste)</strong></td>
+                        </tr>
+                        <tr>
+                            <td class="col-md-3">Data da ultima atualização: </td>
+                            <td class="col-md-4"><strong>{{ resultado.updated_at }}</strong></td>
+                            <td class="col-md-1"></td>
+                            <td class="col-md-4"></td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-12" style="display: inline-flex;">
+            <div class="card col-lg-4" style="max-width: 33%; margin-right: auto;">
                 <div class="card-body">
                     <h3 class="card-title" style="text-align: center;">
                         <strong>Dados do Paciente</strong>
@@ -45,7 +65,7 @@
                 </div>
             </div>
 
-            <div class="card col-lg-6" style="max-width: 49%;">
+            <div class="card col-lg-4" style="max-width: 33%; margin-right: auto;">
                 <div class="card-body">
                     <h3 class="card-title" style="text-align: center;">
                         <strong>Dados do Atendimento</strong>
@@ -71,41 +91,48 @@
                     <a href="{% url 'show_atendimento' consulta.atendimento.id %}" class="btn btn-primary">Ver detalhes</a>
                 </div>
             </div>
+
+            <div class="card col-lg-4" style="max-width: 33%;">
+                <div class="card-body">
+                    <h3 class="card-title" style="text-align: center;"><strong>Dados da Consulta</strong></h3>
+
+                    <table class="table">
+                        <tr>
+                            <td>Data consulta:</td>
+                            <td><strong>{{consulta.data_consulta}}</strong></td>
+                        </tr>
+                        <tr>
+                            <td>Procedimento:</td>
+                            <td><strong>{{consulta.procedimento}}</strong></td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="card-footer text-center">
+                    <a href="{% url 'show_consulta' consulta.id %}" class="btn btn-primary">Ver detalhes</a>
+                </div>
+            </div>
         </div>
         <div class="col-lg-12">
-            <form class="card" method="POST">
+            <div class="card">
                 <div class="card-body">
+                    <h3 class="card-title" style="text-align: center;"><strong>Resultado</strong></h3>
 
-                    <h3 class="card-title" style="text-align: center;"><strong>Consulta</strong></h3>
-
-                    {% csrf_token %}
-                    
-                    <div class="form-group">
-                        <label class="form-label">Data consulta</label>
-                        {% render_field form.data_consulta class="form-control" %}
-                    </div>
-
-                    <div class="form-group">
-                        <label class="form-label">Procedimento</label>
-                        {% render_field form.procedimento class="form-control" %}
-                    </div>
-
-                    <div class="form-group">
-                        <label class="form-label">Observação</label>
-                        {% render_field form.observacao class="form-control"%}
-                    </div>
-
-                    {% if errors %}
-                        <div class="alert alert-danger"> {{ errors }} </div>
-                    {% endif %}
+                    <section>
+                        <!-- <strong>Evolução:</strong><br> -->
+                        <h3 class="card-title"><strong>Evolução:</strong></h3>
+                        {{resultado.evolucao}}
+                    </section>
+                    <br>
+                    <section>
+                        <!-- <strong>Conclusão:</strong><br> -->
+                        <h3 class="card-title"><strong>Conclusão:</strong></h3>
+                        {{resultado.conclusao_exame}}
+                    </section>
+                    <h3 class="card-title" style="text-align: center; color:white">
+                        <a href="{% url 'update_resultado_padrao' resultado.id %}" class="btn btn-primary">Editar resultado</a>
+                    </h3>
                 </div>
-
-                <div class="card-footer text-center">
-                    <a href="{% url 'show_consulta' consulta.id%}" class="btn btn-primary">Voltar</a>
-                    <button type="submit" class="btn btn-success">Atualizar</button>
-                </div>
-
-            </form>
+            </div>
         </div>
     </div>
 </div>

@@ -2,7 +2,7 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
 from ...models import Consulta, Atendimento, ResultadoBera, ResultadoPac, ResultadoAudiometria, ResultadoPadrao
 from django.urls import reverse_lazy, reverse
-from django.views.generic import ListView, CreateView, UpdateView, DeleteView
+from django.views.generic import ListView, CreateView, UpdateView, DeleteView, DetailView
 
 
 class ConsultaListView(LoginRequiredMixin, ListView):
@@ -17,7 +17,7 @@ class ConsultaCreateView(LoginRequiredMixin, CreateView):
     login_url = '/'
 
     model = Consulta
-    fields = ['data_consulta', 'data_consulta', 'observacao']
+    fields = ['data_consulta', 'observacao', 'procedimento']
     template_name = 'consulta/novo.html'
 
     def get_success_url(self):
@@ -34,15 +34,11 @@ class ConsultaCreateView(LoginRequiredMixin, CreateView):
         return context
 
 
-class ConsultaUpdateView(LoginRequiredMixin, UpdateView):
+class ConsultaDetailView(LoginRequiredMixin, DetailView):
     login_url = '/'
 
     model = Consulta
-    fields = ['data_consulta', 'data_consulta', 'observacao']
-    template_name = 'consulta/editar.html'
-
-    def get_success_url(self):
-        return reverse('update_consulta', kwargs={'pk': self.object.id})
+    template_name = 'consulta/show.html'
 
     def get_context_data(self, *args, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -56,6 +52,17 @@ class ConsultaUpdateView(LoginRequiredMixin, UpdateView):
         else:
             context['laudos'] = ResultadoPadrao.objects.filter(consulta_id=self.kwargs['pk'])
         return context
+
+
+class ConsultaUpdateView(LoginRequiredMixin, UpdateView):
+    login_url = '/'
+
+    model = Consulta
+    fields = ['data_consulta', 'observacao', 'procedimento']
+    template_name = 'consulta/editar.html'
+
+    def get_success_url(self):
+        return reverse('show_consulta', kwargs={'pk': self.object.id})
 
 
 class ConsultaResultadoBeraCreateView(LoginRequiredMixin, CreateView):
@@ -102,7 +109,7 @@ class ConsultaResultadoBeraCreateView(LoginRequiredMixin, CreateView):
     template_name = 'consulta/resultado_bera_novo.html'
 
     def get_success_url(self):
-        return reverse('update_consulta', kwargs={'pk': self.object.consulta.id})
+        return reverse('show_resultado_bera', kwargs={'pk': self.object.id})
 
     def form_valid(self, form):
         form.instance.consulta = Consulta.objects.get(id=self.kwargs['pk'])
@@ -136,10 +143,9 @@ class ConsultaResultadoPacCreateView(LoginRequiredMixin, CreateView):
         'direito_picos_N2',
     ]
     template_name = 'consulta/resultado_pac_novo.html'
-    success_url = reverse_lazy('index_consultas')
 
     def get_success_url(self):
-        return reverse('update_consulta', kwargs={'pk': self.object.consulta.id})
+        return reverse('show_resultado_pac', kwargs={'pk': self.object.id})
 
     def form_valid(self, form):
         form.instance.consulta = Consulta.objects.get(id=self.kwargs['pk'])
@@ -161,7 +167,6 @@ class ConsultaResultadoPadraoCreateView(LoginRequiredMixin, CreateView):
         'evolucao',
     ]
     template_name = 'consulta/resultado_padrao_novo.html'
-    success_url = reverse_lazy('index_consultas')
 
     def form_valid(self, form):
         form.instance.consulta = Consulta.objects.get(id=self.kwargs['pk'])
@@ -172,6 +177,9 @@ class ConsultaResultadoPadraoCreateView(LoginRequiredMixin, CreateView):
         context = super().get_context_data(**kwargs)
         context['consulta'] = Consulta.objects.get(id=self.kwargs['pk'])
         return context
+
+    def get_success_url(self):
+        return reverse('show_resultado_padrao', kwargs={'pk': self.object.id})
 
 
 class ConsultaResultadoAudiometriaCreateView(LoginRequiredMixin, CreateView):
@@ -323,10 +331,9 @@ class ConsultaResultadoAudiometriaCreateView(LoginRequiredMixin, CreateView):
         'direito_reflexo_frequencia_4000_ipsi',
     ]
     template_name = 'consulta/resultado_audiometria_novo.html'
-    success_url = reverse_lazy('index_consultas')
 
     def get_success_url(self):
-        return reverse('update_consulta', kwargs={'pk': self.object.consulta.id})
+        return reverse('show_resultado_bera', kwargs={'pk': self.object.id})
 
     def form_valid(self, form):
         form.instance.consulta = Consulta.objects.get(id=self.kwargs['pk'])

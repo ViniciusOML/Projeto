@@ -2,7 +2,21 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.urls import reverse
 from ...models import ResultadoBera
-from django.views.generic import UpdateView
+from django.views.generic import UpdateView, DetailView
+
+
+class ResultadoBeraDetailView(LoginRequiredMixin, DetailView):
+    login_url = '/'
+
+    model = ResultadoBera
+    template_name = 'resultado/bera_show.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['consulta'] = self.object.consulta
+        context['resultado'] = self.object
+
+        return context
 
 
 class ResultadoBeraUpdateView(LoginRequiredMixin, UpdateView):
@@ -46,10 +60,10 @@ class ResultadoBeraUpdateView(LoginRequiredMixin, UpdateView):
         'direito_picos_inter_latencias_I_III',
         'direito_picos_inter_latencias_III_V',
     ]
-    template_name = 'bera_editar.html'
+    template_name = 'resultado/bera_editar.html'
 
     def get_success_url(self):
-        return reverse('update_consulta', args=(self.object.consulta.id,))
+        return reverse('show_resultado_bera', args=(self.object.id,))
 
     def get_context_data(self, *args, **kwargs):
         context = super().get_context_data(**kwargs)

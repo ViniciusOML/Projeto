@@ -3,6 +3,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from ...models import Atendimento, Consulta, Paciente
 from django.urls import reverse_lazy, reverse
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView, DetailView
+from django.contrib.sessions.models import Session
 
 
 class AtendimentoListView(LoginRequiredMixin, ListView):
@@ -40,20 +41,20 @@ class AtendimentoCreateView(LoginRequiredMixin, CreateView):
         form.save()
         return super(AtendimentoCreateView, self).form_valid(form)
 
-    def get_success_url(self):
-        return reverse('new_atendimento_consulta', args=(self.object.id,))
-
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['pacientes'] = Paciente.objects.all()
         return context
+
+    def get_success_url(self):
+        return reverse('show_atendimento', kwargs={'pk': self.object.id})
 
 
 class AtendimentoConsultaCreateView(LoginRequiredMixin, CreateView):
     login_url = '/'
 
     model = Consulta
-    fields = ['data_consulta', 'data_consulta', 'observacao', 'procedimento']
+    fields = ['data_consulta', 'observacao', 'procedimento']
     template_name = 'atendimento/consulta_novo.html'
 
     def form_valid(self, form):
