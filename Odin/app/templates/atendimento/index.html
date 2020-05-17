@@ -1,6 +1,6 @@
 {% extends "layouts/base-site.html" %}
 
-{% block title %} Dashboard {% endblock %}
+{% block title %} Listagem de Atendimentos {% endblock %}
 
 {% block content %}
 
@@ -13,7 +13,7 @@
                         Listagem de Atendimentos
                     </h1>
                 </div>
-                <a href={% url 'new_atendimento' %} class="btn btn-success"><span class="fa fa-plus"></span> Adicionar novo atendimento</a>
+                <a href="{% url 'new_atendimento' %}" class="btn btn-success"><span class="fa fa-plus"></span> Adicionar novo atendimento</a>
             </div>
             <div class="table-responsive">
                 <table class="table card-table table-vcenter text-nowrap datatable">

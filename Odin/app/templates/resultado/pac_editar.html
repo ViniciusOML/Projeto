@@ -1,6 +1,6 @@
 {% extends "layouts/base-site.html" %}
 
-{% block title %} Atualizar Laudo Pac {% endblock %}
+{% block title %} Editar Resultado de Pac {% endblock %}
 
 {% block content %}
 {% load widget_tweaks %}
@@ -153,7 +153,7 @@
                     </div>
                     
                     <div class="card-footer text-center">
-                        <a href={% url 'update_consulta' consulta.id %} class="btn btn-primary">Voltar</a>
+                        <a href="{% url 'show_resultado_pac' resultadopac.id %}" class="btn btn-primary">Voltar</a>
                         <button type="submit" class="btn btn-success">Atualizar</button>
                     </div>
                 </div>

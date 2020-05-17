@@ -333,7 +333,7 @@ class ConsultaResultadoAudiometriaCreateView(LoginRequiredMixin, CreateView):
     template_name = 'consulta/resultado_audiometria_novo.html'
 
     def get_success_url(self):
-        return reverse('show_resultado_bera', kwargs={'pk': self.object.id})
+        return reverse('show_resultado_audiometria', kwargs={'pk': self.object.id})
 
     def form_valid(self, form):
         form.instance.consulta = Consulta.objects.get(id=self.kwargs['pk'])

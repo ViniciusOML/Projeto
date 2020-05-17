@@ -1,6 +1,6 @@
 {% extends "layouts/base-site.html" %}
 
-{% block title %} Editar Paciente {% endblock %}
+{% block title %} Detalhes do Paciente {% endblock %}
 
 {% block content %}
 {% load widget_tweaks %}
@@ -11,7 +11,7 @@
             <div class="card">
                 <div class="card-body">
                     <h3 class="card-title" style="text-align: center;">
-                        <strong>Dados do Paciente</strong>
+                        <strong style="color: #ac1b1a; text-decoration: underline">Dados do Paciente</strong>
                     </h3>
                     <section style="display: inline-flex; width: 100%;">
                         {% if paciente.tem_responsavel%}
@@ -33,14 +33,14 @@
                                     </tr>
                                     <tr>
                                         <td>Data de Nascimento: </td>
-                                        <td><strong>{{paciente.data_nascimento}}<strong></td>
+                                        <td><strong>{{paciente.data_nascimento}}</strong></td>
                                     </tr>
                                     <tr>
                                         <td>Sexo: </td>
                                         <td>
-                                            {% if atendimento.paciente.sexo == 'M' %}
+                                            {% if paciente.sexo == 'M' %}
                                                 <strong>Masculino</strong>
-                                            {% elif atendimento.paciente.sexo == 'F' %}
+                                            {% elif paciente.sexo == 'F' %}
                                                 <strong>Feminino</strong>
                                             {% else %}
                                                 <strong>Outros</strong>
@@ -51,7 +51,7 @@
                             </table>
                         </div>
 
-                        {% if paciente.tem_responsavel%}
+                        {% if paciente.tem_responsavel %}
                             <div class="col-lg-6" style="max-width: 49%;"> 
                                 <table class="table">
                                     <tbody>
@@ -70,6 +70,7 @@
                     </section>
                     <div class="card-footer text-center">
                         <a style="color: white" href="{% url 'update_paciente' paciente.id %}" class="btn btn-primary">Editar dados do paciente</span></a>
+                        <a href="{% url 'delete_paciente' paciente.id %}" class="btn btn-danger">Deletar</a>
                     </div>
                 </div>
             </div>
@@ -136,7 +137,7 @@
                                     <td> {{ consulta.atendimento.codigo_lif }} </td>
                                     <td> {{ consulta.procedimento }} </td>
                                     <td align="center">
-                                        <a href="{% url 'update_consulta' consulta.id %}" class="btn btn-primary">Visualizar</a>
+                                        <a href="{% url 'show_consulta' consulta.id %}" class="btn btn-primary">Visualizar</a>
                                     </td>
                                 </tr>
                                 {% endfor %}

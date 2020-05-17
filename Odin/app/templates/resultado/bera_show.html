@@ -1,6 +1,6 @@
 {% extends "layouts/base-site.html" %}
 
-{% block title %} Adicionar Consulta {% endblock %}
+{% block title %} Detalhes do Resultado de BERA {% endblock %}
 
 {% block content %}
 {% load widget_tweaks %}
@@ -118,77 +118,77 @@
                     <h3 class="card-title" style="text-align: center;"><strong>Resultado</strong></h3>
 
                     <table class="table table-hover table-striped">
-                                        <colgroup>
-                                            <col>
-                                            <col span="2" style="background-color:rgba(0, 0, 0, 0.02);">
-                                        </colgroup>
-                                        <thead>
-                                            <tr>
-                                                <th></th>
-                                                <th colspan="2" style="text-align: center;"><h3>Orelha Direita</h3></th>
-                                                <th colspan="2" style="text-align: center;"><h3>Orelha Esquerda</h3></th>
-                                            </tr>
-                                            <tr>
-                                                <th>Picos</th>
-                                                <th style="text-align: center;">Latências Abso.</th>
-                                                <th style="text-align: center;">Inter-latências</th>
+                        <colgroup>
+                            <col>
+                            <col span="2" style="background-color:rgba(0, 0, 0, 0.02);">
+                        </colgroup>
+                        <thead>
+                            <tr>
+                                <th></th>
+                                <th colspan="2" style="text-align: center;"><h3>Orelha Direita</h3></th>
+                                <th colspan="2" style="text-align: center;"><h3>Orelha Esquerda</h3></th>
+                            </tr>
+                            <tr>
+                                <th>Picos</th>
+                                <th style="text-align: center;">Latências Abso.</th>
+                                <th style="text-align: center;">Inter-latências</th>
 
-                                                <th style="text-align: center;">Latências Abso.</th>
-                                                <th style="text-align: center;">Inter-latências</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr>
-                                                <td>I</td>
-                                                <td style="text-align: center;">{{resultado.direito_picos_latencia_absoluta_I}}</td>
-                                                <td style="text-align: center;">{{resultado.direito_picos_inter_latencias_I}}</td>
-                                                <td style="text-align: center;">{{resultado.esquerdo_picos_latencia_absoluta_I}}</td>
-                                                <td style="text-align: center;">{{resultado.esquerdo_picos_inter_latencias_I}}</td>
-                                            </tr>
-                                            <tr>
-                                                <td>III</td>
-                                                <td style="text-align: center;">{{resultado.direito_picos_latencia_absoluta_III}}</td>
-                                                <td style="text-align: center;">{{resultado.direito_picos_inter_latencias_III}}</td>
-                                                <td style="text-align: center;">{{resultado.esquerdo_picos_latencia_absoluta_III}}</td>
-                                                <td style="text-align: center;">{{resultado.esquerdo_picos_inter_latencias_III}}</td>
-                                            </tr>
-                                            <tr>
-                                                <td>V</td>
-                                                <td style="text-align: center;">{{resultado.direito_picos_latencia_absoluta_V}}</td>
-                                                <td style="text-align: center;">{{resultado.direito_picos_inter_latencias_V}}</td>
-                                                <td style="text-align: center;">{{resultado.esquerdo_picos_latencia_absoluta_V}}</td>
-                                                <td style="text-align: center;">{{resultado.esquerdo_picos_inter_latencias_V}}</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Intepicos</td>
-                                                <td style="text-align: center;">{{resultado.direito_picos_latencia_absoluta_interpicos}}</td>
-                                                <td style="text-align: center;">{{resultado.direito_picos_inter_latencias_interpicos}}</td>
-                                                <td style="text-align: center;">{{resultado.esquerdo_picos_latencia_absoluta_interpicos}}</td>
-                                                <td style="text-align: center;">{{resultado.esquerdo_picos_inter_latencias_interpicos}}</td>
-                                            </tr>
-                                            <tr>
-                                                <td>I-III</td>
-                                                <td style="text-align: center;">{{resultado.direito_picos_latencia_absoluta_I_III}}</td>
-                                                <td style="text-align: center;">{{resultado.direito_picos_inter_latencias_I_III}}</td>
-                                                <td style="text-align: center;">{{resultado.esquerdo_picos_latencia_absoluta_I_III}}</td>
-                                                <td style="text-align: center;">{{resultado.esquerdo_picos_inter_latencias_I_III}}</td>
-                                            </tr>
-                                            <tr>
-                                                <td>I-V</td>
-                                                <td style="text-align: center;">{{resultado.direito_picos_latencia_absoluta_I_V}}</td>
-                                                <td style="text-align: center;">{{resultado.direito_picos_inter_latencias_I_V}}</td>
-                                                <td style="text-align: center;">{{resultado.esquerdo_picos_latencia_absoluta_I_V}}</td>
-                                                <td style="text-align: center;">{{resultado.esquerdo_picos_inter_latencias_I_V}}</td>
-                                            </tr>
-                                            <tr>
-                                                <td>III-V</td>
-                                                <td style="text-align: center;">{{resultado.direito_picos_latencia_absoluta_III_V}}</td>
-                                                <td style="text-align: center;">{{resultado.direito_picos_inter_latencias_III_V}}</td>
-                                                <td style="text-align: center;">{{resultado.esquerdo_picos_latencia_absoluta_III_V}}</td>
-                                                <td style="text-align: center;">{{resultado.esquerdo_picos_inter_latencias_III_V}}</td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
+                                <th style="text-align: center;">Latências Abso.</th>
+                                <th style="text-align: center;">Inter-latências</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>I</td>
+                                <td style="text-align: center;">{{resultado.direito_picos_latencia_absoluta_I}}</td>
+                                <td style="text-align: center;">{{resultado.direito_picos_inter_latencias_I}}</td>
+                                <td style="text-align: center;">{{resultado.esquerdo_picos_latencia_absoluta_I}}</td>
+                                <td style="text-align: center;">{{resultado.esquerdo_picos_inter_latencias_I}}</td>
+                            </tr>
+                            <tr>
+                                <td>III</td>
+                                <td style="text-align: center;">{{resultado.direito_picos_latencia_absoluta_III}}</td>
+                                <td style="text-align: center;">{{resultado.direito_picos_inter_latencias_III}}</td>
+                                <td style="text-align: center;">{{resultado.esquerdo_picos_latencia_absoluta_III}}</td>
+                                <td style="text-align: center;">{{resultado.esquerdo_picos_inter_latencias_III}}</td>
+                            </tr>
+                            <tr>
+                                <td>V</td>
+                                <td style="text-align: center;">{{resultado.direito_picos_latencia_absoluta_V}}</td>
+                                <td style="text-align: center;">{{resultado.direito_picos_inter_latencias_V}}</td>
+                                <td style="text-align: center;">{{resultado.esquerdo_picos_latencia_absoluta_V}}</td>
+                                <td style="text-align: center;">{{resultado.esquerdo_picos_inter_latencias_V}}</td>
+                            </tr>
+                            <tr>
+                                <td>Intepicos</td>
+                                <td style="text-align: center;">{{resultado.direito_picos_latencia_absoluta_interpicos}}</td>
+                                <td style="text-align: center;">{{resultado.direito_picos_inter_latencias_interpicos}}</td>
+                                <td style="text-align: center;">{{resultado.esquerdo_picos_latencia_absoluta_interpicos}}</td>
+                                <td style="text-align: center;">{{resultado.esquerdo_picos_inter_latencias_interpicos}}</td>
+                            </tr>
+                            <tr>
+                                <td>I-III</td>
+                                <td style="text-align: center;">{{resultado.direito_picos_latencia_absoluta_I_III}}</td>
+                                <td style="text-align: center;">{{resultado.direito_picos_inter_latencias_I_III}}</td>
+                                <td style="text-align: center;">{{resultado.esquerdo_picos_latencia_absoluta_I_III}}</td>
+                                <td style="text-align: center;">{{resultado.esquerdo_picos_inter_latencias_I_III}}</td>
+                            </tr>
+                            <tr>
+                                <td>I-V</td>
+                                <td style="text-align: center;">{{resultado.direito_picos_latencia_absoluta_I_V}}</td>
+                                <td style="text-align: center;">{{resultado.direito_picos_inter_latencias_I_V}}</td>
+                                <td style="text-align: center;">{{resultado.esquerdo_picos_latencia_absoluta_I_V}}</td>
+                                <td style="text-align: center;">{{resultado.esquerdo_picos_inter_latencias_I_V}}</td>
+                            </tr>
+                            <tr>
+                                <td>III-V</td>
+                                <td style="text-align: center;">{{resultado.direito_picos_latencia_absoluta_III_V}}</td>
+                                <td style="text-align: center;">{{resultado.direito_picos_inter_latencias_III_V}}</td>
+                                <td style="text-align: center;">{{resultado.esquerdo_picos_latencia_absoluta_III_V}}</td>
+                                <td style="text-align: center;">{{resultado.esquerdo_picos_inter_latencias_III_V}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
 
                     <section>
                         <!-- <strong>Evolução:</strong><br> -->

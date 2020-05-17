@@ -68,7 +68,7 @@
             <div class="card col-lg-6" style="max-width: 49%;"> 
                 <div class="card-body">
                     <h3 class="card-title" style="text-align: center;">
-                        <strong>Dados do Atendimento</strong>
+                        <strong style="color: #ac1b1a; text-decoration: underline">Dados do Atendimento</strong>
                     </h3>
                     <table class="table">
                         <tbody>
@@ -89,6 +89,7 @@
                 </div>
                 <div class="card-footer text-center">
                     <a href="{% url 'update_atendimento' atendimento.id %}" class="btn btn-primary">Editar dados do atendimento</a>
+                    <a href="{% url 'delete_atendimento' atendimento.id %}" class="btn btn-danger">Deletar</a>
                 </div>
             </div>
         </div>
@@ -133,7 +134,6 @@
         </div>
     </div>
 </div>
-
 
 {% endblock content %}
 
