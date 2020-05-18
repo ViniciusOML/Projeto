@@ -1,6 +1,6 @@
 {% extends "layouts/base-site-fullscreen.html" %}
 
-{% block title %} Register {% endblock %} 
+{% block title %} Register {% endblock %}
 
 {% block content %}
 
@@ -9,20 +9,21 @@
         <div class="text-center mb-6">
           <img src="/static/assets/demo/brand/tabler.svg" class="h-6" alt="">
         </div>
-        
+
         {% if success %}
 
           <div class="card-body p-6">
             <div class="card-title text-center">
 
               <p class="text-center">
-                User Created.
+                Usuário criado!
+                <h1> {{ msg }} </h1>
                 <br />
-                Please <strong><a href={% url 'login' %}>authenticate</a></strong> using the new account.
-              </p>  
-            
+                Por favor <strong><a href={% url 'login' %}>faça login</a></strong>
+              </p>
+
             </div>
-          </div>    
+          </div>
 
         {% else %}
 
@@ -36,19 +37,30 @@
                 {% if msg %}
                   {{ msg | safe }}
                 {% else %}
-                  Add your credentials or <strong><a href={% url 'login' %} >authenticate</a></strong> with an existing account.
-                {% endif %}  
-                
+                  Já tem cadastro?
+                  <br / >
+                  <strong><a href={% url 'login' %} >Faça login</a></strong>
+                {% endif %}
+
               </div>
 
+
               <div class="form-group">
-                <label class="form-label">Username</label>
+                <label class="form-label">Nome completo</label>
+                {{ form.last_name }}
+              </div>
+              <span class="text-danger">{{ form.last_name.errors }}</span>
+
+              <br />
+
+              <div class="form-group">
+                <label class="form-label">Usuário (Número USP)</label>
                 {{ form.username }}
               </div>
               <span class="text-danger">{{ form.username.errors }}</span>
 
               <br />
-              
+
               <div class="form-group">
                 <label class="form-label">Email</label>
                 {{ form.email }}
@@ -57,9 +69,11 @@
 
               <br />
 
+
+
               <div class="form-group">
                 <label class="form-label">
-                  Password
+                  Senha
                 </label>
                 {{ form.password1 }}
               </div>
@@ -69,40 +83,28 @@
 
               <div class="form-group">
                 <label class="form-label">
-                  Password Check
+                  Confirmação de senha
                 </label>
                 {{ form.password2 }}
               </div>
               <span class="text-danger">{{ form.password2.errors }}</span>
 
               <br />
-              
-              <div class="form-group">
-                <label class="custom-control custom-checkbox">
-                  <input type="checkbox" class="custom-control-input" />
-                  <span class="custom-control-label">Agree the terms</span>
-                </label>
-              </div>
+
 
               <div class="form-footer">
-                <button type="submit" name="register" class="btn btn-primary btn-block">Register</button>
+                <button type="submit" name="register" class="btn btn-primary btn-block">Cadastrar</button>
               </div>
             </div>
 
           </form>
-        
+
         {% endif %}
 
-        <div class="text-center text-muted">
-          &copy; <a href="https://codecalm.net/">Codecalm</a> - 
-          <a href="https://appseed.us/admin-dashboards/django-dashboard-tabler" >Django Dashboard Tabler</a>
-          <br />
-          Coded by AppSeed
-        </div>
-                
+
       </div>
     </div>
-        
+
 {% endblock content %}
 
 <!-- Specific Page JS goes HERE  -->

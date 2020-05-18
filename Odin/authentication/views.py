@@ -24,10 +24,10 @@ def login_view(request):
             if user is not None:
                 login(request, user)
                 return redirect("/")
-            else:    
-                msg = 'Invalid credentials'    
+            else:
+                msg = 'Credenciais inválidas'
         else:
-            msg = 'Error validating the form'    
+            msg = 'Erro ao validar formulário'
 
     return render(request, "accounts/login.html", {"form": form, "msg" : msg})
 
@@ -44,13 +44,13 @@ def register_user(request):
             raw_password = form.cleaned_data.get("password1")
             user = authenticate(username=username, password=raw_password)
 
-            msg     = 'User created.'
+            msg     = 'Usuário criado'
             success = True
-            
+
             #return redirect("/login/")
 
         else:
-            msg = 'Form is not valid'    
+            msg = 'Formulário inválido'
     else:
         form = SignUpForm()
 

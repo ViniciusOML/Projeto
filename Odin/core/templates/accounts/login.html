@@ -13,18 +13,16 @@
 
             <div class="card-body p-6">
 
-                <div class="card-title text-center">
+        <div class="card-title text-center">
 
-                    {% if msg %}
-                    {{ msg | safe }}
-                    {% else %}
-                    <!-- <a href={% url 'register' %}>Criar novo usuario</a> -->
-                    {% endif %}
+            Entre com suas credenciais ou
+            <br />
+            <a href={% url 'register' %} >crie um usuário agora</a>
+        </div>
 
-                </div>
 
                 <div class="form-group">
-                    <label class="form-label">Usuario</label>
+                    <label class="form-label">Usuário (Número USP)</label>
                     {{ form.username }}
                 </div>
 
