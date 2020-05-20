@@ -15,44 +15,48 @@
                     </h3>
                     <section style="display: inline-flex; width: 100%;">
                         {% if paciente.tem_responsavel%}
-                            <div class="col-lg-6" style="max-width: 49%; margin-right: auto;"> 
+                            <div class="col-lg-6" style="max-width: 49%; margin-right: auto;">
                         {% endif %}
-                            <table class="table">
-                                <tbody>
-                                    <tr>
-                                        <td>Paciente: </td>
-                                        <td><strong>{{paciente.nome_completo}}</strong></td>
-                                    </tr>
-                                    <tr>
-                                        <td>CPF: </td>
-                                        <td><strong>{{paciente.cpf}}</strong></td>
-                                    </tr>
-                                    <tr>
-                                        <td>RG: </td>
-                                        <td><strong>{{paciente.rg}}</strong></td>
-                                    </tr>
-                                    <tr>
-                                        <td>Data de Nascimento: </td>
-                                        <td><strong>{{paciente.data_nascimento}}</strong></td>
-                                    </tr>
-                                    <tr>
-                                        <td>Sexo: </td>
-                                        <td>
-                                            {% if paciente.sexo == 'M' %}
-                                                <strong>Masculino</strong>
-                                            {% elif paciente.sexo == 'F' %}
-                                                <strong>Feminino</strong>
-                                            {% else %}
-                                                <strong>Outros</strong>
-                                            {% endif %}
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
+
+                        <table class="table">
+                            <tbody>
+                                <tr>
+                                    <td>Paciente: </td>
+                                    <td><strong>{{paciente.nome_completo}}</strong></td>
+                                </tr>
+                                <tr>
+                                    <td>CPF: </td>
+                                    <td><strong>{{paciente.cpf}}</strong></td>
+                                </tr>
+                                <tr>
+                                    <td>RG: </td>
+                                    <td><strong>{{paciente.rg}}</strong></td>
+                                </tr>
+                                <tr>
+                                    <td>Data de Nascimento: </td>
+                                    <td><strong>{{paciente.data_nascimento}}</strong></td>
+                                </tr>
+                                <tr>
+                                    <td>Sexo: </td>
+                                    <td>
+                                        {% if paciente.sexo == 'M' %}
+                                            <strong>Masculino</strong>
+                                        {% elif paciente.sexo == 'F' %}
+                                            <strong>Feminino</strong>
+                                        {% else %}
+                                            <strong>Outros</strong>
+                                        {% endif %}
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                        {% if paciente.tem_responsavel%}
+                            </div>
+                        {% endif %}
 
                         {% if paciente.tem_responsavel %}
-                            <div class="col-lg-6" style="max-width: 49%;"> 
+                            <div class="col-lg-6" style="max-width: 49%;">
                                 <table class="table">
                                     <tbody>
                                         <tr>
@@ -74,8 +78,8 @@
                     </div>
                 </div>
             </div>
-
-
+        </div>
+        <div class="col-lg-12">
             <div class="card">
                 <div class="card-body">
                     <h3 class="card-title" style="text-align: center;">
@@ -114,7 +118,8 @@
                     </div>
                 </div>
             </div>
-
+        </div>
+        <div class="col-lg-12">
             <div class="card">
                 <div class="card-body">
                     <h3 class="card-title" style="text-align: center;"><strong>Consultas</strong></h3>
