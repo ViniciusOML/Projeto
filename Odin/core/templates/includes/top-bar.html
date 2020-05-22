@@ -1,26 +1,19 @@
 
-<div class="header py-4">
-  <div class="container">
-    <div class="d-flex">
-      <img src="/static/assets/images/logo.jpg" class="header-brand-img" alt="FMUSP logo"></a>
-        <div class="d-flex order-lg-2 ml-auto">
-          <div class="nav-item d-none d-md-flex">
-            <li class="nav-item">
-              <a style = "font-size: 1.8em; color: #0C4333; padding: 0px;" href=# class="nav-link" ><i class="fa fa-user-md"></i></a>
-            </li>
-          </div>
-              <div class="nav-item d-none d-md-flex">
-                <h3 style="margin: 0px;">{{request.user.username}}</h3>
-                 {% comment %}
-
-                  Campo para mostrar o último login
-                 <h3 style="margin: 0px;">{{request.user.last_login}}</h3> {% endcomment %}
-              </div>
-
-
-
-
-</div>
-</div>
-</div>
-</div>
+            <div class="header py-4">
+                <div class="container">
+                  <div class="d-flex">
+                    <a class="header-brand" href="/">
+                      <img src="/static/assets/images/logo.jpg" class="header-brand-img" alt="FMUSP logo"></a>
+                    </a>
+                    <div class="d-flex order-lg-2 ml-auto">
+                        <li class="nav-item">
+                          <a style = "font-size: 1.8em; color: #0C4333; padding: 0px;" href=# class="nav-link" ><i class="fa fa-user-md"></i></a>
+                        </li>
+                      <h3 style="margin: 0px;">{{request.user.username}}</h3>
+                    </div>
+                    <a href="#" class="header-toggler d-lg-none ml-3 ml-lg-0" data-toggle="collapse" data-target="#headerMenuCollapse">
+                      <span class="header-toggler-icon"></span>
+                    </a>
+                  </div>
+                </div>
+            </div>
