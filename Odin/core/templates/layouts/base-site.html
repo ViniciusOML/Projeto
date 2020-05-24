@@ -1,6 +1,6 @@
 <!doctype html>
 <html lang="en" dir="ltr">
-  <head>
+<head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
@@ -42,13 +42,13 @@
     <!-- Datatables Plugin -->
     <script src="/static/assets/plugins/datatables/plugin.js"></script>
 
-  </head>
-  <body class="">
+</head>
+<body class="">
 
 
-    <div  class="page" style="background-color: #BDCBC7;">
+<div  class="page" style="background-color: #BDCBC7;">
 
-      <div class="flex-fill">
+    <div class="flex-fill">
 
         {% include 'includes/top-bar.html' %}
 
@@ -56,56 +56,18 @@
 
         {% block content %}{% endblock content %}
 
-      </div>
-
-      {% include 'includes/footer.html' %}
-
     </div>
 
-  <!-- Specific Page JS goes HERE  -->
-  {% block javascripts %}
+    {% include 'includes/footer.html' %}
 
+</div>
 
-
-
-  {% endblock javascripts %}
+<!-- Specific Page JS goes HERE  -->
+{% block javascripts %}{% endblock javascripts %}
 <script>
+
     require(['jquery', 'datatables'], function ($, datatable) {
         $(document).ready(function () {
-
-            function setCookie(name, value, days) {
-                var expires = "";
-                if (days) {
-                    var date = new Date();
-                    date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
-                    expires = "; expires=" + date.toUTCString();
-                }
-                document.cookie = name + "=" + (value || "") + expires + "; path=/";
-            }
-
-            function getCookie(name) {
-                var nameEQ = name + "=";
-                var ca = document.cookie.split(';');
-                for (var i = 0; i < ca.length; i++) {
-                    var c = ca[i];
-                    while (c.charAt(0) == ' ') c = c.substring(1, c.length);
-                    if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length, c.length);
-                }
-                return null;
-            }
-
-            if (!getCookie('bottombar-hidden')) {
-                $('.js-bottombar').show();
-            }
-
-            $('.js-bottombar-close').on('click', function (e) {
-                $('.js-bottombar').hide();
-                setCookie('bottombar-hidden', 1, 7);
-
-                e.preventDefault();
-                return false;
-            });
-
             $('.datatable').DataTable({
                 "language": {
                     "sEmptyTable": "Nenhum registro encontrado",
@@ -150,5 +112,5 @@
         });
     });
 </script>
-  </body>
+</body>
 </html>
