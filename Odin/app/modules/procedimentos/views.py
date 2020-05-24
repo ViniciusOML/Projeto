@@ -11,7 +11,8 @@ fields_form = [
 ]
 
 
-class ProcedimentoListView(LoginRequiredMixin, ListView):
+class ProcedimentoListView(LoginRequiredMixin, PermissionRequiredMixin, ListView):
+    permission_required = 'app.view_procedimento'
     login_url = '/'
 
     model = Procedimento

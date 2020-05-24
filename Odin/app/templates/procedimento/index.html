@@ -15,7 +15,9 @@
                         Listagem de Procedimentos
                     </h1>
                 </div>
-                <a href="{% url 'new_procedimento' %}" class="btn btn-success"><span class="fa fa-plus"></span> Adicionar novo procedimento</a>
+                {% if perms.app.add_procedimento %}
+                    <a href="{% url 'new_procedimento' %}" class="btn btn-success"><span class="fa fa-plus"></span> Adicionar novo procedimento</a>
+                {% endif %}
             </div>
             <div class="table-responsive">
                 <table class="table card-table table-vcenter text-nowrap datatable">
@@ -36,8 +38,12 @@
                             <td> {{ procedimento.nome_procedimento }} </td>
                             <td> {{ procedimento.tipo_laudo }} </td>
                             <td align="right">
-                                <a href="{% url 'update_procedimento' procedimento.id %}" class="btn btn-primary">Visualizar</a>
-                                <a href="{% url 'delete_procedimento' procedimento.id %}" class="btn btn-danger">Deletar</a>
+                                {% if perms.app.change_procedimento %}
+                                    <a href="{% url 'update_procedimento' procedimento.id %}" class="btn btn-primary">Editar</a>
+                                {% endif %}
+                                {% if perms.app.delete_procedimento %}
+                                    <a href="{% url 'delete_procedimento' procedimento.id %}" class="btn btn-danger">Deletar</a>
+                                {% endif %}
                             </td>
                         </tr>
                         {% endfor %}
