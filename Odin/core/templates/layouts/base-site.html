@@ -27,20 +27,16 @@
           baseUrl: '/static/'
       });
     </script>
-    <script src="https://kit.fontawesome.com/cce7dadc90.js" crossorigin="anonymous"></script>
+<!--    <script src="https://kit.fontawesome.com/cce7dadc90.js" crossorigin="anonymous"></script>-->
     <!-- Dashboard Core -->
     <link href="/static/assets/css/dashboard.css" rel="stylesheet" />
     <script src="/static/assets/js/dashboard.js"></script>
-    <!-- c3.js Charts Plugin -->
-    <link href="/static/assets/plugins/charts-c3/plugin.css" rel="stylesheet" />
-    <script src="/static/assets/plugins/charts-c3/plugin.js"></script>
-    <!-- Google Maps Plugin -->
-    <link href="/static/assets/plugins/maps-google/plugin.css" rel="stylesheet" />
-    <script src="/static/assets/plugins/maps-google/plugin.js"></script>
     <!-- Input Mask Plugin -->
     <script src="/static/assets/plugins/input-mask/plugin.js"></script>
     <!-- Datatables Plugin -->
     <script src="/static/assets/plugins/datatables/plugin.js"></script>
+    <!-- Select2 Plugin -->
+    <link href="/static/assets/plugins/select2/plugin.css" rel="stylesheet" />
 
 </head>
 <body class="">
@@ -66,8 +62,9 @@
 {% block javascripts %}{% endblock javascripts %}
 <script>
 
-    require(['jquery', 'datatables'], function ($, datatable) {
+    require(['jquery', 'datatables', 'select2'], function ($, datatable, select2) {
         $(document).ready(function () {
+            $('.select2').select2();
             $('.datatable').DataTable({
                 "language": {
                     "sEmptyTable": "Nenhum registro encontrado",

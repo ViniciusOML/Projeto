@@ -16,12 +16,12 @@
 
                     <div class="form-group">
                         <label class="form-label">LIF</label>
-                        {% render_field form.lif class="form-control" %}
+                        {% render_field form.lif class="form-control select2" %}
                     </div>
             
                     <div class="form-group">
                         <label class="form-label">Paciente</label>
-                        <select name="paciente" id="id_paciente" class="form-control">
+                        <select name="paciente" id="id_paciente" class="form-control select2">
                             {% for paciente in pacientes %}
                                 <option value={{paciente.id}}>{{paciente.nome_completo}} - {{paciente.cpf}}</option>
                             {% endfor %}
