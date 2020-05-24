@@ -10,10 +10,12 @@
             <div class="card-header">
                 <div class="col-lg order-lg-first">
                     <h1 class="card-title">
-                        Listagem de Lif's
+                        Listagem de Lif's (Laboratório de Investigação Fonoaudiológica)
                     </h1>
                 </div>
-                <a href="{% url 'new_lif' %}" class="btn btn-success"><span class="fa fa-plus"></span> Adicionar novo lif</a>
+                {% if perms.app.add_lif %}
+                    <a href="{% url 'new_lif' %}" class="btn btn-success"><span class="fa fa-plus"></span> Adicionar novo lif</a>
+                {% endif %}
             </div>
             <div class="table-responsive">
                 <table class="table card-table table-vcenter text-nowrap datatable">
@@ -32,8 +34,12 @@
                             <td> {{ lif.nome_lif }} </td>
                             <td> {{ lif.codigo_lif_atual }} </td>
                             <td align="right">
-                                <a href="{% url 'update_lif' lif.id %}" class="btn btn-primary">Visualizar</a>
-                                <a href="{% url 'delete_lif' lif.id %}" class="btn btn-danger">Deletar</a>
+                                {% if perms.app.change_lif %}
+                                    <a href="{% url 'update_lif' lif.id %}" class="btn btn-primary">Editar</a>
+                                {% endif %}
+                                {% if perms.app.delete_lif %}
+                                    <a href="{% url 'delete_lif' lif.id %}" class="btn btn-danger">Deletar</a>
+                                {% endif %}
                             </td>
                         </tr>
                         {% endfor %}

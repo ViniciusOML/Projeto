@@ -1,11 +1,12 @@
 # -*- encoding: utf-8 -*-
-from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
 from django.urls import reverse_lazy
 from ...models import Lif
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView
 
 
-class LifListView(LoginRequiredMixin, ListView):
+class LifListView(LoginRequiredMixin, PermissionRequiredMixin, ListView):
+    permission_required = 'app.view_lif'
     login_url = '/'
 
     model = Lif
@@ -13,7 +14,8 @@ class LifListView(LoginRequiredMixin, ListView):
     context_object_name = 'lifs'
 
 
-class LifCreateView(LoginRequiredMixin, CreateView):
+class LifCreateView(LoginRequiredMixin, PermissionRequiredMixin, CreateView):
+    permission_required = 'app.add_lif'
     login_url = '/'
 
     model = Lif
@@ -22,7 +24,8 @@ class LifCreateView(LoginRequiredMixin, CreateView):
     success_url = reverse_lazy('index_lifs')
 
 
-class LifUpdateView(LoginRequiredMixin, UpdateView):
+class LifUpdateView(LoginRequiredMixin, PermissionRequiredMixin, UpdateView):
+    permission_required = 'app.change_lif'
     login_url = '/'
 
     model = Lif
@@ -31,7 +34,8 @@ class LifUpdateView(LoginRequiredMixin, UpdateView):
     success_url = reverse_lazy('index_lifs')
 
 
-class LifDeleteView(LoginRequiredMixin, DeleteView):
+class LifDeleteView(LoginRequiredMixin, PermissionRequiredMixin, DeleteView):
+    permission_required = 'app.delete_lif'
     login_url = '/'
 
     model = Lif
