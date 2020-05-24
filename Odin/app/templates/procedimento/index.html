@@ -35,7 +35,6 @@
                             <td> {{ procedimento.sigla }} </td>
                             <td> {{ procedimento.nome_procedimento }} </td>
                             <td> {{ procedimento.tipo_laudo }} </td>
-                            <td> {% firstof procedimento.cid '' %} </td>
                             <td align="right">
                                 <a href="{% url 'update_procedimento' procedimento.id %}" class="btn btn-primary">Visualizar</a>
                                 <a href="{% url 'delete_procedimento' procedimento.id %}" class="btn btn-danger">Deletar</a>
