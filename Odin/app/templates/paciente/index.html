@@ -15,7 +15,9 @@
                         Listagem de Pacientes
                     </h1>
                 </div>
-                <a href="{% url 'new_paciente' %}" class="btn btn-success"><span class="fa fa-plus"></span> Adicionar novo paciente</a>
+                {% if perms.app.add_paciente %}
+                    <a href="{% url 'new_paciente' %}" class="btn btn-success"><span class="fa fa-plus"></span> Adicionar novo paciente</a>
+                {% endif %}
             </div>
             <div class="table-responsive">
                 <table class="table card-table table-vcenter text-nowrap datatable">
@@ -39,7 +41,6 @@
                             <td> {{ paciente.cpf }} </td>
                             <td align="center">
                                 <a href="{% url 'show_paciente' paciente.id %}" class="btn btn-primary">Visualizar</a>
-                                <a href="{% url 'delete_paciente' paciente.id %}" class="btn btn-danger">Deletar</a>
                             </td>
                         </tr>
                         {% endfor %}

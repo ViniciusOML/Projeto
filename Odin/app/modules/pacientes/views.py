@@ -1,11 +1,12 @@
 # -*- encoding: utf-8 -*-
-from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
 from ...models import Paciente, Atendimento, Consulta
 from django.urls import reverse_lazy, reverse
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView, DetailView
 
 
-class PacienteListView(LoginRequiredMixin, ListView):
+class PacienteListView(LoginRequiredMixin, PermissionRequiredMixin, ListView):
+    permission_required = 'app.view_paciente'
     login_url = '/'
 
     model = Paciente
@@ -13,7 +14,8 @@ class PacienteListView(LoginRequiredMixin, ListView):
     context_object_name = 'pacientes'
 
 
-class PacienteDetailView(LoginRequiredMixin, DetailView):
+class PacienteDetailView(LoginRequiredMixin, PermissionRequiredMixin, DetailView):
+    permission_required = 'app.view_paciente'
     login_url = '/'
 
     model = Paciente
@@ -40,7 +42,8 @@ class PacienteDetailView(LoginRequiredMixin, DetailView):
         return context
 
 
-class PacienteCreateView(LoginRequiredMixin, CreateView):
+class PacienteCreateView(LoginRequiredMixin, PermissionRequiredMixin, CreateView):
+    permission_required = 'app.add_paciente'
     login_url = '/'
 
     model = Paciente
@@ -54,7 +57,8 @@ class PacienteCreateView(LoginRequiredMixin, CreateView):
         return reverse('show_paciente', kwargs={'pk': self.object.id})
 
 
-class PacienteAtendimentoCreateView(LoginRequiredMixin, CreateView):
+class PacienteAtendimentoCreateView(LoginRequiredMixin, PermissionRequiredMixin, CreateView):
+    permission_required = 'app.add_atendimento'
     login_url = '/'
 
     model = Atendimento
@@ -75,7 +79,8 @@ class PacienteAtendimentoCreateView(LoginRequiredMixin, CreateView):
         return reverse('show_atendimento', kwargs={'pk': self.object.id})
 
 
-class PacienteUpdateView(LoginRequiredMixin, UpdateView):
+class PacienteUpdateView(LoginRequiredMixin, PermissionRequiredMixin, UpdateView):
+    permission_required = 'app.change_paciente'
     login_url = '/'
 
     model = Paciente
@@ -87,7 +92,8 @@ class PacienteUpdateView(LoginRequiredMixin, UpdateView):
         return reverse('show_paciente', kwargs={'pk': self.object.id})
 
 
-class PacienteDeleteView(LoginRequiredMixin, DeleteView):
+class PacienteDeleteView(LoginRequiredMixin, PermissionRequiredMixin, DeleteView):
+    permission_required = 'app.delete_paciente'
     login_url = '/'
 
     model = Paciente
