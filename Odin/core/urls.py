@@ -9,6 +9,7 @@ urlpatterns = [
     path("", include("app.urls")),  # add this
     path("pacientes/", include("app.modules.pacientes.urls")),
     path("lifs/", include("app.modules.lifs.urls")),
+    path("cids/", include("app.modules.cids.urls")),
     path("atendimentos/", include("app.modules.atendimentos.urls")),
     path("procedimentos/", include("app.modules.procedimentos.urls")),
     path("consultas/", include("app.modules.consultas.urls")),

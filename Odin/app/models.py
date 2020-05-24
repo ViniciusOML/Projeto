@@ -66,8 +66,8 @@ class Procedimento(models.Model):
 
 
 class Atendimento(models.Model):
-    paciente = models.ForeignKey(to=Paciente, on_delete=models.CASCADE)
-    lif = models.ForeignKey(to=Lif, on_delete=models.CASCADE)
+    paciente = models.ForeignKey(to=Paciente, on_delete=models.PROTECT)
+    lif = models.ForeignKey(to=Lif, on_delete=models.PROTECT)
     codigo_lif = models.CharField(max_length=20, unique=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
@@ -96,16 +96,30 @@ class Atendimento(models.Model):
 
 
 class Consulta(models.Model):
-    atendimento = models.ForeignKey(to=Atendimento, on_delete=models.CASCADE)
-    procedimento = models.ForeignKey(to=Procedimento, on_delete=models.CASCADE)
+    atendimento = models.ForeignKey(to=Atendimento, on_delete=models.PROTECT)
+    procedimento = models.ForeignKey(to=Procedimento, on_delete=models.PROTECT)
     data_consulta = models.DateField()
     observacao = models.CharField(max_length=200, null=True, blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
 
+class Cid(models.Model):
+
+    codigo_cid = models.CharField(max_length=15)
+    nome_cid = models.CharField(max_length=120)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    def get_absolute_url(self):
+        return reverse('index_cids', kwargs={'pk': self.pk})
+
+    def __str__(self):
+        return self.nome_cid
+
 class ResultadoBera(models.Model):
-    consulta = models.ForeignKey(to=Consulta, on_delete=models.CASCADE)
+    consulta = models.ForeignKey(to=Consulta, on_delete=models.PROTECT)
+    cid = models.ForeignKey(to=Cid, on_delete=models.PROTECT, null = True, blank = True)
 
     # Esquerdo
     # picos_latencia_absoluta
@@ -188,7 +202,8 @@ class ResultadoBera(models.Model):
 
 
 class ResultadoPac(models.Model):
-    consulta = models.ForeignKey(to=Consulta, on_delete=models.CASCADE)
+    consulta = models.ForeignKey(to=Consulta, on_delete=models.PROTECT)
+    cid = models.ForeignKey(to=Cid, on_delete=models.PROTECT, null = True, blank = True)
 
     esquerdo_picos_P300 = models.CharField(max_length=10)
     esquerdo_picos_P1 = models.CharField(max_length=10, blank=True)
@@ -209,7 +224,8 @@ class ResultadoPac(models.Model):
 
 
 class ResultadoPadrao(models.Model):
-    consulta = models.ForeignKey(to=Consulta, on_delete=models.CASCADE)
+    consulta = models.ForeignKey(to=Consulta, on_delete=models.PROTECT)
+    cid = models.ForeignKey(to=Cid, on_delete=models.PROTECT, null = True, blank = True)
     evolucao = models.TextField(null=True, blank=True)
     conclusao_exame = models.TextField(null=True, blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
@@ -217,7 +233,8 @@ class ResultadoPadrao(models.Model):
 
 
 class ResultadoAudiometria(models.Model):
-    consulta = models.ForeignKey(to=Consulta, on_delete=models.CASCADE)
+    consulta = models.ForeignKey(to=Consulta, on_delete=models.PROTECT)
+    cid = models.ForeignKey(to=Cid, on_delete=models.PROTECT, null = True, blank = True)
 
     esquerdo_frequencia_250_limiar_va = \
         models.CharField(max_length=10, blank=True)

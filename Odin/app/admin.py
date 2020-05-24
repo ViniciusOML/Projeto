@@ -7,7 +7,8 @@ from app.models import Paciente,\
     Consulta,\
     ResultadoPac,\
     ResultadoBera,\
-    ResultadoAudiometria
+    ResultadoAudiometria, \
+    Cid
 
 # Register your models here.
 admin.site.register(Paciente)
@@ -18,3 +19,4 @@ admin.site.register(Consulta)
 admin.site.register(ResultadoPac)
 admin.site.register(ResultadoBera)
 admin.site.register(ResultadoAudiometria)
+admin.site.register(Cid)

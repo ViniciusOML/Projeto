@@ -1,6 +1,6 @@
 {% extends "layouts/base-site.html" %}
 
-{% block title %} Listagem de Lif's {% endblock %}
+{% block title %} Listagem de CID's {% endblock %}
 
 {% block content %}
 
@@ -10,10 +10,10 @@
             <div class="card-header">
                 <div class="col-lg order-lg-first">
                     <h1 class="card-title">
-                        Listagem de Lif's
+                        Listagem de CID's
                     </h1>
                 </div>
-                <a href="{% url 'new_lif' %}" class="btn btn-success"><span class="fa fa-plus"></span> Adicionar novo lif</a>
+                <a href="{% url 'new_cid' %}" class="btn btn-success"><span class="fa fa-plus"></span> Adicionar novo cid</a>
             </div>
             <div class="table-responsive">
                 <table class="table card-table table-vcenter text-nowrap datatable">
@@ -21,19 +21,19 @@
                         <tr>
                             <th>#</th>
                             <th>Nome</th>
-                            <th>Código do LIF atual</th>
+                            <th>Código do CID atual</th>
                             <th></th>
                         </tr>
                     </thead>
                     <tbody>
-                        {% for lif in lifs %}
+                        {% for cid in cids %}
                         <tr style="height: 10px">
-                            <td> {{ lif.id }} </td>
-                            <td> {{ lif.nome_lif }} </td>
-                            <td> {{ lif.codigo_lif_atual }} </td>
+                            <td> {{ cid.id }} </td>
+                            <td> {{ cid.nome_cid }} </td>
+                            <td> {{ cid.codigo_cid_atual }} </td>
                             <td align="right">
-                                <a href="{% url 'update_lif' lif.id %}" class="btn btn-primary">Visualizar</a>
-                                <a href="{% url 'delete_lif' lif.id %}" class="btn btn-danger">Deletar</a>
+                                <a href="{% url 'update_cid' cid.id %}" class="btn btn-primary">Visualizar</a>
+                                <a href="{% url 'delete_cid' cid.id %}" class="btn btn-danger">Deletar</a>
                             </td>
                         </tr>
                         {% endfor %}
