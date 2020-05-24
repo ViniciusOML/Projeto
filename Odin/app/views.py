@@ -22,5 +22,5 @@ def pages(request):
 
     except:
 
-        template = loader.get_template( 'pages/error-404.html' )
+        template = loader.get_template('404.html')
         return HttpResponse(template.render(context, request))
