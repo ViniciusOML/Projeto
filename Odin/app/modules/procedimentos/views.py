@@ -1,5 +1,5 @@
 # -*- encoding: utf-8 -*-
-from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
 from django.urls import reverse_lazy
 from ...models import Procedimento
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView
@@ -10,6 +10,7 @@ fields_form = [
     'tipo_laudo'
 ]
 
+
 class ProcedimentoListView(LoginRequiredMixin, ListView):
     login_url = '/'
 
@@ -18,7 +19,8 @@ class ProcedimentoListView(LoginRequiredMixin, ListView):
     context_object_name = 'procedimentos'
 
 
-class ProcedimentoCreateView(LoginRequiredMixin, CreateView):
+class ProcedimentoCreateView(LoginRequiredMixin, PermissionRequiredMixin, CreateView):
+    permission_required = 'app.add_procedimento'
     login_url = '/'
 
     model = Procedimento
@@ -27,7 +29,8 @@ class ProcedimentoCreateView(LoginRequiredMixin, CreateView):
     success_url = reverse_lazy('index_procedimentos')
 
 
-class ProcedimentoUpdateView(LoginRequiredMixin, UpdateView):
+class ProcedimentoUpdateView(LoginRequiredMixin, PermissionRequiredMixin, UpdateView):
+    permission_required = 'app.change_procedimento'
     login_url = '/'
 
     model = Procedimento
@@ -36,7 +39,8 @@ class ProcedimentoUpdateView(LoginRequiredMixin, UpdateView):
     success_url = reverse_lazy('index_procedimentos')
 
 
-class ProcedimentoDeleteView(LoginRequiredMixin, DeleteView):
+class ProcedimentoDeleteView(LoginRequiredMixin, PermissionRequiredMixin, DeleteView):
+    permission_required = 'app.delete_procedimento'
     login_url = ''
 
     model = Procedimento
