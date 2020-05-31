@@ -1,3 +1,11 @@
+{% url 'index_lifs' as lifs %}
+{% url 'index_cids' as cids %}
+{% url 'index_procedimentos' as procedimentos %}
+{% url 'index_atendimentos' as atendimentos %}
+{% url 'index_consultas' as consultas %}
+{% url 'index_pacientes' as pacientes %}
+
+
 <div class="header collapse d-lg-flex p-0" id="headerMenuCollapse">
     <div class="container">
         <div class="row align-items-center">
@@ -6,37 +14,37 @@
                     <!-- LABORATÓRIOS -->
                     {% if perms.app.view_lif %}
                         <li class="nav-item">
-                            <a href="{% url 'index_lifs' %}" class="nav-link">LIF's</a>
+                            <a href="{{ lifs }}" class="nav-link {% if request.path == lifs %} active {% endif %}"><i class="fa fa-flask"></i>LIF's</a>
                         </li>
                     {% endif %}
                     <!-- CIDS -->
                     {% if perms.app.view_cid %}
                         <li class="nav-item">
-                            <a href="{% url 'index_cids' %}" class="nav-link">CID's</a>
+                            <a href="{{ cids }}" class="nav-link {% if request.path == cids %} active {% endif %} "><i class="fa fa-book-medical"></i>CID's</a>
                         </li>
                     {% endif %}
                     <!-- PROCEDIMENTOS -->
                     {% if perms.app.view_procedimento %}
                         <li class="nav-item">
-                            <a href="{% url 'index_procedimentos' %}" class="nav-link">Procedimentos</a>
+                            <a href="{{ procedimentos }}" class="nav-link {% if request.path == procedimentos %} active {% endif %} "><i class="fa fa-procedures"></i>Procedimentos</a>
                         </li>
                     {% endif %}
                     <!-- ATENDIMENTOS -->
                     {% if perms.app.view_atendimento %}
                         <li class="nav-item">
-                            <a href="{% url 'index_atendimentos' %}" class="nav-link">Atendimentos</a>
+                            <a href="{{ atendimentos }}" class="nav-link  {% if request.path == atendimentos %} active {% endif %}"><i class="fa fa-id-card-alt"></i>Atendimentos</a>
                         </li>
                     {% endif %}
                     <!-- CONSULTAS -->
                     {% if perms.app.view_consulta %}
                         <li class="nav-item">
-                            <a href="{% url 'index_consultas' %}" class="nav-link">Consultas</a>
+                            <a href="{{ consultas }}" class="nav-link {% if request.path == consultas %} active {% endif %}"><i class="fa fa-stethoscope"></i>Consultas</a>
                         </li>
                     {% endif %}
                     <!-- PACIENTES -->
                     {% if perms.app.view_paciente %}
                         <li class="nav-item">
-                            <a href="{% url 'index_pacientes' %}" class="nav-link">Pacientes</a>
+                            <a href="{{ pacientes }}" class="nav-link {% if request.path == pacientes %} active {% endif %}"><i class="fa fa-users"></i>Pacientes</a>
                         </li>
                     {% endif %}
                     <!-- PERFIL -->
