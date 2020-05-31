@@ -130,6 +130,10 @@
                         <h3 class="card-title"><strong>Conclusão:</strong></h3>
                         {{resultado.conclusao_exame}}
                     </section>
+                    <section>
+                        <h3 class="card-title"><strong>CID:</strong></h3>
+                        {{resultado.cid}}
+                    </section>
                     <h3 class="card-title" style="text-align: center; color:white">
                         <a href="{% url 'update_resultado_padrao' resultado.id %}" class="btn btn-primary">Editar resultado</a>
                     </h3>

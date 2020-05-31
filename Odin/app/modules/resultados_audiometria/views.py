@@ -24,6 +24,7 @@ class ResultadoAudiometriaUpdateView(LoginRequiredMixin, UpdateView):
 
     model = ResultadoAudiometria
     fields = [
+        'cid',
         'conclusao_exame',
         'evolucao',
 

@@ -24,6 +24,7 @@ class ResultadoBeraUpdateView(LoginRequiredMixin, UpdateView):
 
     model = ResultadoBera
     fields = [
+        'cid',
         'conclusao_exame',
         'evolucao',
         'esquerdo_picos_latencia_absoluta_I',

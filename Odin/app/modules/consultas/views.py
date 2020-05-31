@@ -70,6 +70,7 @@ class ConsultaResultadoBeraCreateView(LoginRequiredMixin, CreateView):
 
     model = ResultadoBera
     fields = [
+        'cid',
         'conclusao_exame',
         'evolucao',
         'esquerdo_picos_latencia_absoluta_I',
@@ -127,6 +128,7 @@ class ConsultaResultadoPacCreateView(LoginRequiredMixin, CreateView):
 
     model = ResultadoPac
     fields = [
+        'cid',
         'conclusao_exame',
         'evolucao',
 
@@ -165,6 +167,7 @@ class ConsultaResultadoPadraoCreateView(LoginRequiredMixin, CreateView):
     fields = [
         'conclusao_exame',
         'evolucao',
+        'cid'
     ]
     template_name = 'consulta/resultado_padrao_novo.html'
 
@@ -187,6 +190,7 @@ class ConsultaResultadoAudiometriaCreateView(LoginRequiredMixin, CreateView):
 
     model = ResultadoAudiometria
     fields = [
+        'cid',
         'conclusao_exame',
         'evolucao',
 

@@ -24,6 +24,7 @@ class ResultadoPadraoUpdateView(LoginRequiredMixin, UpdateView):
 
     model = ResultadoPadrao
     fields = [
+        'cid',
         'conclusao_exame',
         'evolucao',
     ]

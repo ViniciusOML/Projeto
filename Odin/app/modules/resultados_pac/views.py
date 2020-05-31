@@ -24,6 +24,7 @@ class ResultadoPacUpdateView(LoginRequiredMixin, UpdateView):
 
     model = ResultadoPac
     fields = [
+        'cid',
         'conclusao_exame',
         'evolucao',
 

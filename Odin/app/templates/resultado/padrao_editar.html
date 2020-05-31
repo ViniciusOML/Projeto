@@ -98,7 +98,11 @@
                 <div class="card-body">
 
                     {% csrf_token %}
-                    
+                        <h3 class="text-center" style="color: #ac1b1a; text-decoration: underline">RESULTADO</h3>
+                        <div class="form-group col-lg-6">
+                            <label class="form-label">CID</label>
+                            {% render_field form.cid class="form-control select2" %}
+                        </div>
                     <div class="form-group">
                         <label class="form-label">Evolução</label>
                         {% render_field form.evolucao class="form-control" %}
@@ -108,7 +112,7 @@
                         <label class="form-label">Conclusão</label>
                         {% render_field form.conclusao_exame class="form-control" %}
                     </div>
-                    
+
                     <div class="card-footer text-center">
                         <a href="{% url 'show_resultado_padrao' resultadopadrao.id %}" class="btn btn-primary">Voltar</a>
                         <button type="submit" class="btn btn-success">Atualizar</button>
