@@ -119,6 +119,22 @@
                         <strong style="color: #ac1b1a; text-decoration: underline">Resultado</strong>
                     </h3>
 
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th style="text-align: center;"><h3>CID</h3></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="text-center">
+                                    {% firstof resultado.cid.codigo_cid '' %} - 
+                                    {% firstof resultado.cid.nome_cid '' %}
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+
                     <section>
                         <!-- <strong>Evolução:</strong><br> -->
                         <h3 class="card-title"><strong>Evolução:</strong></h3>
@@ -129,10 +145,6 @@
                         <!-- <strong>Conclusão:</strong><br> -->
                         <h3 class="card-title"><strong>Conclusão:</strong></h3>
                         {{resultado.conclusao_exame}}
-                    </section>
-                    <section>
-                        <h3 class="card-title"><strong>CID:</strong></h3>
-                        {{resultado.cid}}
                     </section>
                     <h3 class="card-title" style="text-align: center; color:white">
                         <a href="{% url 'update_resultado_padrao' resultado.id %}" class="btn btn-primary">Editar resultado</a>

@@ -115,9 +115,25 @@
         <div class="col-lg-12">
             <div class="card">
                 <div class="card-body">
-                    <h3 class="card-title" style="text-align: center;"><strong>Resultado</strong></h3>
+                    <h3 class="card-title" style="text-align: center;"><strong style="color: #ac1b1a; text-decoration: underline">Resultado</strong></h3>
 
                     <div class="col-lg-12">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th style="text-align: center;"><h3>CID</h3></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td class="text-center">
+                                        {% firstof resultado.cid.codigo_cid '' %} - 
+                                        {% firstof resultado.cid.nome_cid '' %}
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        
                         <table class="table table-hover table-striped">
                             <colgroup>
                                 <col>
@@ -466,10 +482,6 @@
                             <!-- <strong>Conclusão:</strong><br> -->
                             <h3 class="card-title"><strong>Conclusão:</strong></h3>
                             {{resultado.conclusao_exame}}
-                        </section>
-                        <section>
-                            <h3 class="card-title"><strong>CID:</strong></h3>
-                            {{resultado.cid}}
                         </section>
                         <h3 class="card-title" style="text-align: center; color:white">
                             <a href="{% url 'update_resultado_audiometria' resultado.id %}" class="btn btn-primary">Editar Resultado</a>

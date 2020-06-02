@@ -20,8 +20,8 @@
                     <thead>
                         <tr>
                             <th>#</th>
+                            <th>Código do CID</th>
                             <th>Nome</th>
-                            <th>Código do CID atual</th>
                             <th></th>
                         </tr>
                     </thead>
@@ -29,8 +29,8 @@
                         {% for cid in cids %}
                         <tr style="height: 10px">
                             <td> {{ cid.id }} </td>
+                            <td> {{ cid.codigo_cid }} </td>
                             <td> {{ cid.nome_cid }} </td>
-                            <td> {{ cid.codigo_cid_atual }} </td>
                             <td align="right">
                                 <a href="{% url 'update_cid' cid.id %}" class="btn btn-primary">Visualizar</a>
                                 <a href="{% url 'delete_cid' cid.id %}" class="btn btn-danger">Deletar</a>

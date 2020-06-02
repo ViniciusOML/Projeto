@@ -98,11 +98,24 @@
                 <div class="card-body">
 
                     {% csrf_token %}
-                        <h3 class="text-center" style="color: #ac1b1a; text-decoration: underline">RESULTADO</h3>
-                        <div class="form-group col-lg-6">
-                            <label class="form-label">CID</label>
-                            {% render_field form.cid class="form-control select2" %}
-                        </div>
+
+                    <h3 class="card-title" style="text-align: center;"><strong>Resultado</strong></h3>
+                        
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th style="text-align: center;"><h3>CID</h3></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    {% render_field form.cid class="form-control select2" %}
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    
                     <div class="form-group">
                         <label class="form-label">Evolução</label>
                         {% render_field form.evolucao class="form-control" %}
