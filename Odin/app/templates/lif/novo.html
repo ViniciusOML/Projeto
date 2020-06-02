@@ -13,9 +13,15 @@
                     <h3 class="card-title" style="text-align: center;"><strong>Cadastro de LIF</strong></h3>
 
                     {% csrf_token %}
+
                     <div class="form-group">
                         <label class="form-label">Nome</label>
                         {% render_field form.nome_lif class="form-control" %}
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Código do LIF atual</label>
+                        {% render_field form.codigo_lif_atual class="form-control" %}
                     </div>
 
                     {% if errors %}

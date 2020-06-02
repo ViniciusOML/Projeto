@@ -19,7 +19,7 @@ class LifCreateView(LoginRequiredMixin, PermissionRequiredMixin, CreateView):
     login_url = '/'
 
     model = Lif
-    fields = ['nome_lif']
+    fields = ['nome_lif', 'codigo_lif_atual']
     template_name = 'lif/novo.html'
     success_url = reverse_lazy('index_lifs')
 
