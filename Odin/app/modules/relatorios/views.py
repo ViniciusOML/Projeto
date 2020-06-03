@@ -88,15 +88,46 @@ def relatorio_consultas_por_cid_pdf(request, context):
     buffer = io.BytesIO()
 
     p = canvas.Canvas(buffer)
+    p.setFontSize(10)
 
-    linha = 700
+    linha = 800
+
+    p.rect(5, 797, 6*92, 9*1.5, fill=0)
+
+    p.drawString(10, linha, "Data consulta")
+    p.drawString(80, linha, "Paciente")
+    p.drawString(300, linha, "LIF")
+    p.drawString(400, linha, "Codigo LIF")
+    p.drawString(500, linha, "Codigo CID")
+    
+    linha -=20
     for consulta in context['consultas']:
         p.drawString(10, linha, consulta['data'].strftime("%d/%m/%Y"))
-        p.drawString(50, linha, consulta['paciente'])
+        p.drawString(80, linha, consulta['paciente'])
+        p.drawString(300, linha, consulta['lif'])
+        p.drawString(400, linha, consulta['codigo_lif'])
+        p.drawString(500, linha, consulta['codigo_cid'])
+
         linha -= 15
+        if (linha <= 50): # Quebra de página
+            p.showPage()
+
+            linha = 800
+
+            p.setFontSize(10)
+
+            p.rect(5, 797, 6*92, 9*1.5, fill=0)
+            
+            p.drawString(10, linha, "Data consulta")
+            p.drawString(80, linha, "Paciente")
+            p.drawString(300, linha, "LIF")
+            p.drawString(400, linha, "Codigo LIF")
+            p.drawString(500, linha, "Codigo CID")
+            
+            linha -=20
 
     p.showPage()
     p.save()
 
     buffer.seek(0)
-    return FileResponse(buffer, as_attachment=True, filename='hello.pdf')
+    return FileResponse(buffer, as_attachment=True, filename='relatorio_de_consultas_por_cid.pdf')
