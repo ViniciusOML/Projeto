@@ -17,4 +17,5 @@ urlpatterns = [
     path("resultados_pac/", include("app.modules.resultados_pac.urls")),
     path("resultados_audiometria/", include("app.modules.resultados_audiometria.urls")),
     path("resultados_padrao/", include("app.modules.resultados_padrao.urls")),
+    path("relatorios/", include("app.modules.relatorios.urls")),
 ]

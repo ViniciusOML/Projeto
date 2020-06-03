@@ -1,0 +1,113 @@
+{% extends "layouts/base-site.html" %}
+
+{% block title %} Relatório de consultas por CID {% endblock %}
+
+{% block content %}
+
+<div class="my-3 my-md-5">
+
+    <div class="container">
+
+        <div class="col-lg-12">
+            <div class="card">
+                <div class="card-body">
+                    <h3 class="card-title" style="text-align: center;">
+                        <strong>Relatório de consultas por CID</strong>
+                    </h3>
+                    <form action="" id="filtrar">
+
+                        {%csrf_token%}
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th class="col-lg-2"><label for="data_inicial">Data inicial</label></th>
+                                    <th class="col-lg-2"><label for="data_final">Data Final</label></th>
+                                    <th><label for="cids">CID(s)</label></th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><input type="date" class="form-control" id="data_inicial" required></td>
+                                    <td><input type="date" class="form-control" id="data_final" required></td>
+                                    <td>
+                                        <select id="cids" class="select2 form-control" multiple>
+                                            {% for cid in cids %}
+                                                <option value="{{cid.id}}">{{cid.codigo_cid}}</option>
+                                            {% endfor %}
+                                        </select>
+                                    </td>
+                                    <td><input type="submit" class="btn btn-info" value="Filtrar"></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </form>
+                    <!-- <div class="col-lg-12"> -->
+                        <table class="table table-vcenter text-nowrap">
+                            <thead>
+                                <tr>
+                                    <th class="col-lg-1">Data consulta</th>
+                                    <th>Paciente</th>
+                                    <th>Codigo LIF</th>
+                                    <th>LIF</th>
+                                    <th>Procedimento</th>
+                                    <th>Codigo CID</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody id="listagem"></tbody>
+                        </table>
+                    <!-- </div> -->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock content %}
+
+<!-- Specific Page JS goes HERE  -->
+{% block javascripts %}
+<script>
+    require(['jquery'], function($) {
+        $(function() {
+
+            $('#filtrar').on('submit', function(e) {
+                e.preventDefault()
+                filtrar_listagem()
+            })
+
+            function filtrar_listagem() {
+                $.ajax({
+                    url: '/relatorios/consultas_por_cid',
+                    type: 'POST',
+                    dataType: 'json',
+                    data: {
+                        csrfmiddlewaretoken: $('input[name="csrfmiddlewaretoken"]').val(),
+                        data_inicial: $('#data_inicial').val(),
+                        data_final: $('#data_final').val(),
+                        cids: $('#cids').val(),
+                    }
+                }).done(function(response) {
+                    $('#listagem').html('');
+                    if (response['consultas'].length > 0) {
+                        var html = '';
+                        for (var consulta of response['consultas']) {
+                            html += '<tr>';
+                            html += '<td>' + consulta.data + '</td>';
+                            html += '<td>' + consulta.paciente + '</td>';
+                            html += '<td>' + consulta.codigo_lif + '</td>';
+                            html += '<td>' + consulta.lif + '</td>';
+                            html += '<td>' + consulta.procedimento + '</td>';
+                            html += '<td>' + consulta.codigo_cid + '</td>';
+                            html += '<td><a href="' + consulta.url + '" target="blank" class="btn btn-primary">Ver resultado</a></td>';
+                            html += '</tr>';
+                        }
+                        $('#listagem').html(html);
+                    }
+                });
+            }
+        })
+    })
+</script>
+{% endblock javascripts %}
