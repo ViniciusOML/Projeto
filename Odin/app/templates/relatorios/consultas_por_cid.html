@@ -14,9 +14,12 @@
                     <h3 class="card-title" style="text-align: center;">
                         <strong>Relatório de consultas por CID</strong>
                     </h3>
-                    <form action="" id="filtrar">
+                    <form action="" id="filtrar" method="POST">
 
                         {%csrf_token%}
+
+                        <input type="hidden" name="pdf" value="0">
+
                         <table class="table">
                             <thead>
                                 <tr>
@@ -28,16 +31,24 @@
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td><input type="date" class="form-control" id="data_inicial" required></td>
-                                    <td><input type="date" class="form-control" id="data_final" required></td>
+                                    <td><input type="date" class="form-control" id="data_inicial" name="data_inicial" value="{{data_inicial}}" required></td>
+                                    <td><input type="date" class="form-control" id="data_final" name="data_final" value="{{data_final}}"required></td>
                                     <td>
-                                        <select id="cids" class="select2 form-control" multiple>
+                                        <select name="cids" id="cids" class="select2 form-control" multiple>
                                             {% for cid in cids %}
-                                                <option value="{{cid.id}}">{{cid.codigo_cid}}</option>
+                                                {% if cid.codigo_cid in cids_selecionados%}
+                                                    <option value="{{cid.codigo_cid}}" selected>{{cid.codigo_cid}}</option>
+                                                {% else %}
+                                                    <option value="{{cid.codigo_cid}}">{{cid.codigo_cid}}</option>
+                                                {% endif %}
                                             {% endfor %}
                                         </select>
                                     </td>
-                                    <td><input type="submit" class="btn btn-info" value="Filtrar"></td>
+                                    <td>                                      
+                                        <input type="submit" class="btn btn-info" value="Filtrar" id="filtrar">
+
+                                        <input type="submit" class="btn btn-warning" value="Gerar PDF" id="gerar_pdf">
+                                    </td>
                                 </tr>
                             </tbody>
                         </table>
@@ -55,7 +66,19 @@
                                     <th></th>
                                 </tr>
                             </thead>
-                            <tbody id="listagem"></tbody>
+                            <tbody id="listagem">
+                                {% for consulta in consultas %}
+                                    <tr>
+                                        <td>{{consulta.data}}</td>
+                                        <td>{{consulta.paciente}}</td>
+                                        <td>{{consulta.codigo_lif}}</td>
+                                        <td>{{consulta.lif}}</td>
+                                        <td>{{consulta.procedimento}}</td>
+                                        <td>{{consulta.codigo_cid}}</td>
+                                        <td><a href="{{consulta.url}}" target="blank" class="btn btn-primary">Ver resultado</a></td>
+                                    </tr>
+                                {% endfor %}
+                            </tbody>
                         </table>
                     <!-- </div> -->
                 </div>
@@ -72,42 +95,11 @@
     require(['jquery'], function($) {
         $(function() {
 
-            $('#filtrar').on('submit', function(e) {
-                e.preventDefault()
-                filtrar_listagem()
-            })
+            $('#gerar_pdf').on('click', function(e) {
+                $('input:hidden[name="pdf"]').val('1');
+            });
 
-            function filtrar_listagem() {
-                $.ajax({
-                    url: '/relatorios/consultas_por_cid',
-                    type: 'POST',
-                    dataType: 'json',
-                    data: {
-                        csrfmiddlewaretoken: $('input[name="csrfmiddlewaretoken"]').val(),
-                        data_inicial: $('#data_inicial').val(),
-                        data_final: $('#data_final').val(),
-                        cids: $('#cids').val(),
-                    }
-                }).done(function(response) {
-                    $('#listagem').html('');
-                    if (response['consultas'].length > 0) {
-                        var html = '';
-                        for (var consulta of response['consultas']) {
-                            html += '<tr>';
-                            html += '<td>' + consulta.data + '</td>';
-                            html += '<td>' + consulta.paciente + '</td>';
-                            html += '<td>' + consulta.codigo_lif + '</td>';
-                            html += '<td>' + consulta.lif + '</td>';
-                            html += '<td>' + consulta.procedimento + '</td>';
-                            html += '<td>' + consulta.codigo_cid + '</td>';
-                            html += '<td><a href="' + consulta.url + '" target="blank" class="btn btn-primary">Ver resultado</a></td>';
-                            html += '</tr>';
-                        }
-                        $('#listagem').html(html);
-                    }
-                });
-            }
-        })
-    })
+        });
+    });
 </script>
 {% endblock javascripts %}

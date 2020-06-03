@@ -1,7 +1,10 @@
 # -*- encoding: utf-8 -*-
+import io
+from reportlab.pdfgen import canvas
+
 from django.contrib.auth.decorators import login_required, permission_required
 from django.shortcuts import render
-from django.http import JsonResponse
+from django.http import JsonResponse, FileResponse
 from ...models import \
     ResultadoAudiometria,\
     ResultadoBera,\
@@ -21,14 +24,16 @@ def relatorio_consultas_por_cid(request):
     context = {}
     
     if request.method == "POST":
-        return relatorio_consultas_por_cid_api(request)
+        context = relatorio_consultas_por_cid_post(request)
+        if request.POST['pdf'] == '1':
+            return relatorio_consultas_por_cid_pdf(request, context)
     cids = Cid.objects.all()
 
     context['cids'] = cids
     return render(request, 'relatorios/consultas_por_cid.html', context)
 
 
-def relatorio_consultas_por_cid_api(request):
+def relatorio_consultas_por_cid_post(request):
     context = {
         'consultas': []
     }
@@ -36,7 +41,12 @@ def relatorio_consultas_por_cid_api(request):
     if request.method == "POST":
         consultas = Consulta.objects.filter(data_consulta__range=(request.POST['data_inicial'], request.POST['data_final']))
 
-        cids = request.POST.getlist("cids[]")
+        cids = request.POST.getlist("cids")
+
+        context['data_inicial'] = request.POST['data_inicial']
+        context['data_final'] = request.POST['data_final']
+        context['cids_selecionados'] = request.POST.getlist("cids")
+
         for consulta in consultas:
             url = ''
 
@@ -60,10 +70,10 @@ def relatorio_consultas_por_cid_api(request):
                     url = '/resultados_padrao/show/' + str(resultado.id) + '/'
 
                 if len(cids) > 0:
-                    if str(resultado.cid.id) not in cids:
+                    if resultado.cid.codigo_cid not in cids:
                         continue
                 context['consultas'].append({
-                    'data': consulta.data_consulta.strftime("%d/%m/%Y"),
+                    'data': consulta.data_consulta,
                     'paciente': consulta.atendimento.paciente.nome_completo,
                     'codigo_lif': consulta.atendimento.codigo_lif,
                     'lif': consulta.atendimento.lif.nome_lif,
@@ -72,4 +82,21 @@ def relatorio_consultas_por_cid_api(request):
                     'url': url,
                 })
     
-    return JsonResponse(context)
+    return context
+
+def relatorio_consultas_por_cid_pdf(request, context):
+    buffer = io.BytesIO()
+
+    p = canvas.Canvas(buffer)
+
+    linha = 700
+    for consulta in context['consultas']:
+        p.drawString(10, linha, consulta['data'].strftime("%d/%m/%Y"))
+        p.drawString(50, linha, consulta['paciente'])
+        linha -= 15
+
+    p.showPage()
+    p.save()
+
+    buffer.seek(0)
+    return FileResponse(buffer, as_attachment=True, filename='hello.pdf')
