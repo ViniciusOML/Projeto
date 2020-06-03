@@ -45,7 +45,7 @@
                                         </select>
                                     </td>
                                     <td>                                      
-                                        <input type="submit" class="btn btn-info" value="Filtrar" id="filtrar">
+                                        <input type="submit" class="btn btn-info" value="Filtrar" id="gerar_relatorio">
 
                                         <input type="submit" class="btn btn-warning" value="Gerar PDF" id="gerar_pdf">
                                     </td>
@@ -97,6 +97,17 @@
 
             $('#gerar_pdf').on('click', function(e) {
                 $('input:hidden[name="pdf"]').val('1');
+                $('input:hidden[name="excel"]').val('0');
+            });
+
+            $('#gerar_excel').on('click', function(e) {
+                $('input:hidden[name="pdf"]').val('0');
+                $('input:hidden[name="excel"]').val('1');
+            });
+
+            $('#gerar_relatorio').on('click', function(e) {
+                $('input:hidden[name="pdf"]').val('0');
+                $('input:hidden[name="excel"]').val('0');
             });
 
         });
