@@ -57,7 +57,9 @@
 
                 </div>
                 <div class="card-footer text-center">
-                    <a href="{% url 'show_paciente' atendimento.paciente.id %}" class="btn btn-primary">Ver detalhes</a>
+                    {% if perms.app.view_paciente %}
+                        <a href="{% url 'show_paciente' atendimento.paciente.id %}" class="btn btn-primary">Ver detalhes</a>
+                    {% endif %}
                 </div>
             </div>
 
@@ -84,50 +86,61 @@
                     </table>
                 </div>
                 <div class="card-footer text-center">
-                    <a href="{% url 'update_atendimento' atendimento.id %}" class="btn btn-primary">Editar dados do atendimento</a>
-                    <a href="{% url 'delete_atendimento' atendimento.id %}" class="btn btn-danger">Deletar</a>
+                    {% if perms.app.change_atendimento %}
+                        <a href="{% url 'update_atendimento' atendimento.id %}" class="btn btn-primary">Editar dados do atendimento</a>
+                    {% endif %}
+
+                    {% if perms.app.delete_atendimento %}
+                        <a href="{% url 'delete_atendimento' atendimento.id %}" class="btn btn-danger">Deletar</a>
+                    {% endif %}
                 </div>
             </div>
         </div>
-        <div class="col-lg-12">
-            <div class="card">
-                <div class="card-body">
-                    <h3 class="card-title" style="text-align: center;">
-                        <strong>Consultas</strong>
-                    </h3>
+        {% if perms.app.view_consulta %}
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-body">
+                        <h3 class="card-title" style="text-align: center;">
+                            <strong>Consultas</strong>
+                        </h3>
 
-                    <div class="table-responsive">
-                        <table class="table card-table table-vcenter text-nowrap datatable">
-                            <thead>
-                                <tr>
-                                    <th>#</th>
-                                    <th>Data consulta</th>
-                                    <th>Procedimento</th>
-                                    <th></th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {% for consulta in consultas %}
-                                <tr style="height: 10px">
-                                    <td> {{ consulta.id }} </td>
-                                    <td> {{ consulta.data_consulta }} </td>
-                                    <td> {{ consulta.procedimento }} </td>
-                                    <td align="center">
-                                        <a href="{% url 'show_consulta' consulta.id %}" class="btn btn-primary">Visualizar</a>
-                                    </td>
-                                </tr>
-                                {% endfor %}
-                            </tbody>
-                        </table>
+                        <div class="table-responsive">
+                            <table class="table card-table table-vcenter text-nowrap datatable">
+                                <thead>
+                                    <tr>
+                                        <th>#</th>
+                                        <th>Data consulta</th>
+                                        <th>Procedimento</th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for consulta in consultas %}
+                                    <tr style="height: 10px">
+                                        <td> {{ consulta.id }} </td>
+                                        <td> {{ consulta.data_consulta }} </td>
+                                        <td> {{ consulta.procedimento }} </td>
+                                        <td align="center">
+                                            {% if perms.app.view_consulta %}
+                                                <a href="{% url 'show_consulta' consulta.id %}" class="btn btn-primary">Visualizar</a>
+                                            {% endif %}
+                                        </td>
+                                    </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="card-footer text-center">
+                        {% if perms.app.add_consulta %}
+                            <a href="{% url 'new_atendimento_consulta' atendimento.id %}" class="btn btn-success">
+                                Adicionar nova consulta
+                            </a>
+                        {% endif %}
                     </div>
                 </div>
-                <div class="card-footer text-center">
-                    <a href="{% url 'new_atendimento_consulta' atendimento.id %}" class="btn btn-success">
-                        Adicionar nova consulta
-                    </a>
-                </div>
             </div>
-        </div>
+        {% endif %}
     </div>
 </div>
 

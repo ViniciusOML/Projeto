@@ -13,7 +13,9 @@
                         Listagem de Atendimentos
                     </h1>
                 </div>
-                <a href="{% url 'new_atendimento' %}" class="btn btn-success"><span class="fa fa-plus"></span> Adicionar novo atendimento</a>
+                {% if perms.app.add_atendimento %}
+                    <a href="{% url 'new_atendimento' %}" class="btn btn-success"><span class="fa fa-plus"></span> Adicionar novo atendimento</a>
+                {% endif %}
             </div>
             <div class="table-responsive">
                 <table class="table card-table table-vcenter text-nowrap datatable">

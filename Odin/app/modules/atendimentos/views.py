@@ -1,12 +1,13 @@
 # -*- encoding: utf-8 -*-
-from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
 from ...models import Atendimento, Consulta, Paciente
 from django.urls import reverse_lazy, reverse
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView, DetailView
 from django.contrib.sessions.models import Session
 
 
-class AtendimentoListView(LoginRequiredMixin, ListView):
+class AtendimentoListView(LoginRequiredMixin, PermissionRequiredMixin, ListView):
+    permission_required = 'app.view_atendimento'
     login_url = '/'
 
     model = Atendimento
@@ -14,7 +15,8 @@ class AtendimentoListView(LoginRequiredMixin, ListView):
     context_object_name = 'atendimentos'
 
 
-class AtendimentoDetailView(LoginRequiredMixin, DetailView):
+class AtendimentoDetailView(LoginRequiredMixin, PermissionRequiredMixin, DetailView):
+    permission_required = 'app.view_atendimento'
     login_url = '/'
 
     model = Atendimento
@@ -29,7 +31,8 @@ class AtendimentoDetailView(LoginRequiredMixin, DetailView):
         return context
 
 
-class AtendimentoCreateView(LoginRequiredMixin, CreateView):
+class AtendimentoCreateView(LoginRequiredMixin, PermissionRequiredMixin, CreateView):
+    permission_required = 'app.add_atendimento'
     login_url = '/'
 
     model = Atendimento
@@ -50,7 +53,8 @@ class AtendimentoCreateView(LoginRequiredMixin, CreateView):
         return reverse('show_atendimento', kwargs={'pk': self.object.id})
 
 
-class AtendimentoConsultaCreateView(LoginRequiredMixin, CreateView):
+class AtendimentoConsultaCreateView(LoginRequiredMixin, PermissionRequiredMixin, CreateView):
+    permission_required = 'app.add_consulta'
     login_url = '/'
 
     model = Consulta
@@ -71,7 +75,8 @@ class AtendimentoConsultaCreateView(LoginRequiredMixin, CreateView):
         return reverse('show_atendimento', kwargs={'pk': self.object.atendimento.id})
 
 
-class AtendimentoUpdateView(LoginRequiredMixin, UpdateView):
+class AtendimentoUpdateView(LoginRequiredMixin, PermissionRequiredMixin, UpdateView):
+    permission_required = 'app.change_atendimento'
     login_url = '/'
 
     model = Atendimento
@@ -82,7 +87,8 @@ class AtendimentoUpdateView(LoginRequiredMixin, UpdateView):
         return reverse('show_atendimento', kwargs={'pk': self.object.id})
 
 
-class AtendimentoDeleteView(LoginRequiredMixin, DeleteView):
+class AtendimentoDeleteView(LoginRequiredMixin, PermissionRequiredMixin, DeleteView):
+    permission_required = 'app.delete_atendimento'
     login_url = '/'
 
     model = Atendimento
