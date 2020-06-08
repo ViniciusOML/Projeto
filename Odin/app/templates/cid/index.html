@@ -13,7 +13,9 @@
                         Listagem de CID's
                     </h1>
                 </div>
-                <a href="{% url 'new_cid' %}" class="btn btn-success"><span class="fa fa-plus"></span> Adicionar novo cid</a>
+                {% if perms.app.add_cid %}
+                    <a href="{% url 'new_cid' %}" class="btn btn-success"><span class="fa fa-plus"></span> Adicionar novo cid</a>
+                {% endif %}
             </div>
             <div class="table-responsive">
                 <table class="table card-table table-vcenter text-nowrap datatable">
@@ -32,8 +34,13 @@
                             <td> {{ cid.codigo_cid }} </td>
                             <td> {{ cid.nome_cid }} </td>
                             <td align="right">
-                                <a href="{% url 'update_cid' cid.id %}" class="btn btn-primary">Visualizar</a>
-                                <a href="{% url 'delete_cid' cid.id %}" class="btn btn-danger">Deletar</a>
+                                {% if perms.app.change_cid %}
+                                    <a href="{% url 'update_cid' cid.id %}" class="btn btn-primary">Editar</a>
+                                {% endif %}
+
+                                {% if perms.app.delete_cid %}
+                                    <a href="{% url 'delete_cid' cid.id %}" class="btn btn-danger">Deletar</a>
+                                {% endif %}
                             </td>
                         </tr>
                         {% endfor %}

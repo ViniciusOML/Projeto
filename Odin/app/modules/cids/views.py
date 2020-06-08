@@ -1,11 +1,12 @@
 # -*- encoding: utf-8 -*-
-from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
 from django.urls import reverse_lazy
 from ...models import Cid
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView
 
 
-class CidListView(LoginRequiredMixin, ListView):
+class CidListView(LoginRequiredMixin, PermissionRequiredMixin, ListView):
+    permission_required = 'app.view_cid'
     login_url = '/'
 
     model = Cid
@@ -13,7 +14,8 @@ class CidListView(LoginRequiredMixin, ListView):
     context_object_name = 'cids'
 
 
-class CidCreateView(LoginRequiredMixin, CreateView):
+class CidCreateView(LoginRequiredMixin, PermissionRequiredMixin, CreateView):
+    permission_required = 'app.add_cid'
     login_url = '/'
 
     model = Cid
@@ -22,7 +24,8 @@ class CidCreateView(LoginRequiredMixin, CreateView):
     success_url = reverse_lazy('index_cids')
 
 
-class CidUpdateView(LoginRequiredMixin, UpdateView):
+class CidUpdateView(LoginRequiredMixin, PermissionRequiredMixin, UpdateView):
+    permission_required = 'app.change_cid'
     login_url = '/'
 
     model = Cid
@@ -31,7 +34,8 @@ class CidUpdateView(LoginRequiredMixin, UpdateView):
     success_url = reverse_lazy('index_cids')
 
 
-class CidDeleteView(LoginRequiredMixin, DeleteView):
+class CidDeleteView(LoginRequiredMixin, PermissionRequiredMixin, DeleteView):
+    permission_required = 'app.delete_cid'
     login_url = '/'
 
     model = Cid
