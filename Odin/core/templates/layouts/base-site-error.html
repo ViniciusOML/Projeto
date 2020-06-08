@@ -29,8 +29,10 @@
     <body class="">
         <div  class="page" style="background-color: #BDCBC7;">
             <div class="flex-fill">
-                {% include 'includes/top-bar.html' %}
-                {% include 'includes/top-menu.html' %}
+                {% if request.user %}
+                    {% include 'includes/top-bar.html' %}
+                    {% include 'includes/top-menu.html' %}
+                {% endif %}
 
                 <div class="page-content">
                     {% block content %}{% endblock content %}
