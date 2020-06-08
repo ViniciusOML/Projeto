@@ -60,6 +60,9 @@ def relatorio_consultas_por_cid_post(request):
                 resultados = ResultadoPadrao.objects.filter(consulta_id=consulta.id)
 
             for resultado in resultados:
+                if resultado.cid is None:
+                    continue
+
                 if consulta.procedimento.tipo_laudo == 'BERA':
                     url = '/resultados_bera/show/' + str(resultado.id) + '/'
                 elif consulta.procedimento.tipo_laudo == 'PAC':

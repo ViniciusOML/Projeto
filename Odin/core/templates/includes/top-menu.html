@@ -23,6 +23,15 @@
                             <a href="{{ cids }}" class="nav-link {% if request.path == cids %} active {% endif %} "><i class="fa fa-book-medical"></i>CID's</a>
                         </li>
                     {% endif %}
+                    <!-- RELATORIOS -->
+                    {% if perms.app.view_consulta and perms.app.view_resultadobera and perms.app.view_resultadoaudiometria and perms.app.view_resultadopac and perms.app.view_resultadopadrao %}
+                        <li class="nav-item">
+                            <a href="javascript:void(0)" class="nav-link" data-toggle="dropdown"><i class="fe fe-box"></i> Relatorios</a>
+                            <div class="dropdown-menu dropdown-menu-arrow">
+                                <a href="{% url 'relatorio_consultas_por_cid' %}" class="dropdown-item ">Consulta por CID</a>
+                            </div>
+                        </li>
+                    {% endif %}
                     <!-- PROCEDIMENTOS -->
                     {% if perms.app.view_procedimento %}
                         <li class="nav-item">
